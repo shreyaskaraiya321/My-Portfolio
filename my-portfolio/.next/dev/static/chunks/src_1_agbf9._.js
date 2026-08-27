@@ -1,0 +1,2918 @@
+(globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/src/components/ui/ascii-art.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AsciiArt",
+    ()=>AsciiArt
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+// Upgraded character map for smoother gradients on faces
+const ASCII_CHARS = " .,:;i1tfLCG08@";
+function AsciiArt({ src, resolution = 120, color = "currentColor", inverted = false, animationStyle = "none", animateOnView = true, className }) {
+    _s();
+    const [ascii, setAscii] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [displayedAscii, setDisplayedAscii] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
+    const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(!animateOnView);
+    const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AsciiArt.useEffect": ()=>{
+            const img = new Image();
+            img.crossOrigin = "Anonymous";
+            img.onload = ({
+                "AsciiArt.useEffect": ()=>{
+                    const canvas = document.createElement("canvas");
+                    const ctx = canvas.getContext("2d");
+                    if (!ctx) return;
+                    const width = resolution;
+                    // Adjusted aspect ratio multiplier to fix vertical stretching
+                    const aspectRatio = img.height / img.width;
+                    const height = Math.floor(width * aspectRatio * 0.45);
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    const imageData = ctx.getImageData(0, 0, width, height);
+                    const data = imageData.data;
+                    let asciiStr = "";
+                    const chars = inverted ? ASCII_CHARS.split("").reverse().join("") : ASCII_CHARS;
+                    for(let y = 0; y < height; y++){
+                        for(let x = 0; x < width; x++){
+                            const offset = (y * width + x) * 4;
+                            const r = data[offset];
+                            const g = data[offset + 1];
+                            const b = data[offset + 2];
+                            const a = data[offset + 3];
+                            if (a === 0) {
+                                asciiStr += " ";
+                                continue;
+                            }
+                            const brightness = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+                            const charIndex = Math.floor(brightness * (chars.length - 1));
+                            asciiStr += chars[charIndex];
+                        }
+                        asciiStr += "\n";
+                    }
+                    setAscii(asciiStr);
+                    if (animationStyle === "none") {
+                        setDisplayedAscii(asciiStr);
+                    }
+                }
+            })["AsciiArt.useEffect"];
+            img.src = src;
+        }
+    }["AsciiArt.useEffect"], [
+        src,
+        resolution,
+        inverted,
+        animationStyle
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AsciiArt.useEffect": ()=>{
+            if (!animateOnView) return;
+            const observer = new IntersectionObserver({
+                "AsciiArt.useEffect": ([entry])=>{
+                    if (entry.isIntersecting) {
+                        setIsVisible(true);
+                        observer.disconnect();
+                    }
+                }
+            }["AsciiArt.useEffect"], {
+                threshold: 0.2
+            });
+            if (containerRef.current) {
+                observer.observe(containerRef.current);
+            }
+            return ({
+                "AsciiArt.useEffect": ()=>observer.disconnect()
+            })["AsciiArt.useEffect"];
+        }
+    }["AsciiArt.useEffect"], [
+        animateOnView
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AsciiArt.useEffect": ()=>{
+            if (ascii && animationStyle === "typewriter" && isVisible) {
+                let i = 0;
+                const chunkSize = Math.max(1, Math.floor(ascii.length / 60));
+                const interval = setInterval({
+                    "AsciiArt.useEffect.interval": ()=>{
+                        setDisplayedAscii(ascii.slice(0, i));
+                        i += chunkSize;
+                        if (i > ascii.length) {
+                            setDisplayedAscii(ascii);
+                            clearInterval(interval);
+                        }
+                    }
+                }["AsciiArt.useEffect.interval"], 15);
+                return ({
+                    "AsciiArt.useEffect": ()=>clearInterval(interval)
+                })["AsciiArt.useEffect"];
+            } else if (ascii && isVisible) {
+                const timeoutId = setTimeout({
+                    "AsciiArt.useEffect.timeoutId": ()=>setDisplayedAscii(ascii)
+                }["AsciiArt.useEffect.timeoutId"], 0);
+                return ({
+                    "AsciiArt.useEffect": ()=>clearTimeout(timeoutId)
+                })["AsciiArt.useEffect"];
+            }
+        }
+    }["AsciiArt.useEffect"], [
+        ascii,
+        animationStyle,
+        isVisible
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("pre", {
+        ref: containerRef,
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("whitespace-pre font-mono text-[4px] sm:text-[5px] md:text-[6px] lg:text-[8px] leading-[0.75] tracking-tighter overflow-hidden text-center", className),
+        style: {
+            color
+        },
+        children: displayedAscii
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/ascii-art.tsx",
+        lineNumber: 121,
+        columnNumber: 5
+    }, this);
+}
+_s(AsciiArt, "VFV9i6MZIWLpVgniHKBU0DCPUJk=");
+_c = AsciiArt;
+var _c;
+__turbopack_context__.k.register(_c, "AsciiArt");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/aurora-bars.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "AuroraBars",
+    ()=>AuroraBars
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/utils/use-animation-frame.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-motion-value.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-transform.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+/** two sine waves per bar for organic movement */ function barHeight(index, total, time, minH, maxH) {
+    // Arch envelope: tallest in the centre, shorter on edges
+    // arch envelope: tallest in centre, shorter on edges
+    const norm = index / (total - 1);
+    const arch = Math.sin(norm * Math.PI);
+    const phase1 = index / total * Math.PI * 2;
+    const phase2 = index / total * Math.PI * 5.3;
+    const wave = 0.5 + 0.25 * Math.sin(time * 1.1 + phase1) + 0.25 * Math.sin(time * 0.7 + phase2);
+    const blended = arch * 0.65 + wave * 0.35;
+    return minH + blended * (maxH - minH);
+}
+function AuroraBar({ index, total, time, minH, maxH, gradient, blur, gap }) {
+    _s();
+    const height = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(time, {
+        "AuroraBar.useTransform[height]": (t)=>{
+            return `${barHeight(index, total, t, minH, maxH) * 100}%`;
+        }
+    }["AuroraBar.useTransform[height]"]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex-1",
+        style: {
+            height: "100%",
+            display: "flex",
+            alignItems: "flex-end",
+            padding: `0 ${gap / 2}px`
+        },
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].div, {
+            style: {
+                width: "100%",
+                height,
+                background: gradient,
+                borderRadius: "9999px 9999px 0 0",
+                filter: `blur(${blur}px)`,
+                opacity: 0.85
+            }
+        }, void 0, false, {
+            fileName: "[project]/src/components/ui/aurora-bars.tsx",
+            lineNumber: 87,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/aurora-bars.tsx",
+        lineNumber: 78,
+        columnNumber: 5
+    }, this);
+}
+_s(AuroraBar, "4ssp1os+ASRQ0QSxKWPmURVcNH4=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
+    ];
+});
+_c = AuroraBar;
+function AuroraBars({ barCount = 24, colors = [
+    "#ffd6eb",
+    "#ff9acb",
+    "#ff5aa6",
+    "#ff2d78",
+    "#00000000"
+], maxHeightRatio = 0.92, minHeightRatio = 0.18, speed = 0.5, gap = 3, blur = 0, background = "#000000", className }) {
+    _s1();
+    const containerRef = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"](null);
+    const time = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"])(0);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAnimationFrame"])({
+        "AuroraBars.useAnimationFrame": (_, delta)=>{
+            time.set(time.get() + delta / 1000 * speed);
+        }
+    }["AuroraBars.useAnimationFrame"]);
+    const gradientStop = colors.map((c, i)=>`${c} ${Math.round(i / (colors.length - 1) * 100)}%`).join(", ");
+    const gradient = `linear-gradient(to top, ${gradientStop})`;
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        ref: containerRef,
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("relative w-full h-full overflow-hidden", className),
+        style: {
+            background
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 flex items-end",
+                children: Array.from({
+                    length: barCount
+                }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AuroraBar, {
+                        index: i,
+                        total: barCount,
+                        time: time,
+                        minH: minHeightRatio,
+                        maxH: maxHeightRatio,
+                        gradient: gradient,
+                        blur: blur,
+                        gap: gap
+                    }, i, false, {
+                        fileName: "[project]/src/components/ui/aurora-bars.tsx",
+                        lineNumber: 132,
+                        columnNumber: 11
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/aurora-bars.tsx",
+                lineNumber: 130,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 pointer-events-none",
+                style: {
+                    background: "radial-gradient(ellipse 90% 80% at 50% 100%, transparent 40%, #000000cc 100%)"
+                }
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/aurora-bars.tsx",
+                lineNumber: 146,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/aurora-bars.tsx",
+        lineNumber: 125,
+        columnNumber: 5
+    }, this);
+}
+_s1(AuroraBars, "l5SPEt2i+1cTQIL5OC9O/J7g4Mo=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"],
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAnimationFrame"]
+    ];
+});
+_c1 = AuroraBars;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "AuroraBar");
+__turbopack_context__.k.register(_c1, "AuroraBars");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/floating-nav.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "FloatingNav",
+    ()=>FloatingNav
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+"use client";
+;
+function FloatingNav() {
+    const scrollToSection = (e, id)=>{
+        e.preventDefault();
+        const element = document.getElementById(id);
+        if (element) {
+            // This creates the smooth gliding animation
+            element.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "fixed bottom-8 left-1/2 -translate-x-1/2 z-50",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex items-center gap-4 px-6 py-3 bg-[#2d2d2d]/90 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl text-white/80 text-sm font-medium",
+            children: [
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                    href: "#work",
+                    onClick: (e)=>scrollToSection(e, 'work'),
+                    className: "hover:text-cyan-400 transition-colors",
+                    children: "Work"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 17,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-white/20",
+                    children: "|"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 18,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                    href: "#projects",
+                    onClick: (e)=>scrollToSection(e, 'projects'),
+                    className: "hover:text-violet-400 transition-colors",
+                    children: "Projects"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 19,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-white/20",
+                    children: "|"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 20,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                    href: "#opensource",
+                    onClick: (e)=>scrollToSection(e, 'opensource'),
+                    className: "hover:text-fuchsia-400 transition-colors",
+                    children: "Open Source"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 21,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                    className: "text-white/20",
+                    children: "|"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 22,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                    href: "#contact",
+                    onClick: (e)=>scrollToSection(e, 'contact'),
+                    className: "hover:text-amber-400 transition-colors",
+                    children: "Contact"
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/floating-nav.tsx",
+                    lineNumber: 23,
+                    columnNumber: 9
+                }, this)
+            ]
+        }, void 0, true, {
+            fileName: "[project]/src/components/ui/floating-nav.tsx",
+            lineNumber: 16,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/floating-nav.tsx",
+        lineNumber: 15,
+        columnNumber: 5
+    }, this);
+}
+_c = FloatingNav;
+var _c;
+__turbopack_context__.k.register(_c, "FloatingNav");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/github-graph.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "GithubGraph",
+    ()=>GithubGraph,
+    "buildContributionWeeks",
+    ()=>buildContributionWeeks,
+    "normalizeGithubAccount",
+    ()=>normalizeGithubAccount
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/components/AnimatePresence/index.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+const CONTRIBUTIONS_ENDPOINT = "https://github-contributions-api.jogruber.de/v4";
+const VARIANTS = {
+    github: [
+        "#ebedf0",
+        "#9be9a8",
+        "#40c463",
+        "#30a14e",
+        "#216e39"
+    ],
+    graphite: [
+        "#eeeeee",
+        "#cccccc",
+        "#969696",
+        "#5f5f5f",
+        "#171717"
+    ],
+    ocean: [
+        "#e6f5ff",
+        "#b4e2ff",
+        "#62bdf5",
+        "#2585d8",
+        "#124e93"
+    ],
+    violet: [
+        "#f2eaff",
+        "#dcc5ff",
+        "#b486ff",
+        "#8355df",
+        "#52269c"
+    ]
+};
+function dateFromISO(value) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+    const date = new Date(`${value}T00:00:00.000Z`);
+    return Number.isNaN(date.getTime()) ? null : date;
+}
+function isoDate(date) {
+    return date.toISOString().slice(0, 10);
+}
+function addDays(date, days) {
+    const result = new Date(date);
+    result.setUTCDate(result.getUTCDate() + days);
+    return result;
+}
+function fallbackLevel(count, maxCount) {
+    if (!Number.isFinite(count) || count <= 0 || maxCount <= 0) return 0;
+    return Math.min(4, Math.max(1, Math.ceil(count / maxCount * 4)));
+}
+function normalizeGithubAccount(account) {
+    const normalized = account.trim().replace(/^@+/, "");
+    return /^(?!-)[a-z\d](?:[a-z\d-]{0,37}[a-z\d])?$/i.test(normalized) ? normalized : null;
+}
+function buildContributionWeeks(contributions) {
+    const valid = contributions.map((item)=>({
+            ...item,
+            parsedDate: dateFromISO(item.date)
+        })).filter((item)=>item.parsedDate !== null && Number.isFinite(item.count)).sort((a, b)=>a.date.localeCompare(b.date));
+    if (valid.length === 0) return [];
+    const maxCount = Math.max(0, ...valid.map((item)=>item.count));
+    const byDate = new Map(valid.map((item)=>[
+            item.date,
+            item
+        ]));
+    const firstDate = valid[0].parsedDate;
+    const lastDate = valid[valid.length - 1].parsedDate;
+    const startDate = addDays(firstDate, -firstDate.getUTCDay());
+    const endDate = addDays(lastDate, 6 - lastDate.getUTCDay());
+    const cells = [];
+    for(let date = startDate; date <= endDate; date = addDays(date, 1)){
+        const key = isoDate(date);
+        const contribution = byDate.get(key);
+        const count = Math.max(0, contribution?.count ?? 0);
+        const explicitLevel = contribution?.level;
+        const level = Number.isInteger(explicitLevel) && explicitLevel >= 0 && explicitLevel <= 4 ? count === 0 ? 0 : explicitLevel : fallbackLevel(count, maxCount);
+        cells.push({
+            date: key,
+            count,
+            level
+        });
+    }
+    return Array.from({
+        length: Math.ceil(cells.length / 7)
+    }, (_, index)=>cells.slice(index * 7, index * 7 + 7));
+}
+function selectRecentContributions(contributions, months) {
+    const parsed = contributions.map((contribution)=>({
+            contribution,
+            date: dateFromISO(contribution.date)
+        })).filter((item)=>item.date !== null);
+    const latest = parsed.reduce((current, item)=>!current || item.date > current ? item.date : current, null);
+    if (!latest) return [];
+    const start = new Date(latest);
+    start.setUTCMonth(start.getUTCMonth() - Math.max(1, Math.min(12, Math.round(months))));
+    return parsed.filter((item)=>item.date >= start).map((item)=>item.contribution);
+}
+function formatContributionLabel(contribution) {
+    const date = new Intl.DateTimeFormat("en", {
+        month: "short",
+        day: "numeric"
+    }).format(dateFromISO(contribution.date) ?? new Date());
+    const label = contribution.count === 1 ? "contribution" : "contributions";
+    return `${contribution.count} ${label} · ${date}`;
+}
+function getCellDelay(animation, weekIndex, dayIndex, speed) {
+    if (animation === "none") return 0;
+    const step = animation === "wave" ? weekIndex * 0.026 + dayIndex * 0.016 : animation === "scan" ? weekIndex * 0.03 : (weekIndex + dayIndex * 2) * 0.018;
+    return step / Math.max(speed, 0.1);
+}
+function getAmbientCellMotion(effect, intensity, weekIndex, dayIndex, entranceDelay, reducedMotion) {
+    if (reducedMotion || effect === "none") {
+        return {
+            animate: {
+                opacity: 1,
+                scale: 1
+            },
+            transition: {
+                opacity: {
+                    duration: 0.14,
+                    delay: entranceDelay
+                },
+                scale: {
+                    type: "spring",
+                    stiffness: 900,
+                    damping: 32
+                }
+            }
+        };
+    }
+    const strength = Math.min(1, Math.max(0, intensity));
+    const seed = (weekIndex * 17 + dayIndex * 31) % 11 / 10;
+    const isTide = effect === "tide";
+    const isDrift = effect === "drift";
+    const duration = isTide ? 3.2 : isDrift ? 3.8 + seed : 2 + seed * 1.4;
+    const delay = entranceDelay + (isTide ? (weekIndex + dayIndex * 1.8) * 0.055 : seed * 0.85);
+    const lowOpacity = 1 - (isTide ? 0.24 : isDrift ? 0.16 : 0.34) * strength;
+    const smallScale = 1 - (isTide ? 0.07 : isDrift ? 0.04 : 0.08) * strength;
+    return {
+        animate: {
+            opacity: isDrift ? [
+                1,
+                lowOpacity,
+                1 - 0.06 * strength,
+                1
+            ] : [
+                1,
+                lowOpacity,
+                1
+            ],
+            scale: isDrift ? [
+                1,
+                smallScale,
+                1 + 0.025 * strength,
+                1
+            ] : [
+                1,
+                smallScale,
+                1
+            ]
+        },
+        transition: {
+            opacity: {
+                duration,
+                delay,
+                ease: "easeInOut",
+                repeat: Infinity
+            },
+            scale: {
+                duration,
+                delay,
+                ease: "easeInOut",
+                repeat: Infinity
+            }
+        }
+    };
+}
+function LoadingGraph({ cellSize, cellGap, cellRadius, months, autoFit, autoFitColumns }) {
+    const weekCount = Math.ceil((Math.max(1, months ?? 3) * 31 + 6) / 7);
+    if (autoFit) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "w-full overflow-hidden",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "grid w-full",
+                style: {
+                    gridTemplateColumns: `repeat(${autoFitColumns}, ${cellSize}px)`,
+                    gap: cellGap,
+                    justifyContent: "space-between"
+                },
+                "aria-label": "Loading contributions",
+                children: Array.from({
+                    length: weekCount * 7
+                }, (_, index)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        className: "animate-pulse bg-muted",
+                        style: {
+                            width: cellSize,
+                            height: cellSize,
+                            borderRadius: cellRadius,
+                            animationDelay: `${index * 12}ms`
+                        }
+                    }, index, false, {
+                        fileName: "[project]/src/components/ui/github-graph.tsx",
+                        lineNumber: 278,
+                        columnNumber: 13
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 268,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/src/components/ui/github-graph.tsx",
+            lineNumber: 267,
+            columnNumber: 7
+        }, this);
+    }
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "flex min-w-max",
+            style: {
+                gap: cellGap
+            },
+            "aria-label": "Loading contributions",
+            children: Array.from({
+                length: weekCount
+            }, (_, week)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "grid grid-rows-7",
+                    style: {
+                        gap: cellGap
+                    },
+                    children: Array.from({
+                        length: 7
+                    }, (_, day)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "animate-pulse bg-muted",
+                            style: {
+                                width: cellSize,
+                                height: cellSize,
+                                borderRadius: cellRadius,
+                                animationDelay: `${(week + day) * 12}ms`
+                            }
+                        }, day, false, {
+                            fileName: "[project]/src/components/ui/github-graph.tsx",
+                            lineNumber: 304,
+                            columnNumber: 15
+                        }, this))
+                }, week, false, {
+                    fileName: "[project]/src/components/ui/github-graph.tsx",
+                    lineNumber: 302,
+                    columnNumber: 11
+                }, this))
+        }, void 0, false, {
+            fileName: "[project]/src/components/ui/github-graph.tsx",
+            lineNumber: 296,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/github-graph.tsx",
+        lineNumber: 295,
+        columnNumber: 5
+    }, this);
+}
+_c = LoadingGraph;
+function GithubGraph({ account = "shadcn", months = 6, variant = "github", animation = "wave", animationSpeed = 1, cellSize = 18, cellGap = 4, cellRadius = 3, autoFit = false, showLegend = false, showAccount = true, ambientEffect = "twinkle", ambientIntensity = 0.65, data, className }) {
+    _s();
+    const rootRef = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"](null);
+    const reducedMotion = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useReducedMotion"])();
+    const normalizedAccount = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"]({
+        "GithubGraph.useMemo[normalizedAccount]": ()=>normalizeGithubAccount(account)
+    }["GithubGraph.useMemo[normalizedAccount]"], [
+        account
+    ]);
+    const [resource, setResource] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"]({
+        "GithubGraph.useState": ()=>{
+            if (data) return {
+                status: "ready",
+                contributions: data
+            };
+            if (!normalizedAccount) return {
+                status: "error",
+                message: "Enter a valid GitHub username."
+            };
+            return {
+                status: "loading"
+            };
+        }
+    }["GithubGraph.useState"]);
+    const [availableWidth, setAvailableWidth] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](0);
+    const [hoveredContribution, setHoveredContribution] = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"](null);
+    const colors = VARIANTS[variant];
+    const resolvedCellRadius = Math.max(0, Math.min(cellRadius, Math.max(0, cellSize) / 2));
+    const autoFitColumns = Math.max(1, Math.floor((availableWidth + Math.max(0, cellGap)) / Math.max(1, cellSize + cellGap)));
+    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLayoutEffect"]({
+        "GithubGraph.useLayoutEffect": ()=>{
+            if (!autoFit || !rootRef.current) return;
+            const root = rootRef.current;
+            const updateWidth = {
+                "GithubGraph.useLayoutEffect.updateWidth": ()=>setAvailableWidth(root.clientWidth)
+            }["GithubGraph.useLayoutEffect.updateWidth"];
+            updateWidth();
+            const observer = new ResizeObserver(updateWidth);
+            observer.observe(root);
+            return ({
+                "GithubGraph.useLayoutEffect": ()=>observer.disconnect()
+            })["GithubGraph.useLayoutEffect"];
+        }
+    }["GithubGraph.useLayoutEffect"], [
+        autoFit
+    ]);
+    __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"]({
+        "GithubGraph.useEffect": ()=>{
+            if (data) return;
+            if (!normalizedAccount) {
+                // eslint-disable-next-line react-hooks/set-state-in-effect
+                setResource({
+                    status: "error",
+                    message: "Enter a valid GitHub username."
+                });
+                return;
+            }
+            const controller = new AbortController();
+            setResource({
+                status: "loading"
+            });
+            fetch(`${CONTRIBUTIONS_ENDPOINT}/${normalizedAccount}?y=last`, {
+                signal: controller.signal
+            }).then({
+                "GithubGraph.useEffect": async (response)=>{
+                    if (!response.ok) throw new Error("GitHub account not found.");
+                    const payload = await response.json();
+                    if (!Array.isArray(payload.contributions)) {
+                        throw new Error("No public contributions were returned.");
+                    }
+                    return payload.contributions;
+                }
+            }["GithubGraph.useEffect"]).then({
+                "GithubGraph.useEffect": (contributions)=>{
+                    if (!controller.signal.aborted) {
+                        setResource({
+                            status: "ready",
+                            contributions
+                        });
+                    }
+                }
+            }["GithubGraph.useEffect"]).catch({
+                "GithubGraph.useEffect": (error)=>{
+                    if (controller.signal.aborted) return;
+                    setResource({
+                        status: "error",
+                        message: error instanceof Error ? error.message : "Could not load contributions."
+                    });
+                }
+            }["GithubGraph.useEffect"]);
+            return ({
+                "GithubGraph.useEffect": ()=>controller.abort()
+            })["GithubGraph.useEffect"];
+        }
+    }["GithubGraph.useEffect"], [
+        data,
+        normalizedAccount
+    ]);
+    const weeks = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"]({
+        "GithubGraph.useMemo[weeks]": ()=>{
+            if (resource.status !== "ready") return [];
+            return buildContributionWeeks(selectRecentContributions(resource.contributions, months));
+        }
+    }["GithubGraph.useMemo[weeks]"], [
+        months,
+        resource
+    ]);
+    const animationKey = `${normalizedAccount ?? account}-${months}-${variant}-${animation}-${cellSize}-${cellGap}-${autoFit}`;
+    const showTooltip = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"]({
+        "GithubGraph.useCallback[showTooltip]": (element, contribution, weekIndex, dayIndex, pointer)=>{
+            const cellRect = element.getBoundingClientRect();
+            const placement = cellRect.top > 56 ? "above" : "below";
+            const left = Math.min(Math.max(cellRect.left + cellRect.width / 2, 96), window.innerWidth - 96);
+            setHoveredContribution({
+                contribution,
+                left,
+                top: placement === "above" ? cellRect.top - 9 : cellRect.bottom + 9,
+                originLeft: pointer?.clientX ?? left,
+                originTop: pointer?.clientY ?? cellRect.top + cellRect.height / 2,
+                placement,
+                weekIndex,
+                dayIndex
+            });
+        }
+    }["GithubGraph.useCallback[showTooltip]"], []);
+    const renderContribution = (contribution, columnIndex, rowIndex)=>{
+        const label = formatContributionLabel(contribution);
+        const entranceDelay = reducedMotion ? 0 : getCellDelay(animation, columnIndex, rowIndex, animationSpeed);
+        const ambientMotion = getAmbientCellMotion(ambientEffect, ambientIntensity, columnIndex, rowIndex, entranceDelay, reducedMotion);
+        const distance = hoveredContribution ? Math.hypot(columnIndex - hoveredContribution.weekIndex, rowIndex - hoveredContribution.dayIndex) : Infinity;
+        const waveStrength = Math.max(0, 1 - distance / 3);
+        const filter = `brightness(${1 + waveStrength * 0.45}) saturate(${1 + waveStrength * 0.2})`;
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].button, {
+            type: "button",
+            role: "gridcell",
+            "aria-label": label,
+            className: "relative outline-none ring-offset-2 ring-offset-background transition-shadow focus-visible:ring-2 focus-visible:ring-foreground/60",
+            style: {
+                width: cellSize,
+                height: cellSize,
+                borderRadius: resolvedCellRadius
+            },
+            initial: reducedMotion || animation === "none" ? false : {
+                opacity: 0,
+                scale: 0.35,
+                y: 4
+            },
+            animate: {
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                filter
+            },
+            transition: {
+                opacity: {
+                    duration: 0.14,
+                    delay: entranceDelay
+                },
+                y: {
+                    type: "spring",
+                    stiffness: 520,
+                    damping: 28,
+                    delay: entranceDelay
+                },
+                scale: {
+                    type: "spring",
+                    stiffness: 900,
+                    damping: 32
+                },
+                filter: {
+                    duration: 0.08,
+                    ease: "easeOut"
+                }
+            },
+            onMouseEnter: (event)=>showTooltip(event.currentTarget, contribution, columnIndex, rowIndex, event),
+            onFocus: (event)=>showTooltip(event.currentTarget, contribution, columnIndex, rowIndex),
+            onBlur: ()=>setHoveredContribution(null),
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].span, {
+                "aria-hidden": "true",
+                className: "pointer-events-none absolute inset-0",
+                style: {
+                    backgroundColor: colors[contribution.level],
+                    borderRadius: resolvedCellRadius
+                },
+                animate: ambientMotion.animate,
+                transition: ambientMotion.transition
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 537,
+                columnNumber: 9
+            }, this)
+        }, `${animationKey}-${contribution.date}`, false, {
+            fileName: "[project]/src/components/ui/github-graph.tsx",
+            lineNumber: 495,
+            columnNumber: 7
+        }, this);
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        ref: rootRef,
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])(autoFit ? "w-full" : "w-fit max-w-full", className),
+        "aria-busy": resource.status === "loading",
+        children: [
+            showAccount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "mb-5 text-lg font-medium tracking-tight text-foreground",
+                children: [
+                    "@",
+                    normalizedAccount ?? account
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 558,
+                columnNumber: 9
+            }, this),
+            resource.status === "loading" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(LoadingGraph, {
+                cellSize: cellSize,
+                cellGap: cellGap,
+                cellRadius: resolvedCellRadius,
+                months: months,
+                autoFit: autoFit,
+                autoFitColumns: autoFitColumns
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 564,
+                columnNumber: 9
+            }, this),
+            resource.status === "error" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                className: "text-sm text-muted-foreground",
+                children: resource.message
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 575,
+                columnNumber: 9
+            }, this),
+            resource.status === "ready" && weeks.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden", autoFit ? "w-full overflow-hidden" : "overflow-x-auto"),
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("relative", autoFit ? "grid w-full" : "flex min-w-max"),
+                    style: autoFit ? {
+                        gridTemplateColumns: `repeat(${autoFitColumns}, ${cellSize}px)`,
+                        gap: cellGap,
+                        justifyContent: "space-between"
+                    } : {
+                        gap: cellGap
+                    },
+                    role: "grid",
+                    "aria-label": `GitHub contributions for ${normalizedAccount ?? account}`,
+                    onMouseLeave: ()=>setHoveredContribution(null),
+                    children: [
+                        autoFit ? weeks.flat().map((contribution, index)=>renderContribution(contribution, index % autoFitColumns, Math.floor(index / autoFitColumns))) : weeks.map((week, weekIndex)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "grid grid-rows-7",
+                                style: {
+                                    gap: cellGap
+                                },
+                                role: "row",
+                                children: week.map((contribution, dayIndex)=>renderContribution(contribution, weekIndex, dayIndex))
+                            }, `${animationKey}-${weekIndex}`, false, {
+                                fileName: "[project]/src/components/ui/github-graph.tsx",
+                                lineNumber: 614,
+                                columnNumber: 19
+                            }, this)),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
+                            children: hoveredContribution && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].span, {
+                                role: "tooltip",
+                                className: "pointer-events-none fixed z-50 whitespace-nowrap rounded-full bg-foreground px-3 py-1.5 text-sm font-medium text-background ring-1 ring-foreground/15",
+                                initial: {
+                                    opacity: 0,
+                                    scale: 0.92,
+                                    left: hoveredContribution.originLeft,
+                                    top: hoveredContribution.originTop,
+                                    x: "-50%",
+                                    y: hoveredContribution.placement === "above" ? "-100%" : "0%"
+                                },
+                                animate: {
+                                    opacity: 1,
+                                    scale: 1,
+                                    left: hoveredContribution.left,
+                                    top: hoveredContribution.top,
+                                    x: "-50%",
+                                    y: hoveredContribution.placement === "above" ? "-100%" : "0%"
+                                },
+                                exit: {
+                                    opacity: 0,
+                                    scale: 0.92
+                                },
+                                transition: {
+                                    opacity: {
+                                        duration: 0.12
+                                    },
+                                    scale: {
+                                        duration: 0.12
+                                    },
+                                    left: {
+                                        type: "spring",
+                                        stiffness: 620,
+                                        damping: 42
+                                    },
+                                    top: {
+                                        type: "spring",
+                                        stiffness: 620,
+                                        damping: 42
+                                    },
+                                    y: {
+                                        duration: 0.12
+                                    }
+                                },
+                                children: formatContributionLabel(hoveredContribution.contribution)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/github-graph.tsx",
+                                lineNumber: 627,
+                                columnNumber: 17
+                            }, this)
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/ui/github-graph.tsx",
+                            lineNumber: 625,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/ui/github-graph.tsx",
+                    lineNumber: 585,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 579,
+                columnNumber: 9
+            }, this),
+            showLegend && resource.status === "ready" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "mt-4 flex gap-1.5",
+                "aria-label": "Contribution activity legend",
+                children: colors.map((color, level)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                        style: {
+                            width: cellSize,
+                            height: cellSize,
+                            backgroundColor: color,
+                            borderRadius: resolvedCellRadius
+                        },
+                        "aria-label": `Level ${level}`
+                    }, color, false, {
+                        fileName: "[project]/src/components/ui/github-graph.tsx",
+                        lineNumber: 675,
+                        columnNumber: 13
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-graph.tsx",
+                lineNumber: 670,
+                columnNumber: 9
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/github-graph.tsx",
+        lineNumber: 552,
+        columnNumber: 5
+    }, this);
+}
+_s(GithubGraph, "JRWiEBPpZ/nOU6cbiaaNh2Yp+xc=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$reduced$2d$motion$2f$use$2d$reduced$2d$motion$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useReducedMotion"]
+    ];
+});
+_c1 = GithubGraph;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "LoadingGraph");
+__turbopack_context__.k.register(_c1, "GithubGraph");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/github-projects.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "GithubProjects",
+    ()=>GithubProjects
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/external-link.mjs [app-client] (ecmascript) <export default as ExternalLink>");
+"use client";
+;
+;
+const Github = (props)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: "24",
+        height: "24",
+        viewBox: "0 0 24 24",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "2",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        ...props,
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                d: "M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-projects.tsx",
+                lineNumber: 6,
+                columnNumber: 192
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
+                d: "M9 18c-4.51 2-5-2-7-2"
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/github-projects.tsx",
+                lineNumber: 6,
+                columnNumber: 452
+            }, ("TURBOPACK compile-time value", void 0))
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/github-projects.tsx",
+        lineNumber: 6,
+        columnNumber: 3
+    }, ("TURBOPACK compile-time value", void 0));
+_c = Github;
+const selectedProjects = [
+    {
+        id: "dev-assist",
+        title: "Dev Assist AI",
+        description: "An AI-powered developer assistant built during the NIAT hackathon to streamline building and shipping code.",
+        url: "https://github.com/shreyaskaraiya321/NIAT-hackathon-build-to-ship",
+        tags: [
+            "AI",
+            "Hackathon",
+            "Developer Tools"
+        ],
+        color: {
+            bg: "bg-cyan-400/10",
+            text: "text-cyan-600",
+            hover: "group-hover:text-cyan-600"
+        },
+        badge: {
+            text: "Repository",
+            classes: "bg-blue-500/10 text-blue-600 border-blue-500/20"
+        }
+    },
+    {
+        id: "flash-card",
+        title: "Flash Card AI",
+        description: "A Next.js and TypeScript application integrating the Gemini API to stream auto-generated flashcards from uploaded PDFs in real-time.",
+        url: "https://github.com/shreyaskaraiya321/Flash-Card-AI",
+        tags: [
+            "Next.js",
+            "TypeScript",
+            "Gemini API"
+        ],
+        color: {
+            bg: "bg-violet-500/10",
+            text: "text-violet-600",
+            hover: "group-hover:text-violet-600"
+        },
+        badge: {
+            text: "Live Demo",
+            classes: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
+        }
+    },
+    {
+        id: "study-assistant",
+        title: "AI Study Assistant",
+        description: "A comprehensive AI-driven study companion designed to summarize notes, generate quizzes, and assist with complex topics.",
+        url: "https://github.com/shreyaskaraiya321/Ai_study_assistant",
+        tags: [
+            "AI",
+            "Python",
+            "LLMs"
+        ],
+        color: {
+            bg: "bg-fuchsia-500/10",
+            text: "text-fuchsia-600",
+            hover: "group-hover:text-fuchsia-600"
+        },
+        badge: {
+            text: "Repository",
+            classes: "bg-blue-500/10 text-blue-600 border-blue-500/20"
+        }
+    },
+    {
+        id: "logistics",
+        title: "AI Logistics Route Planner",
+        description: "Built an AI-powered logistics routing engine using Python, MongoDB Atlas, and Supabase. Deployed on Vercel with Google Cloud API integration to optimize delivery paths.",
+        url: "https://github.com/shreyaskaraiya321/AI-Powered-Logistics-Route-Planner",
+        tags: [
+            "Python",
+            "MongoDB",
+            "Supabase",
+            "Vercel",
+            "Google Cloud API"
+        ],
+        color: {
+            bg: "bg-amber-500/10",
+            text: "text-amber-600",
+            hover: "group-hover:text-amber-600"
+        },
+        badge: {
+            text: "Live Demo",
+            classes: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20"
+        }
+    }
+];
+function GithubProjects() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "grid grid-cols-1 md:grid-cols-2 gap-6",
+        children: selectedProjects.map((repo)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "group bg-white rounded-2xl p-6 border border-black/5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col h-full",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex justify-between items-start mb-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: `h-10 w-10 rounded-full ${repo.color.bg} flex items-center justify-center ${repo.color.text}`,
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Github, {
+                                    className: "w-5 h-5"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/ui/github-projects.tsx",
+                                    lineNumber: 55,
+                                    columnNumber: 15
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/github-projects.tsx",
+                                lineNumber: 54,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex gap-3 text-black/40",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: repo.url,
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        className: "hover:text-black transition-colors",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(Github, {
+                                            className: "w-5 h-5"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ui/github-projects.tsx",
+                                            lineNumber: 59,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/ui/github-projects.tsx",
+                                        lineNumber: 58,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
+                                        href: repo.url,
+                                        target: "_blank",
+                                        rel: "noopener noreferrer",
+                                        className: "hover:text-black transition-colors",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$external$2d$link$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ExternalLink$3e$__["ExternalLink"], {
+                                            className: "w-5 h-5"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/components/ui/github-projects.tsx",
+                                            lineNumber: 62,
+                                            columnNumber: 17
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/ui/github-projects.tsx",
+                                        lineNumber: 61,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/ui/github-projects.tsx",
+                                lineNumber: 57,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ui/github-projects.tsx",
+                        lineNumber: 53,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center gap-3 mb-2",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                className: `font-bold text-[#101010] text-lg ${repo.color.hover} transition-colors`,
+                                children: repo.title
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/github-projects.tsx",
+                                lineNumber: 68,
+                                columnNumber: 13
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: `px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full border ${repo.badge.classes}`,
+                                children: repo.badge.text
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/github-projects.tsx",
+                                lineNumber: 71,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ui/github-projects.tsx",
+                        lineNumber: 67,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-[#101010]/70 text-sm leading-relaxed mb-6 flex-grow",
+                        children: repo.description
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/github-projects.tsx",
+                        lineNumber: 76,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-wrap gap-2 mt-auto",
+                        children: repo.tags.map((tag)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "px-3 py-1 bg-[#f4f4f4] text-[#101010]/80 text-xs font-mono rounded-md",
+                                children: tag
+                            }, tag, false, {
+                                fileName: "[project]/src/components/ui/github-projects.tsx",
+                                lineNumber: 82,
+                                columnNumber: 15
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/github-projects.tsx",
+                        lineNumber: 80,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, repo.id, true, {
+                fileName: "[project]/src/components/ui/github-projects.tsx",
+                lineNumber: 52,
+                columnNumber: 9
+            }, this))
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/github-projects.tsx",
+        lineNumber: 50,
+        columnNumber: 5
+    }, this);
+}
+_c1 = GithubProjects;
+var _c, _c1;
+__turbopack_context__.k.register(_c, "Github");
+__turbopack_context__.k.register(_c1, "GithubProjects");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/loader-tetris.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TetrisLoader",
+    ()=>TetrisLoader,
+    "default",
+    ()=>__TURBOPACK__default__export__,
+    "generateTetrisFrames",
+    ()=>generateTetrisFrames
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
+"use client";
+;
+;
+const SHAPES = [
+    {
+        id: 1,
+        rot: [
+            [
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    3,
+                    1
+                ]
+            ],
+            [
+                [
+                    2,
+                    0
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    2,
+                    2
+                ],
+                [
+                    2,
+                    3
+                ]
+            ]
+        ]
+    },
+    {
+        id: 2,
+        rot: [
+            [
+                [
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ]
+            ]
+        ]
+    },
+    {
+        id: 3,
+        rot: [
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ]
+            ],
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ]
+            ],
+            [
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ]
+            ],
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ]
+            ]
+        ]
+    },
+    {
+        id: 4,
+        rot: [
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ]
+            ],
+            [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ]
+            ]
+        ]
+    },
+    {
+        id: 5,
+        rot: [
+            [
+                [
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ]
+            ],
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    0,
+                    2
+                ]
+            ]
+        ]
+    },
+    {
+        id: 6,
+        rot: [
+            [
+                [
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ]
+            ],
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    2,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ]
+            ],
+            [
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    2,
+                    2
+                ]
+            ],
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    0,
+                    2
+                ],
+                [
+                    1,
+                    2
+                ]
+            ]
+        ]
+    },
+    {
+        id: 7,
+        rot: [
+            [
+                [
+                    2,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ]
+            ],
+            [
+                [
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ],
+                [
+                    2,
+                    2
+                ]
+            ],
+            [
+                [
+                    0,
+                    1
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    2,
+                    1
+                ],
+                [
+                    0,
+                    2
+                ]
+            ],
+            [
+                [
+                    0,
+                    0
+                ],
+                [
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    1
+                ],
+                [
+                    1,
+                    2
+                ]
+            ]
+        ]
+    }
+];
+const PIECES = SHAPES.map(_c = ({ id, rot })=>({
+        id,
+        rot: rot.map((cells)=>{
+            const left = Math.min(...cells.map((c)=>c[0]));
+            const top = Math.min(...cells.map((c)=>c[1]));
+            return cells.map(([x, y])=>[
+                    x - left,
+                    y - top
+                ]);
+        })
+    }));
+_c1 = PIECES;
+function hits(board, cells, ox, oy, w, h) {
+    for (const [cx, cy] of cells){
+        const x = ox + cx;
+        const y = oy + cy;
+        if (x < 0 || x >= w || y >= h) return true;
+        if (y >= 0 && board[y * w + x]) return true;
+    }
+    return false;
+}
+function fall(board, cells, ox, from, w, h) {
+    let y = from;
+    while(!hits(board, cells, ox, y + 1, w, h))y++;
+    return y;
+}
+function stamp(board, cells, ox, oy, id, w) {
+    const next = [
+        ...board
+    ];
+    for (const [cx, cy] of cells){
+        const y = oy + cy;
+        if (y >= 0) next[y * w + ox + cx] = id;
+    }
+    return next;
+}
+function fullRows(board, w, h) {
+    const rows = [];
+    for(let r = 0; r < h; r++){
+        let full = true;
+        for(let c = 0; c < w; c++){
+            if (!board[r * w + c]) {
+                full = false;
+                break;
+            }
+        }
+        if (full) rows.push(r);
+    }
+    return rows;
+}
+function collapse(board, rows, w, h) {
+    const kept = [];
+    for(let r = 0; r < h; r++){
+        if (rows.includes(r)) continue;
+        kept.push(board.slice(r * w, r * w + w));
+    }
+    const next = new Array((h - kept.length) * w).fill(0);
+    for (const row of kept)next.push(...row);
+    return next;
+}
+function rate(board, lines, w, h) {
+    const heights = [];
+    let holes = 0;
+    for(let c = 0; c < w; c++){
+        let top = h;
+        for(let r = 0; r < h; r++){
+            if (board[r * w + c]) {
+                top = r;
+                break;
+            }
+        }
+        heights.push(h - top);
+        for(let r = top + 1; r < h; r++)if (!board[r * w + c]) holes++;
+    }
+    let stack = 0;
+    let bumps = 0;
+    for(let c = 0; c < w; c++){
+        stack += heights[c];
+        if (c) bumps += Math.abs(heights[c] - heights[c - 1]);
+    }
+    return -0.51 * stack + 0.76 * lines - 0.36 * holes - 0.18 * bumps;
+}
+function moves(board, piece, w, h) {
+    const out = [];
+    for(let r = 0; r < piece.rot.length; r++){
+        const cells = piece.rot[r];
+        const span = Math.max(...cells.map((c)=>c[0]));
+        for(let x = 0; x + span < w; x++){
+            const y = fall(board, cells, x, -4, w, h);
+            const landed = stamp(board, cells, x, y, piece.id, w);
+            const lines = fullRows(landed, w, h);
+            out.push({
+                rot: r,
+                x,
+                y,
+                value: rate(collapse(landed, lines, w, h), lines.length, w, h)
+            });
+        }
+    }
+    return out.sort((a, b)=>b.value - a.value);
+}
+function bag() {
+    const order = [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ];
+    for(let i = order.length - 1; i > 0; i--){
+        const j = Math.random() * (i + 1) | 0;
+        [order[i], order[j]] = [
+            order[j],
+            order[i]
+        ];
+    }
+    return order;
+}
+function generateTetrisFrames(w, h) {
+    const cells = w * h;
+    const frames = [];
+    let board = new Array(cells).fill(0);
+    let queue = [];
+    let placed = 0;
+    let alive = true;
+    while(alive && placed < 60 && frames.length < 900){
+        if (!queue.length) queue = bag();
+        const piece = PIECES[queue.shift()];
+        const spots = moves(board, piece, w, h);
+        if (!spots.length) break;
+        const slip = Math.max(0, placed - 10) * 0.06;
+        const spot = spots[Math.random() < slip ? Math.min(spots.length - 1, 1 + (Math.random() * 2 | 0)) : 0];
+        const shape = piece.rot[spot.rot];
+        const tall = Math.max(...shape.map((c)=>c[1])) + 1;
+        for(let y = -tall; y <= spot.y; y++){
+            if (y + tall <= 0) continue;
+            frames.push(stamp(board, shape, spot.x, y, piece.id, w));
+        }
+        board = stamp(board, shape, spot.x, spot.y, piece.id, w);
+        if (shape.some(([, cy])=>spot.y + cy < 0)) alive = false;
+        const rows = fullRows(board, w, h);
+        if (rows.length) {
+            const flash = [
+                ...board
+            ];
+            for (const r of rows)for(let c = 0; c < w; c++)flash[r * w + c] = 8;
+            frames.push(flash, [
+                ...board
+            ], flash);
+            board = collapse(board, rows, w, h);
+            frames.push([
+                ...board
+            ], [
+                ...board
+            ]);
+        }
+        placed++;
+    }
+    const flood = [
+        ...board
+    ];
+    for(let r = h - 1; r >= 0; r--){
+        for(let c = 0; c < w; c++)flood[r * w + c] = 9;
+        frames.push([
+            ...flood
+        ]);
+    }
+    const empty = new Array(cells).fill(0);
+    frames.push([
+        ...flood
+    ], empty, [
+        ...flood
+    ], empty, empty);
+    return frames;
+}
+/* -------------------------------------------------------------------------- */ /*                                  component                                 */ /* -------------------------------------------------------------------------- */ const PALETTE = [
+    "var(--tetris-1, oklch(0.797 0.134 211.5))",
+    "var(--tetris-2, oklch(0.861 0.173 91.9))",
+    "var(--tetris-3, oklch(0.709 0.159 293.5))",
+    "var(--tetris-4, oklch(0.800 0.182 151.7))",
+    "var(--tetris-5, oklch(0.711 0.166 22.2))",
+    "var(--tetris-6, oklch(0.714 0.143 254.6))",
+    "var(--tetris-7, oklch(0.758 0.159 55.9))"
+];
+const size = (value)=>typeof value === "number" ? `${value}px` : value;
+function useReducedMotion() {
+    _s();
+    const [reduced, setReduced] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "useReducedMotion.useEffect": ()=>{
+            const query = window.matchMedia("(prefers-reduced-motion: reduce)");
+            const read = {
+                "useReducedMotion.useEffect.read": ()=>setReduced(query.matches)
+            }["useReducedMotion.useEffect.read"];
+            read();
+            query.addEventListener("change", read);
+            return ({
+                "useReducedMotion.useEffect": ()=>query.removeEventListener("change", read)
+            })["useReducedMotion.useEffect"];
+        }
+    }["useReducedMotion.useEffect"], []);
+    return reduced;
+}
+_s(useReducedMotion, "PAG4zvF6+IsK2eHB7xTPE8NJ12w=");
+function TetrisLoader({ columns = 8, rows = 16, cellSize = 6, gap = 2, speed = 40, playing = true, loop = true, onComplete, label = "Loading", colors = PALETTE, flashColor = "var(--tetris-flash, var(--foreground, currentColor))", deadColor = "var(--tetris-dead, color-mix(in oklab, var(--foreground, currentColor) 45%, transparent))", dotClassName, className, style, ...props }) {
+    _s1();
+    const width = Math.max(4, Math.round(columns));
+    const height = Math.max(6, Math.round(rows));
+    const gridRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const frame = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
+    const reduced = useReducedMotion();
+    const [round, setRound] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    const game = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "TetrisLoader.useMemo[game]": ()=>{
+            void round;
+            return generateTetrisFrames(width, height);
+        }
+    }["TetrisLoader.useMemo[game]"], [
+        width,
+        height,
+        round
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "TetrisLoader.useEffect": ()=>{
+            frame.current = 0;
+        }
+    }["TetrisLoader.useEffect"], [
+        game
+    ]);
+    const completeRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(onComplete);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "TetrisLoader.useEffect": ()=>{
+            completeRef.current = onComplete;
+        }
+    }["TetrisLoader.useEffect"], [
+        onComplete
+    ]);
+    const paint = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "TetrisLoader.useCallback[paint]": (dots, index)=>{
+            const board = game?.[index];
+            if (!board) return;
+            dots.forEach({
+                "TetrisLoader.useCallback[paint]": (dot, i)=>{
+                    const value = board[i] ?? 0;
+                    dot.style.backgroundColor = value ? `var(--tetris-cell-${value})` : "";
+                }
+            }["TetrisLoader.useCallback[paint]"]);
+        }
+    }["TetrisLoader.useCallback[paint]"], [
+        game
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "TetrisLoader.useEffect": ()=>{
+            if (!game) return;
+            const grid = gridRef.current;
+            if (!grid) return;
+            const dots = Array.from(grid.children);
+            if (frame.current >= game.length) frame.current = 0;
+            if (reduced) {
+                paint(dots, Math.floor(game.length * 0.55));
+                return;
+            }
+            paint(dots, frame.current);
+            if (!playing) return;
+            let request = 0;
+            let last = performance.now();
+            let owed = 0;
+            const tick = {
+                "TetrisLoader.useEffect.tick": (now)=>{
+                    owed += now - last;
+                    last = now;
+                    if (owed > speed * 4) owed = speed;
+                    let ended = false;
+                    while(owed >= speed){
+                        owed -= speed;
+                        frame.current++;
+                        if (frame.current >= game.length) {
+                            ended = true;
+                            break;
+                        }
+                    }
+                    paint(dots, Math.min(frame.current, game.length - 1));
+                    if (!ended) {
+                        request = requestAnimationFrame(tick);
+                        return;
+                    }
+                    completeRef.current?.();
+                    if (loop) setRound({
+                        "TetrisLoader.useEffect.tick": (r)=>r + 1
+                    }["TetrisLoader.useEffect.tick"]);
+                    else frame.current = game.length - 1;
+                }
+            }["TetrisLoader.useEffect.tick"];
+            request = requestAnimationFrame(tick);
+            return ({
+                "TetrisLoader.useEffect": ()=>cancelAnimationFrame(request)
+            })["TetrisLoader.useEffect"];
+        }
+    }["TetrisLoader.useEffect"], [
+        game,
+        playing,
+        speed,
+        loop,
+        paint,
+        reduced
+    ]);
+    const vars = {
+        "--tetris-cell": size(cellSize),
+        "--tetris-gap": size(gap),
+        "--tetris-cell-8": flashColor,
+        "--tetris-cell-9": deadColor
+    };
+    for(let i = 0; i < 7; i++)vars[`--tetris-cell-${i + 1}`] = colors[i] ?? PALETTE[i];
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        ref: gridRef,
+        role: "status",
+        "aria-label": label,
+        "aria-busy": playing && !reduced,
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("grid w-fit", className),
+        style: {
+            gridTemplateColumns: `repeat(${width}, var(--tetris-cell))`,
+            gap: "var(--tetris-gap)",
+            ...vars,
+            ...style
+        },
+        ...props,
+        children: Array.from({
+            length: width * height
+        }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                style: {
+                    height: "var(--tetris-cell)",
+                    borderRadius: "calc(var(--tetris-cell) / 3)"
+                },
+                className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("bg-foreground/10", dotClassName)
+            }, i, false, {
+                fileName: "[project]/src/components/ui/loader-tetris.tsx",
+                lineNumber: 355,
+                columnNumber: 17
+            }, this))
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/loader-tetris.tsx",
+        lineNumber: 338,
+        columnNumber: 9
+    }, this);
+}
+_s1(TetrisLoader, "n7KcJ5Uc9dd1mHl6DFzv2cMhP8Y=", false, function() {
+    return [
+        useReducedMotion
+    ];
+});
+_c2 = TetrisLoader;
+const __TURBOPACK__default__export__ = TetrisLoader;
+var _c, _c1, _c2;
+__turbopack_context__.k.register(_c, "PIECES$SHAPES.map");
+__turbopack_context__.k.register(_c1, "PIECES");
+__turbopack_context__.k.register(_c2, "TetrisLoader");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/pixel-scroll-transition.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "PixelScrollTransition",
+    ()=>PixelScrollTransition
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+function makeRng(seed) {
+    let a = seed >>> 0;
+    return function next() {
+        a = a + 0x6d2b79f5 | 0;
+        let t = Math.imul(a ^ a >>> 15, 1 | a);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+}
+const clamp01 = (v)=>v < 0 ? 0 : v > 1 ? 1 : v;
+function PixelScrollTransition({ from, to, pixelSize = 28, fromColor = "#101010", toColor = "#e4e4e4", accentColors = [
+    "#e0562d",
+    "#31b497",
+    "#f2b70d"
+], accentChance = 0.18, accentHold = 0.12, jitter = 0.55, direction = "up", scrollLength = 1, seed = 20260820, className = "", onProgress = undefined }) {
+    _s();
+    const zoneRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const panelRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const canvasRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const gridRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])({
+        cols: 0,
+        rows: 0,
+        w: 0,
+        h: 0,
+        thr: null,
+        accent: null
+    });
+    const progressRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
+    const rafRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(0);
+    const [reduced, setReduced] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "PixelScrollTransition.useEffect": ()=>{
+            const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+            const apply = {
+                "PixelScrollTransition.useEffect.apply": ()=>setReduced(mq.matches)
+            }["PixelScrollTransition.useEffect.apply"];
+            apply();
+            mq.addEventListener("change", apply);
+            return ({
+                "PixelScrollTransition.useEffect": ()=>mq.removeEventListener("change", apply)
+            })["PixelScrollTransition.useEffect"];
+        }
+    }["PixelScrollTransition.useEffect"], []);
+    const buildGrid = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "PixelScrollTransition.useCallback[buildGrid]": (w, h)=>{
+            const cols = Math.max(1, Math.ceil(w / pixelSize));
+            const rows = Math.max(1, Math.ceil(h / pixelSize));
+            const count = cols * rows;
+            const thr = new Float32Array(count);
+            const accent = new Int8Array(count).fill(-1);
+            const rng = makeRng(seed);
+            const denomC = Math.max(1, cols - 1);
+            const denomR = Math.max(1, rows - 1);
+            const chance = reduced ? 0 : accentChance;
+            const hold = reduced ? 0 : accentHold;
+            for(let r = 0; r < rows; r++){
+                for(let c = 0; c < cols; c++){
+                    const i = r * cols + c;
+                    let f;
+                    if (direction === "down") f = r / denomR;
+                    else if (direction === "left") f = (cols - 1 - c) / denomC;
+                    else if (direction === "right") f = c / denomC;
+                    else f = (rows - 1 - r) / denomR;
+                    const noise = rng();
+                    thr[i] = (f * (1 - jitter) + noise * jitter) * (1 - hold);
+                    if (rng() < chance && accentColors.length > 0) {
+                        accent[i] = Math.floor(rng() * accentColors.length) % accentColors.length;
+                    }
+                }
+            }
+            gridRef.current = {
+                cols,
+                rows,
+                w,
+                h,
+                thr,
+                accent
+            };
+        }
+    }["PixelScrollTransition.useCallback[buildGrid]"], [
+        pixelSize,
+        seed,
+        jitter,
+        direction,
+        accentChance,
+        accentHold,
+        accentColors,
+        reduced
+    ]);
+    const draw = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "PixelScrollTransition.useCallback[draw]": ()=>{
+            const canvas = canvasRef.current;
+            const grid = gridRef.current;
+            if (!canvas || !grid.thr || !grid.accent) return;
+            const ctx = canvas.getContext("2d");
+            if (!ctx) return;
+            const { cols, rows, w, h, thr, accent } = grid;
+            const p = progressRef.current;
+            const hold = reduced ? 0 : accentHold;
+            const bleed = 0.6;
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = toColor;
+            for(let r = 0; r < rows; r++){
+                const y = r * pixelSize;
+                for(let c = 0; c < cols; c++){
+                    const i = r * cols + c;
+                    const t = thr[i];
+                    if (p < t) continue;
+                    if (accent[i] >= 0 && p < t + hold) continue;
+                    ctx.fillRect(c * pixelSize, y, pixelSize + bleed, pixelSize + bleed);
+                }
+            }
+            if (hold > 0) {
+                for(let k = 0; k < accentColors.length; k++){
+                    ctx.fillStyle = accentColors[k];
+                    for(let r = 0; r < rows; r++){
+                        const y = r * pixelSize;
+                        for(let c = 0; c < cols; c++){
+                            const i = r * cols + c;
+                            if (accent[i] !== k) continue;
+                            const t = thr[i];
+                            if (p < t || p >= t + hold) continue;
+                            ctx.fillRect(c * pixelSize, y, pixelSize + bleed, pixelSize + bleed);
+                        }
+                    }
+                }
+            }
+        }
+    }["PixelScrollTransition.useCallback[draw]"], [
+        pixelSize,
+        toColor,
+        accentColors,
+        accentHold,
+        reduced
+    ]);
+    const resize = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "PixelScrollTransition.useCallback[resize]": ()=>{
+            const canvas = canvasRef.current;
+            const panel = panelRef.current;
+            if (!canvas || !panel) return;
+            const w = panel.clientWidth;
+            const h = panel.clientHeight;
+            if (w === 0 || h === 0) return;
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            canvas.style.width = w + "px";
+            canvas.style.height = h + "px";
+            canvas.getContext("2d")?.setTransform(dpr, 0, 0, dpr, 0, 0);
+            buildGrid(w, h);
+            draw();
+        }
+    }["PixelScrollTransition.useCallback[resize]"], [
+        buildGrid,
+        draw
+    ]);
+    const update = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "PixelScrollTransition.useCallback[update]": ()=>{
+            rafRef.current = 0;
+            const zone = zoneRef.current;
+            if (!zone) return;
+            const rect = zone.getBoundingClientRect();
+            const travel = rect.height - window.innerHeight;
+            const p = travel <= 0 ? rect.top <= 0 ? 1 : 0 : clamp01(-rect.top / travel);
+            if (p === progressRef.current) return;
+            progressRef.current = p;
+            draw();
+            if (onProgress) onProgress(p);
+        }
+    }["PixelScrollTransition.useCallback[update]"], [
+        draw,
+        onProgress
+    ]);
+    const schedule = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useCallback"])({
+        "PixelScrollTransition.useCallback[schedule]": ()=>{
+            if (rafRef.current) return;
+            rafRef.current = requestAnimationFrame(update);
+        }
+    }["PixelScrollTransition.useCallback[schedule]"], [
+        update
+    ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useLayoutEffect"])({
+        "PixelScrollTransition.useLayoutEffect": ()=>{
+            resize();
+            update();
+            window.addEventListener("scroll", schedule, {
+                passive: true
+            });
+            window.addEventListener("resize", resize);
+            let ro;
+            if (typeof ResizeObserver !== "undefined" && panelRef.current) {
+                ro = new ResizeObserver(resize);
+                ro.observe(panelRef.current);
+            }
+            return ({
+                "PixelScrollTransition.useLayoutEffect": ()=>{
+                    window.removeEventListener("scroll", schedule);
+                    window.removeEventListener("resize", resize);
+                    if (ro) ro.disconnect();
+                    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+                }
+            })["PixelScrollTransition.useLayoutEffect"];
+        }
+    }["PixelScrollTransition.useLayoutEffect"], [
+        resize,
+        schedule,
+        update
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: className,
+        children: [
+            from,
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                ref: zoneRef,
+                style: {
+                    height: `calc(100dvh * ${1 + Math.max(0.1, scrollLength)})`
+                },
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    ref: panelRef,
+                    className: "sticky top-0 h-screen w-full overflow-hidden",
+                    style: {
+                        height: "100dvh",
+                        backgroundColor: fromColor
+                    },
+                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("canvas", {
+                        ref: canvasRef,
+                        className: "absolute inset-0 block h-full w-full",
+                        "aria-hidden": "true"
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/pixel-scroll-transition.tsx",
+                        lineNumber: 223,
+                        columnNumber: 11
+                    }, this)
+                }, void 0, false, {
+                    fileName: "[project]/src/components/ui/pixel-scroll-transition.tsx",
+                    lineNumber: 218,
+                    columnNumber: 9
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/pixel-scroll-transition.tsx",
+                lineNumber: 214,
+                columnNumber: 7
+            }, this),
+            to
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/pixel-scroll-transition.tsx",
+        lineNumber: 211,
+        columnNumber: 5
+    }, this);
+}
+_s(PixelScrollTransition, "kERMalt2z7wEM9Io5JhkRkaiOK0=");
+_c = PixelScrollTransition;
+var _c;
+__turbopack_context__.k.register(_c, "PixelScrollTransition");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/profile-ascii.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ProfileAsciiArt",
+    ()=>ProfileAsciiArt
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$ascii$2d$art$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/ascii-art.tsx [app-client] (ecmascript)");
+"use client";
+;
+;
+function ProfileAsciiArt() {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col items-center justify-center w-full h-full",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$ascii$2d$art$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AsciiArt"], {
+            src: "/profile.png",
+            resolution: 140,
+            color: "#101010",
+            animationStyle: "typewriter",
+            inverted: true,
+            animateOnView: true,
+            className: "mx-auto w-full max-w-2xl bg-transparent"
+        }, void 0, false, {
+            fileName: "[project]/src/components/ui/profile-ascii.tsx",
+            lineNumber: 8,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/profile-ascii.tsx",
+        lineNumber: 7,
+        columnNumber: 5
+    }, this);
+}
+_c = ProfileAsciiArt;
+var _c;
+__turbopack_context__.k.register(_c, "ProfileAsciiArt");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/project-showcase.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "ProjectShowcase",
+    ()=>ProjectShowcase
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/arrow-up-right.mjs [app-client] (ecmascript) <export default as ArrowUpRight>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+const projects = [
+    {
+        id: "squadlink",
+        title: "SquadLink",
+        subtitle: "Esports & Gaming Identity Platform",
+        image: "/images/squadlink.jpg",
+        url: "https://squadlink.in"
+    },
+    {
+        id: "usafe",
+        title: "U-Safe Solutions",
+        subtitle: "Food Safety & Sanitation",
+        image: "/images/usafe.png",
+        url: "https://usafe-solutions.com"
+    },
+    {
+        id: "flashmedia",
+        title: "Flash Media",
+        subtitle: "Independent Film Production",
+        image: "/images/flashmedia.jpg",
+        url: "https://flashmediaproduction.in"
+    },
+    {
+        id: "flash-ai",
+        title: "Flash AI",
+        subtitle: "Free AI Flashcard Generator from PDF & Text",
+        image: "/images/flashai.png",
+        url: "https://github.com/shreyaskaraiya321/Flash-Card-AI"
+    }
+];
+function ProjectShowcase() {
+    _s();
+    // Default to the middle card being expanded on load
+    const [hoveredIndex, setHoveredIndex] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "flex flex-col md:flex-row w-full max-w-6xl mx-auto h-[500px] md:h-[600px] gap-4 px-4 py-8",
+        children: projects.map((project, index)=>{
+            const isActive = hoveredIndex === index;
+            return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].a, {
+                href: project.url,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                onMouseEnter: ()=>setHoveredIndex(index),
+                className: "relative overflow-hidden rounded-2xl cursor-pointer group flex flex-col justify-end ring-1 ring-black/10 shadow-lg",
+                animate: {
+                    flex: isActive ? 3 : 1
+                },
+                transition: {
+                    duration: 0.5,
+                    type: "spring",
+                    bounce: 0.2
+                },
+                style: {
+                    backgroundImage: `url(${project.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center"
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("absolute inset-0 transition-opacity duration-500", isActive ? "bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-100" : "bg-black/50 group-hover:bg-black/30")
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/project-showcase.tsx",
+                        lineNumber: 67,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].div, {
+                        className: "relative z-10 p-6 md:p-8 flex flex-col gap-2",
+                        initial: false,
+                        animate: {
+                            opacity: isActive ? 1 : 0,
+                            y: isActive ? 0 : 20
+                        },
+                        transition: {
+                            duration: 0.3,
+                            delay: isActive ? 0.1 : 0
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                className: "text-2xl md:text-4xl font-bold text-white flex items-center gap-3",
+                                children: [
+                                    project.title,
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$arrow$2d$up$2d$right$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__ArrowUpRight$3e$__["ArrowUpRight"], {
+                                        className: "w-6 h-6 text-cyan-400 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/components/ui/project-showcase.tsx",
+                                        lineNumber: 86,
+                                        columnNumber: 17
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/components/ui/project-showcase.tsx",
+                                lineNumber: 84,
+                                columnNumber: 15
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-white/80 font-medium text-sm md:text-base",
+                                children: project.subtitle
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/project-showcase.tsx",
+                                lineNumber: 88,
+                                columnNumber: 15
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ui/project-showcase.tsx",
+                        lineNumber: 75,
+                        columnNumber: 13
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].div, {
+                        className: "absolute inset-0 flex items-center justify-center pointer-events-none",
+                        animate: {
+                            opacity: isActive ? 0 : 1
+                        },
+                        transition: {
+                            duration: 0.2
+                        },
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            className: "text-white font-bold tracking-widest uppercase origin-center -rotate-90 whitespace-nowrap opacity-50 text-xl",
+                            children: project.title
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/ui/project-showcase.tsx",
+                            lineNumber: 97,
+                            columnNumber: 15
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/project-showcase.tsx",
+                        lineNumber: 92,
+                        columnNumber: 13
+                    }, this)
+                ]
+            }, project.id, true, {
+                fileName: "[project]/src/components/ui/project-showcase.tsx",
+                lineNumber: 49,
+                columnNumber: 11
+            }, this);
+        })
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/project-showcase.tsx",
+        lineNumber: 44,
+        columnNumber: 5
+    }, this);
+}
+_s(ProjectShowcase, "QBFETI5rYWNdWx55fzP7xKhewcs=");
+_c = ProjectShowcase;
+var _c;
+__turbopack_context__.k.register(_c, "ProjectShowcase");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/text-hover-effect.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "TextHoverEffect",
+    ()=>TextHoverEffect
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+const TextHoverEffect = ({ text, duration })=>{
+    _s();
+    const svgRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const [cursor, setCursor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        x: 0,
+        y: 0
+    });
+    const [maskPosition, setMaskPosition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
+        cx: "50%",
+        cy: "50%"
+    });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "TextHoverEffect.useEffect": ()=>{
+            if (svgRef.current && cursor.x !== null && cursor.y !== null) {
+                const svgRect = svgRef.current.getBoundingClientRect();
+                const cxPercentage = (cursor.x - svgRect.left) / svgRect.width * 100;
+                const cyPercentage = (cursor.y - svgRect.top) / svgRect.height * 100;
+                setMaskPosition({
+                    cx: `${cxPercentage}%`,
+                    cy: `${cyPercentage}%`
+                });
+            }
+        }
+    }["TextHoverEffect.useEffect"], [
+        cursor
+    ]);
+    const lines = text.split('\n');
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
+        ref: svgRef,
+        width: "100%",
+        height: "100%",
+        viewBox: "0 0 1400 300",
+        xmlns: "http://www.w3.org/2000/svg",
+        onMouseMove: (e)=>setCursor({
+                x: e.clientX,
+                y: e.clientY
+            }),
+        className: "select-none cursor-crosshair w-full h-full",
+        style: {
+            fontFamily: "var(--font-share-tech), monospace"
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
+                        id: "diaGradient",
+                        x1: "0%",
+                        y1: "0%",
+                        x2: "200%",
+                        y2: "0%",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "0%",
+                                stopColor: "#22d3ee"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 45,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "12.5%",
+                                stopColor: "#8b5cf6"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 46,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "25%",
+                                stopColor: "#e879f9"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 47,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "37.5%",
+                                stopColor: "#3b82f6"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 48,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "50%",
+                                stopColor: "#22d3ee"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 49,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "62.5%",
+                                stopColor: "#8b5cf6"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 50,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "75%",
+                                stopColor: "#e879f9"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 51,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "87.5%",
+                                stopColor: "#3b82f6"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 52,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "100%",
+                                stopColor: "#22d3ee"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 53,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("animate", {
+                                attributeName: "x1",
+                                values: "0%;-100%",
+                                dur: "5s",
+                                repeatCount: "indefinite"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 54,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("animate", {
+                                attributeName: "x2",
+                                values: "200%;100%",
+                                dur: "5s",
+                                repeatCount: "indefinite"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 55,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                        lineNumber: 44,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].radialGradient, {
+                        id: "revealMask",
+                        gradientUnits: "userSpaceOnUse",
+                        r: "20%",
+                        initial: {
+                            cx: "50%",
+                            cy: "50%"
+                        },
+                        animate: maskPosition,
+                        transition: {
+                            duration: duration ?? 0,
+                            ease: "easeOut"
+                        },
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "0%",
+                                stopColor: "white"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 67,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0)),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
+                                offset: "100%",
+                                stopColor: "black"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                                lineNumber: 68,
+                                columnNumber: 11
+                            }, ("TURBOPACK compile-time value", void 0))
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                        lineNumber: 59,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0)),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mask", {
+                        id: "textMask",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
+                            x: "0",
+                            y: "0",
+                            width: "100%",
+                            height: "100%",
+                            fill: "url(#revealMask)"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                            lineNumber: 71,
+                            columnNumber: 11
+                        }, ("TURBOPACK compile-time value", void 0))
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                        lineNumber: 70,
+                        columnNumber: 9
+                    }, ("TURBOPACK compile-time value", void 0))
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                lineNumber: 42,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
+                x: "50%",
+                y: "50%",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                fontSize: "90",
+                fontWeight: "bold",
+                children: lines.map((line, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tspan", {
+                        x: "50%",
+                        dy: idx === 0 ? "-0.6em" : "1.2em",
+                        fill: idx === 1 ? "url(#diaGradient)" : "rgba(255,255,255,0.2)",
+                        style: idx === 1 ? {
+                            opacity: 0.4
+                        } : {},
+                        children: line
+                    }, idx, false, {
+                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                        lineNumber: 78,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0)))
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                lineNumber: 76,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].text, {
+                x: "50%",
+                y: "50%",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                fontSize: "90",
+                fontWeight: "bold",
+                fill: "transparent",
+                strokeWidth: "1.5",
+                initial: {
+                    strokeDashoffset: 1000,
+                    strokeDasharray: 1000
+                },
+                animate: {
+                    strokeDashoffset: 0,
+                    strokeDasharray: 1000
+                },
+                transition: {
+                    duration: 3,
+                    ease: "easeInOut"
+                },
+                children: lines.map((line, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tspan", {
+                        x: "50%",
+                        dy: idx === 0 ? "-0.6em" : "1.2em",
+                        stroke: idx === 1 ? "url(#diaGradient)" : "rgba(255,255,255,0.8)",
+                        children: line
+                    }, idx, false, {
+                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                        lineNumber: 99,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0)))
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                lineNumber: 91,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0)),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
+                x: "50%",
+                y: "50%",
+                textAnchor: "middle",
+                dominantBaseline: "middle",
+                fontSize: "90",
+                fontWeight: "bold",
+                mask: "url(#textMask)",
+                children: lines.map((line, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tspan", {
+                        x: "50%",
+                        dy: idx === 0 ? "-0.6em" : "1.2em",
+                        fill: idx === 1 ? "url(#diaGradient)" : "#ffffff",
+                        children: line
+                    }, idx, false, {
+                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                        lineNumber: 113,
+                        columnNumber: 11
+                    }, ("TURBOPACK compile-time value", void 0)))
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+                lineNumber: 111,
+                columnNumber: 7
+            }, ("TURBOPACK compile-time value", void 0))
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
+        lineNumber: 32,
+        columnNumber: 5
+    }, ("TURBOPACK compile-time value", void 0));
+};
+_s(TextHoverEffect, "bDWCXxbxQoLm8jC5ZLsfU1XU3bo=");
+_c = TextHoverEffect;
+var _c;
+__turbopack_context__.k.register(_c, "TextHoverEffect");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/lib/utils.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "cn",
+    ()=>cn
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/clsx/dist/clsx.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tailwind$2d$merge$2f$dist$2f$bundle$2d$mjs$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/tailwind-merge/dist/bundle-mjs.mjs [app-client] (ecmascript)");
+;
+;
+function cn(...inputs) {
+    return (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$tailwind$2d$merge$2f$dist$2f$bundle$2d$mjs$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["twMerge"])((0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$clsx$2f$dist$2f$clsx$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["clsx"])(inputs));
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+]);
+
+//# sourceMappingURL=src_1_agbf9._.js.map

@@ -1,8 +1,8 @@
 "use client";
 
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState, ReactNode } from "react";
 
-function makeRng(seed) {
+function makeRng(seed: number) {
   let a = seed >>> 0;
   return function next() {
     a = (a + 0x6d2b79f5) | 0;
@@ -12,7 +12,24 @@ function makeRng(seed) {
   };
 }
 
-const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+const clamp01 = (v: number) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+export interface PixelScrollTransitionProps {
+  from: ReactNode;
+  to: ReactNode;
+  pixelSize?: number;
+  fromColor?: string;
+  toColor?: string;
+  accentColors?: string[];
+  accentChance?: number;
+  accentHold?: number;
+  jitter?: number;
+  direction?: "up" | "down" | "left" | "right";
+  scrollLength?: number;
+  seed?: number;
+  className?: string;
+  onProgress?: (progress: number) => void;
+}
 
 export function PixelScrollTransition({
   from,
@@ -29,12 +46,12 @@ export function PixelScrollTransition({
   seed = 20260820,
   className = "",
   onProgress = undefined,
-}) {
-  const zoneRef = useRef(null);
-  const panelRef = useRef(null);
-  const canvasRef = useRef(null);
+}: PixelScrollTransitionProps) {
+  const zoneRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const gridRef = useRef({ cols: 0, rows: 0, w: 0, h: 0, thr: null, accent: null });
+  const gridRef = useRef<{ cols: number; rows: number; w: number; h: number; thr: Float32Array | null; accent: Int8Array | null }>({ cols: 0, rows: 0, w: 0, h: 0, thr: null, accent: null });
   const progressRef = useRef(0);
   const rafRef = useRef(0);
   const [reduced, setReduced] = useState(false);
@@ -48,7 +65,7 @@ export function PixelScrollTransition({
   }, []);
 
   const buildGrid = useCallback(
-    (w, h) => {
+    (w: number, h: number) => {
       const cols = Math.max(1, Math.ceil(w / pixelSize));
       const rows = Math.max(1, Math.ceil(h / pixelSize));
       const count = cols * rows;
@@ -89,9 +106,10 @@ export function PixelScrollTransition({
   const draw = useCallback(() => {
     const canvas = canvasRef.current;
     const grid = gridRef.current;
-    if (!canvas || !grid.thr) return;
+    if (!canvas || !grid.thr || !grid.accent) return;
 
     const ctx = canvas.getContext("2d");
+    if (!ctx) return;
     const { cols, rows, w, h, thr, accent } = grid;
     const p = progressRef.current;
     const hold = reduced ? 0 : accentHold;
@@ -142,7 +160,7 @@ export function PixelScrollTransition({
     canvas.height = Math.round(h * dpr);
     canvas.style.width = w + "px";
     canvas.style.height = h + "px";
-    canvas.getContext("2d").setTransform(dpr, 0, 0, dpr, 0, 0);
+    canvas.getContext("2d")?.setTransform(dpr, 0, 0, dpr, 0, 0);
 
     buildGrid(w, h);
     draw();
@@ -175,7 +193,7 @@ export function PixelScrollTransition({
     window.addEventListener("scroll", schedule, { passive: true });
     window.addEventListener("resize", resize);
 
-    let ro;
+    let ro: ResizeObserver | undefined;
     if (typeof ResizeObserver !== "undefined" && panelRef.current) {
       ro = new ResizeObserver(resize);
       ro.observe(panelRef.current);

@@ -13,15 +13,17 @@ const selectedProjects = [
     description: "An AI-powered developer assistant built during the NIAT hackathon to streamline building and shipping code.",
     url: "https://github.com/shreyaskaraiya321/NIAT-hackathon-build-to-ship",
     tags: ["AI", "Hackathon", "Developer Tools"],
-    color: { bg: "bg-cyan-400/10", text: "text-cyan-600", hover: "group-hover:text-cyan-600" }
+    color: { bg: "bg-cyan-400/10", text: "text-cyan-600", hover: "group-hover:text-cyan-600" },
+    badge: { text: "Repository", classes: "bg-blue-500/10 text-blue-600 border-blue-500/20" }
   },
   {
     id: "flash-card",
     title: "Flash Card AI",
-    description: "An intelligent flashcard application leveraging AI to optimize active recall and spaced repetition for accelerated learning.",
+    description: "A Next.js and TypeScript application integrating the Gemini API to stream auto-generated flashcards from uploaded PDFs in real-time.",
     url: "https://github.com/shreyaskaraiya321/Flash-Card-AI",
-    tags: ["AI", "Education", "Next.js"],
-    color: { bg: "bg-violet-500/10", text: "text-violet-600", hover: "group-hover:text-violet-600" }
+    tags: ["Next.js", "TypeScript", "Gemini API"],
+    color: { bg: "bg-violet-500/10", text: "text-violet-600", hover: "group-hover:text-violet-600" },
+    badge: { text: "Live Demo", classes: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" }
   },
   {
     id: "study-assistant",
@@ -29,15 +31,17 @@ const selectedProjects = [
     description: "A comprehensive AI-driven study companion designed to summarize notes, generate quizzes, and assist with complex topics.",
     url: "https://github.com/shreyaskaraiya321/Ai_study_assistant",
     tags: ["AI", "Python", "LLMs"],
-    color: { bg: "bg-fuchsia-500/10", text: "text-fuchsia-600", hover: "group-hover:text-fuchsia-600" }
+    color: { bg: "bg-fuchsia-500/10", text: "text-fuchsia-600", hover: "group-hover:text-fuchsia-600" },
+    badge: { text: "Repository", classes: "bg-blue-500/10 text-blue-600 border-blue-500/20" }
   },
   {
     id: "logistics",
     title: "AI Logistics Route Planner",
-    description: "An advanced routing algorithm utilizing artificial intelligence to optimize logistics, reduce delivery times, and cut fuel costs.",
+    description: "Built an AI-powered logistics routing engine using Python, MongoDB Atlas, and Supabase. Deployed on Vercel with Google Cloud API integration to optimize delivery paths.",
     url: "https://github.com/shreyaskaraiya321/AI-Powered-Logistics-Route-Planner",
-    tags: ["AI", "Algorithms", "Optimization"],
-    color: { bg: "bg-amber-500/10", text: "text-amber-600", hover: "group-hover:text-amber-600" }
+    tags: ["Python", "MongoDB", "Supabase", "Vercel", "Google Cloud API"],
+    color: { bg: "bg-amber-500/10", text: "text-amber-600", hover: "group-hover:text-amber-600" },
+    badge: { text: "Live Demo", classes: "bg-emerald-500/10 text-emerald-600 border-emerald-500/20" }
   }
 ];
 
@@ -60,9 +64,14 @@ export function GithubProjects() {
             </div>
           </div>
           
-          <h3 className={`text-xl font-bold text-[#101010] mb-2 ${repo.color.hover} transition-colors`}>
-            {repo.title}
-          </h3>
+          <div className="flex items-center gap-3 mb-2">
+            <h3 className={`font-bold text-[#101010] text-lg ${repo.color.hover} transition-colors`}>
+              {repo.title}
+            </h3>
+            <span className={`px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider rounded-full border ${repo.badge.classes}`}>
+              {repo.badge.text}
+            </span>
+          </div>
           
           <p className="text-[#101010]/70 text-sm leading-relaxed mb-6 flex-grow">
             {repo.description}

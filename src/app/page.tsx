@@ -1,12 +1,12 @@
 import { FloatingNav } from "@/components/ui/floating-nav";
-import { AuroraBars } from "@/components/ui/AuroraBars";
+import { AuroraBars } from "@/components/ui/aurora-bars";
 import { PixelScrollTransition } from "@/components/ui/pixel-scroll-transition";
 import { ProjectShowcase } from "@/components/ui/project-showcase";
-import { GithubGraph } from "@/components/ui/GithubGraph";
+import { GithubGraph } from "@/components/ui/github-graph";
 import { GithubProjects } from "@/components/ui/github-projects";
 import { ProfileAsciiArt } from "@/components/ui/profile-ascii";
 import { TetrisLoader } from "@/components/ui/loader-tetris";
-import { Mail, Code2, Phone, Download, Award, BadgeCheck, Star } from "lucide-react";
+import { Mail, Code2, Download, BadgeCheck, Star, Layout, BrainCircuit, Database, Wrench, Briefcase } from "lucide-react";
 import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
@@ -33,6 +33,7 @@ const Linkedin = (props: React.SVGProps<SVGSVGElement>) => (
 
 
 export default function Home() {
+  {/* ================= HERO SECTION ================= */}
   const heroSection = (
       <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
         {/* EXACT BACKGROUND WRAPPER */}
@@ -61,6 +62,7 @@ export default function Home() {
 
   const contentSection = (
     <main className="w-full bg-[#e4e4e4] text-[#101010]">
+      {/* ================= ABOUT SECTION ================= */}
       <div className="w-full max-w-6xl mx-auto px-4 pt-16 pb-8">
         {/* Top Row: Identity & CV */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-black/10 pb-8 mb-8">
@@ -91,52 +93,118 @@ export default function Home() {
         {/* Bottom Row: Bio */}
         <div className="max-w-4xl">
           <p className="text-[#101010]/80 text-lg md:text-xl leading-relaxed">
-            I am a software engineer and &quot;vibe coder&quot; driven by an explorative and highly creative mind. Always eager to learn, I blend modern web development, applied AI capabilities, and expert-level SEO to build complete digital experiences. From backend logic to full-scale website deployments, I handle the entire lifecycle of a project to turn complex ideas into seamless reality.
+            I am a Full-Stack Software Engineer driven by an explorative and highly creative mind. I blend modern web development, applied AI capabilities, and expert-level SEO to build complete digital experiences. From scalable backend logic to full-scale website deployments, I handle the entire lifecycle of a project to turn complex ideas into seamless reality. Always building, always learning.
           </p>
         </div>
       </div>
 
+      {/* ================= EXPERIENCE SECTION ================= */}
       <div className="w-full max-w-6xl mx-auto px-4 pb-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Experience & Modern Toolkit Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          {/* Core Stack */}
-          <div className="md:col-span-2 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-cyan-400/10 text-cyan-600 rounded-lg">
-                <Code2 className="w-5 h-5" />
+          {/* Left Column: Experience Timeline (Replaces Milestones) */}
+          <div className="lg:col-span-5 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
+            <h3 className="text-lg font-bold text-[#101010] mb-6 flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-[#31b497]"/> Experience & Journey
+            </h3>
+            
+            <div className="space-y-6 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-black/10 before:to-transparent">
+              
+              {/* Freelance Item */}
+              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div className="flex items-center justify-center w-4 h-4 rounded-full border-2 border-white bg-[#31b497] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-1 md:ml-0"></div>
+                <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-black/5 bg-gray-50/50">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-[#101010] text-sm">Freelance Web Developer</span>
+                  </div>
+                  <p className="text-xs text-[#101010]/60 mb-2">U-Safe Solutions & Flash Media</p>
+                  <p className="text-sm text-[#101010]/80 leading-relaxed">Engineered complete client websites, configured domain settings, and optimized SEO for live deployments.</p>
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-[#101010]">Core Toolkit</h3>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              {['HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Python', 'C++'].map((tech) => (
-                <span key={tech} className="px-4 py-2 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-lg border border-black/5">
-                  {tech}
-                </span>
-              ))}
+
+              {/* Hackathon Item */}
+              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div className="flex items-center justify-center w-4 h-4 rounded-full border-2 border-white bg-violet-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-1 md:ml-0"></div>
+                <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-black/5 bg-gray-50/50">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-[#101010] text-sm">Hackathon Builder</span>
+                  </div>
+                  <p className="text-xs text-[#101010]/60 mb-2">NIAT X Base44 & Makers Conclave</p>
+                  <p className="text-sm text-[#101010]/80 leading-relaxed">Developed the CampusHub web app and AI-powered dev tools in high-pressure competitive environments.</p>
+                </div>
+              </div>
+
+              {/* Education Item */}
+              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
+                <div className="flex items-center justify-center w-4 h-4 rounded-full border-2 border-white bg-blue-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-1 md:ml-0"></div>
+                <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-black/5 bg-gray-50/50">
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-bold text-[#101010] text-sm">B.Tech Computer Science</span>
+                  </div>
+                  <p className="text-xs text-[#101010]/60 mb-2">Nxtwave Institute of Advanced Tech.</p>
+                  <p className="text-sm text-[#101010]/80 leading-relaxed">Focusing on modern UI Engineering, Applied Generative AI, and core system architecture.</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Milestones */}
-          <div className="bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="p-2 bg-violet-500/10 text-violet-600 rounded-lg">
-                <Award className="w-5 h-5" />
+          {/* Right Column: Modern Tech Stack Grid */}
+          <div className="lg:col-span-7 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
+            <h3 className="text-lg font-bold text-[#101010] mb-6 flex items-center gap-2">
+              <Code2 className="w-5 h-5 text-cyan-500"/> Core Architecture
+            </h3>
+            
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Frontend */}
+              <div>
+                <h4 className="text-xs font-bold text-black/40 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <Layout className="w-3 h-3"/> Frontend & UI
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS'].map((tech) => (
+                    <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-lg font-bold text-[#101010]">Milestones</h3>
-            </div>
-            <ul className="space-y-4">
-              <li className="flex flex-col">
-                <span className="text-sm font-bold text-[#101010]">Oracle Gen AI Certified</span>
-                <span className="text-xs text-[#101010]/60 mt-0.5">Generative Artificial Intelligence Course</span>
-              </li>
-              <li className="w-full h-px bg-black/5"></li>
-              <li className="flex flex-col">
-                <span className="text-sm font-bold text-[#101010]">Advanced Tech Club</span>
-                <span className="text-xs text-[#101010]/60 mt-0.5">Operations Head Candidate</span>
-              </li>
-            </ul>
-          </div>
 
+              {/* AI & ML */}
+              <div>
+                <h4 className="text-xs font-bold text-black/40 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <BrainCircuit className="w-3 h-3"/> Applied AI
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Gemini API', 'Google Cloud AI', 'LLM Integration'].map((tech) => (
+                    <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Backend */}
+              <div>
+                <h4 className="text-xs font-bold text-black/40 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <Database className="w-3 h-3"/> Backend & DB
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Python', 'Node.js', 'MongoDB Atlas', 'Supabase'].map((tech) => (
+                    <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
+                  ))}
+                </div>
+              </div>
+
+              {/* DevOps */}
+              <div>
+                <h4 className="text-xs font-bold text-black/40 uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <Wrench className="w-3 h-3"/> DevOps & Tools
+                </h4>
+                <div className="flex flex-wrap gap-2">
+                  {['Git', 'Vercel', 'SEO Optimization'].map((tech) => (
+                    <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Google Cloud Credentials */}
@@ -186,7 +254,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 3. PROJECTS SHOWCASE */}
+      {/* ================= PROJECTS SECTION ================= */}
       <section id="work" className="relative w-full border-t border-black/10">
         <div className="pt-10 pb-8 text-center px-6">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-[#101010]">Featured <span className="text-[#e0562d]">Work</span></h2>
@@ -233,7 +301,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 5. CONTACT & FOOTER */}
+      {/* ================= CONTACT SECTION ================= */}
       <section id="contact" className="w-full py-24 px-6 md:px-12 lg:px-24 border-t border-black/5">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
           
@@ -261,14 +329,6 @@ export default function Home() {
                   <Mail className="h-5 w-5" />
                 </div>
                 <span className="font-mono text-sm">shreyaskaraiya@mail.com</span>
-              </a>
-
-              {/* Phone */}
-              <a href="tel:+918305103951" className="flex items-center gap-4 text-black/70 hover:text-[#f2b70d] hover:-translate-y-1 hover:shadow-md transition-all cursor-pointer group">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-black/10 bg-white/50 group-hover:border-[#f2b70d]/50">
-                  <Phone className="h-5 w-5" />
-                </div>
-                <span className="font-mono text-sm">+91 8305103951</span>
               </a>
 
               {/* GitHub */}
@@ -328,6 +388,16 @@ export default function Home() {
       
           </div>
       </div>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="w-full max-w-6xl mx-auto px-4 py-8 mt-12 border-t border-black/5 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p className="text-[#101010]/40 text-sm font-medium">
+          © {new Date().getFullYear()} Shreyas Karaiya. All rights reserved.
+        </p>
+        <p className="text-[#101010]/40 text-sm font-medium flex items-center gap-1">
+          Engineered with Next.js <span className="text-rose-500/70">♥</span>
+        </p>
+      </footer>
     </main>
   );
 
