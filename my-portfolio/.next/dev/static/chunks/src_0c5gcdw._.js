@@ -1,154 +1,4 @@
 (globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push([typeof document === "object" ? document.currentScript : undefined,
-"[project]/src/components/ui/ascii-art.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "AsciiArt",
-    ()=>AsciiArt
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
-;
-var _s = __turbopack_context__.k.signature();
-"use client";
-;
-;
-// Upgraded character map for smoother gradients on faces
-const ASCII_CHARS = " .,:;i1tfLCG08@";
-function AsciiArt({ src, resolution = 120, color = "currentColor", inverted = false, animationStyle = "none", animateOnView = true, className }) {
-    _s();
-    const [ascii, setAscii] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [displayedAscii, setDisplayedAscii] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
-    const [isVisible, setIsVisible] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(!animateOnView);
-    const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "AsciiArt.useEffect": ()=>{
-            const img = new Image();
-            img.crossOrigin = "Anonymous";
-            img.onload = ({
-                "AsciiArt.useEffect": ()=>{
-                    const canvas = document.createElement("canvas");
-                    const ctx = canvas.getContext("2d");
-                    if (!ctx) return;
-                    const width = resolution;
-                    // Adjusted aspect ratio multiplier to fix vertical stretching
-                    const aspectRatio = img.height / img.width;
-                    const height = Math.floor(width * aspectRatio * 0.45);
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-                    const imageData = ctx.getImageData(0, 0, width, height);
-                    const data = imageData.data;
-                    let asciiStr = "";
-                    const chars = inverted ? ASCII_CHARS.split("").reverse().join("") : ASCII_CHARS;
-                    for(let y = 0; y < height; y++){
-                        for(let x = 0; x < width; x++){
-                            const offset = (y * width + x) * 4;
-                            const r = data[offset];
-                            const g = data[offset + 1];
-                            const b = data[offset + 2];
-                            const a = data[offset + 3];
-                            if (a === 0) {
-                                asciiStr += " ";
-                                continue;
-                            }
-                            const brightness = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-                            const charIndex = Math.floor(brightness * (chars.length - 1));
-                            asciiStr += chars[charIndex];
-                        }
-                        asciiStr += "\n";
-                    }
-                    setAscii(asciiStr);
-                    if (animationStyle === "none") {
-                        setDisplayedAscii(asciiStr);
-                    }
-                }
-            })["AsciiArt.useEffect"];
-            img.src = src;
-        }
-    }["AsciiArt.useEffect"], [
-        src,
-        resolution,
-        inverted,
-        animationStyle
-    ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "AsciiArt.useEffect": ()=>{
-            if (!animateOnView) return;
-            const observer = new IntersectionObserver({
-                "AsciiArt.useEffect": ([entry])=>{
-                    if (entry.isIntersecting) {
-                        setIsVisible(true);
-                        observer.disconnect();
-                    }
-                }
-            }["AsciiArt.useEffect"], {
-                threshold: 0.2
-            });
-            if (containerRef.current) {
-                observer.observe(containerRef.current);
-            }
-            return ({
-                "AsciiArt.useEffect": ()=>observer.disconnect()
-            })["AsciiArt.useEffect"];
-        }
-    }["AsciiArt.useEffect"], [
-        animateOnView
-    ]);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "AsciiArt.useEffect": ()=>{
-            if (ascii && animationStyle === "typewriter" && isVisible) {
-                let i = 0;
-                const chunkSize = Math.max(1, Math.floor(ascii.length / 60));
-                const interval = setInterval({
-                    "AsciiArt.useEffect.interval": ()=>{
-                        setDisplayedAscii(ascii.slice(0, i));
-                        i += chunkSize;
-                        if (i > ascii.length) {
-                            setDisplayedAscii(ascii);
-                            clearInterval(interval);
-                        }
-                    }
-                }["AsciiArt.useEffect.interval"], 15);
-                return ({
-                    "AsciiArt.useEffect": ()=>clearInterval(interval)
-                })["AsciiArt.useEffect"];
-            } else if (ascii && isVisible) {
-                const timeoutId = setTimeout({
-                    "AsciiArt.useEffect.timeoutId": ()=>setDisplayedAscii(ascii)
-                }["AsciiArt.useEffect.timeoutId"], 0);
-                return ({
-                    "AsciiArt.useEffect": ()=>clearTimeout(timeoutId)
-                })["AsciiArt.useEffect"];
-            }
-        }
-    }["AsciiArt.useEffect"], [
-        ascii,
-        animationStyle,
-        isVisible
-    ]);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("pre", {
-        ref: containerRef,
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("whitespace-pre font-mono text-[4px] sm:text-[5px] md:text-[6px] lg:text-[8px] leading-[0.75] tracking-tighter overflow-hidden text-center", className),
-        style: {
-            color
-        },
-        children: displayedAscii
-    }, void 0, false, {
-        fileName: "[project]/src/components/ui/ascii-art.tsx",
-        lineNumber: 121,
-        columnNumber: 5
-    }, this);
-}
-_s(AsciiArt, "VFV9i6MZIWLpVgniHKBU0DCPUJk=");
-_c = AsciiArt;
-var _c;
-__turbopack_context__.k.register(_c, "AsciiArt");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
-}
-}),
 "[project]/src/components/ui/aurora-bars.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -2370,32 +2220,106 @@ __turbopack_context__.s([
     ()=>ProfileAsciiArt
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$ascii$2d$art$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/ascii-art.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
 "use client";
 ;
-;
-function ProfileAsciiArt() {
+const ProfileAsciiArt = ()=>{
+    _s();
+    const canvasRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ProfileAsciiArt.useEffect": ()=>{
+            const canvas = canvasRef.current;
+            if (!canvas) return;
+            const ctx = canvas.getContext("2d", {
+                willReadFrequently: true
+            });
+            if (!ctx) return;
+            let animationFrameId;
+            const img = new Image();
+            // Define onload BEFORE setting src to prevent cache-miss bugs
+            img.onload = ({
+                "ProfileAsciiArt.useEffect": ()=>{
+                    const cellSize = 9;
+                    const contrast = 158;
+                    const width = 400;
+                    const height = img.height / img.width * width;
+                    canvas.width = width;
+                    canvas.height = height;
+                    const cols = Math.floor(width / cellSize);
+                    const rows = Math.floor(height / cellSize);
+                    const offCanvas = document.createElement("canvas");
+                    offCanvas.width = cols;
+                    offCanvas.height = rows;
+                    const offCtx = offCanvas.getContext("2d");
+                    if (!offCtx) return;
+                    offCtx.drawImage(img, 0, 0, cols, rows);
+                    const imgData = offCtx.getImageData(0, 0, cols, rows).data;
+                    const contrastFactor = 259 * (contrast + 255) / (255 * (259 - contrast));
+                    const render = {
+                        "ProfileAsciiArt.useEffect.render": ()=>{
+                            ctx.clearRect(0, 0, width, height);
+                            ctx.fillStyle = "#101010";
+                            const time = Date.now() * 0.002;
+                            const pulseAnim = Math.sin(time) * 0.3;
+                            for(let y = 0; y < rows; y++){
+                                for(let x = 0; x < cols; x++){
+                                    const i = (y * cols + x) * 4;
+                                    let r = imgData[i];
+                                    let g = imgData[i + 1];
+                                    let b = imgData[i + 2];
+                                    const a = imgData[i + 3];
+                                    if (a < 50) continue;
+                                    r = contrastFactor * (r - 128) + 128;
+                                    g = contrastFactor * (g - 128) + 128;
+                                    b = contrastFactor * (b - 128) + 128;
+                                    let lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+                                    lum = Math.max(0, Math.min(1, lum));
+                                    lum = Math.max(0, Math.min(1, lum + pulseAnim));
+                                    ctx.beginPath();
+                                    const radius = lum * cellSize / 2 * 0.85;
+                                    if (radius > 0.5) {
+                                        ctx.arc(x * cellSize + cellSize / 2, y * cellSize + cellSize / 2, radius, 0, Math.PI * 2);
+                                        ctx.fill();
+                                    }
+                                }
+                            }
+                            animationFrameId = requestAnimationFrame(render);
+                        }
+                    }["ProfileAsciiArt.useEffect.render"];
+                    render();
+                }
+            })["ProfileAsciiArt.useEffect"];
+            img.onerror = ({
+                "ProfileAsciiArt.useEffect": ()=>{
+                    console.error("Failed to load /images/profile.png. Check if the file exists in the public/images folder.");
+                }
+            })["ProfileAsciiArt.useEffect"];
+            // Set src AFTER onload
+            img.src = "/images/profile.png";
+            return ({
+                "ProfileAsciiArt.useEffect": ()=>cancelAnimationFrame(animationFrameId)
+            })["ProfileAsciiArt.useEffect"];
+        }
+    }["ProfileAsciiArt.useEffect"], []);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex flex-col items-center justify-center w-full h-full",
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$ascii$2d$art$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AsciiArt"], {
-            src: "/images/profile.png",
-            resolution: 140,
-            color: "#101010",
-            animationStyle: "typewriter",
-            inverted: true,
-            animateOnView: true,
-            className: "mx-auto w-full max-w-2xl bg-transparent"
+        className: "w-full max-w-sm mx-auto aspect-square flex items-center justify-center",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("canvas", {
+            ref: canvasRef,
+            className: "w-full h-auto opacity-70 mix-blend-multiply"
         }, void 0, false, {
             fileName: "[project]/src/components/ui/profile-ascii.tsx",
-            lineNumber: 8,
+            lineNumber: 95,
             columnNumber: 7
-        }, this)
+        }, ("TURBOPACK compile-time value", void 0))
     }, void 0, false, {
         fileName: "[project]/src/components/ui/profile-ascii.tsx",
-        lineNumber: 7,
+        lineNumber: 94,
         columnNumber: 5
-    }, this);
-}
+    }, ("TURBOPACK compile-time value", void 0));
+};
+_s(ProfileAsciiArt, "UJgi7ynoup7eqypjnwyX/s32POg=");
 _c = ProfileAsciiArt;
 var _c;
 __turbopack_context__.k.register(_c, "ProfileAsciiArt");
@@ -2915,4 +2839,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=src_1_agbf9._.js.map
+//# sourceMappingURL=src_0c5gcdw._.js.map

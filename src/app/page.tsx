@@ -103,66 +103,55 @@ export default function Home() {
         {/* Experience & Modern Toolkit Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           
-          {/* Left Column: Experience Timeline (Replaces Milestones) */}
-          <div className="lg:col-span-5 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
-            <h3 className="text-lg font-bold text-[#101010] mb-6 flex items-center gap-2">
+          {/* Left Column: Experience Timeline */}
+          <div className="lg:col-span-5 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
+            <h3 className="text-lg font-bold text-[#101010] mb-8 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-[#31b497]"/> Experience & Journey
             </h3>
             
-            <div className="space-y-6 relative before:absolute before:inset-0 before:ml-2 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-black/10 before:to-transparent">
+            {/* Clean Left-Aligned Timeline */}
+            <div className="relative border-l-2 border-gray-100 ml-3 space-y-8 pb-2">
               
               {/* Freelance Item */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                <div className="flex items-center justify-center w-4 h-4 rounded-full border-2 border-white bg-[#31b497] text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-1 md:ml-0"></div>
-                <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-black/5 bg-gray-50/50">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-bold text-[#101010] text-sm">Freelance Web Developer</span>
-                  </div>
-                  <p className="text-xs text-[#101010]/60 mb-2">U-Safe Solutions & Flash Media</p>
-                  <p className="text-sm text-[#101010]/80 leading-relaxed">Engineered complete client websites, configured domain settings, and optimized SEO for live deployments.</p>
-                </div>
+              <div className="relative pl-6">
+                <div className="absolute w-4 h-4 bg-[#31b497] rounded-full -left-[9px] top-1 border-4 border-white shadow-sm box-content"></div>
+                <h4 className="font-bold text-[#101010] text-sm mb-1">Freelance Web Developer</h4>
+                <p className="text-xs text-[#101010]/60 mb-2">U-Safe Solutions & Flash Media</p>
+                <p className="text-sm text-[#101010]/80 leading-relaxed">Engineered complete client websites, configured domain settings, and optimized SEO for live deployments.</p>
               </div>
 
-              {/* Hackathon Item */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                <div className="flex items-center justify-center w-4 h-4 rounded-full border-2 border-white bg-violet-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-1 md:ml-0"></div>
-                <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-black/5 bg-gray-50/50">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-bold text-[#101010] text-sm">Hackathon Builder</span>
-                  </div>
-                  <p className="text-xs text-[#101010]/60 mb-2">NIAT X Base44 & Makers Conclave</p>
-                  <p className="text-sm text-[#101010]/80 leading-relaxed">Developed the CampusHub web app and AI-powered dev tools in high-pressure competitive environments.</p>
-                </div>
+              {/* Startup & Product Builder Item */}
+              <div className="relative pl-6">
+                <div className="absolute w-4 h-4 bg-violet-500 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm box-content"></div>
+                <h4 className="font-bold text-[#101010] text-sm mb-1">Startup & Product Builder</h4>
+                <p className="text-xs text-[#101010]/60 mb-2">Independent Ecosystems</p>
+                <p className="text-sm text-[#101010]/80 leading-relaxed">Designed, architected, and deployed scalable digital platforms including CampusHub and the SquadLink gaming identity portal.</p>
               </div>
 
               {/* Education Item */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                <div className="flex items-center justify-center w-4 h-4 rounded-full border-2 border-white bg-blue-500 text-white shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 ml-1 md:ml-0"></div>
-                <div className="w-[calc(100%-2rem)] md:w-[calc(50%-1.5rem)] p-4 rounded-xl border border-black/5 bg-gray-50/50">
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-bold text-[#101010] text-sm">B.Tech Computer Science</span>
-                  </div>
-                  <p className="text-xs text-[#101010]/60 mb-2">Nxtwave Institute of Advanced Tech.</p>
-                  <p className="text-sm text-[#101010]/80 leading-relaxed">Focusing on modern UI Engineering, Applied Generative AI, and core system architecture.</p>
-                </div>
+              <div className="relative pl-6">
+                <div className="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm box-content"></div>
+                <h4 className="font-bold text-[#101010] text-sm mb-1">B.Tech Computer Science</h4>
+                <p className="text-xs text-[#101010]/60 mb-2">Nxtwave Institute of Advanced Tech.</p>
+                <p className="text-sm text-[#101010]/80 leading-relaxed">Focusing on modern UI Engineering, Applied Generative AI, and core system architecture.</p>
               </div>
             </div>
           </div>
 
           {/* Right Column: Modern Tech Stack Grid */}
-          <div className="lg:col-span-7 bg-white rounded-2xl p-6 border border-black/5 shadow-sm">
+          <div className="lg:col-span-7 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
             <h3 className="text-lg font-bold text-[#101010] mb-6 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-500"/> Core Architecture
             </h3>
             
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {/* Frontend */}
               <div>
                 <h4 className="text-xs font-bold text-black/40 uppercase tracking-widest mb-3 flex items-center gap-2">
                   <Layout className="w-3 h-3"/> Frontend & UI
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS'].map((tech) => (
+                  {['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'HTML', 'CSS', 'Bootstrap'].map((tech) => (
                     <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
                   ))}
                 </div>
@@ -186,7 +175,7 @@ export default function Home() {
                   <Database className="w-3 h-3"/> Backend & DB
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Python', 'Node.js', 'MongoDB Atlas', 'Supabase'].map((tech) => (
+                  {['Python', 'Node.js', 'C++', 'MongoDB Atlas', 'Supabase'].map((tech) => (
                     <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
                   ))}
                 </div>
@@ -198,7 +187,7 @@ export default function Home() {
                   <Wrench className="w-3 h-3"/> DevOps & Tools
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Git', 'Vercel', 'SEO Optimization'].map((tech) => (
+                  {['Git', 'Vercel', 'Render', 'Railway', 'SEO'].map((tech) => (
                     <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
                   ))}
                 </div>
@@ -302,27 +291,22 @@ export default function Home() {
       </div>
 
       {/* ================= CONTACT SECTION ================= */}
-      <section id="contact" className="w-full py-24 px-6 md:px-12 lg:px-24 border-t border-black/5">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div id="contact" className="w-full max-w-6xl mx-auto px-4 py-16 md:py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           
-          {/* Left: Terminal Contact Info */}
-          <div className="flex flex-col space-y-8 order-2 md:order-1">
-            <div className="space-y-4">
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-[#101010]">
-                Let&apos;s Build <span className="text-[#f2b70d]">Something</span>
-              </h2>
-              <div className="p-4 rounded-lg bg-black/5 border border-black/10 shadow-inner">
-                <p className="text-black/70 text-sm md:text-base font-mono leading-relaxed">
-                  <span className="text-emerald-600">~/contact</span> $ ./init.sh
-                  <br />
-                  <span className="text-black/50">&gt; Initializing contact sequence...</span>
-                  <br />
-                  <span className="text-emerald-600">Status:</span> Ready for new opportunities.
-                </p>
-              </div>
+          {/* Left Side: Terminal & Links */}
+          <div className="w-full">
+            <h2 className="text-4xl md:text-5xl font-display font-bold text-[#101010] tracking-tight mb-8">
+              Let&apos;s Build <span className="text-amber-500">Something</span>
+            </h2>
+
+            <div className="bg-black/5 rounded-xl p-4 md:p-6 mb-8 font-mono text-sm text-[#101010]/70 border border-black/10 w-full">
+              <p className="text-emerald-600 mb-2">~/contact $ ./init.sh</p>
+              <p className="mb-1">&gt; Initializing contact sequence...</p>
+              <p><span className="text-emerald-600">Status:</span> Ready for new opportunities.</p>
             </div>
-            
-            <div className="flex flex-col gap-4 mt-8">
+
+            <div className="space-y-4 w-full">
               {/* Email */}
               <a href="mailto:shreyaskaraiya@mail.com" className="flex items-center gap-4 text-black/70 hover:text-[#f2b70d] hover:-translate-y-1 hover:shadow-md transition-all cursor-pointer group">
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-black/10 bg-white/50 group-hover:border-[#f2b70d]/50">
@@ -349,16 +333,13 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right: ASCII Profile */}
-          <div className="order-1 md:order-2 flex justify-center md:justify-end">
-            <div className="relative w-full max-w-sm">
-              <div className="absolute -inset-1 bg-gradient-to-tr from-[#f2b70d]/20 to-transparent rounded-lg blur-2xl opacity-50"></div>
-              <ProfileAsciiArt />
-            </div>
+          {/* Right Side: ASCII Art Portrait */}
+          <div className="hidden md:flex justify-center items-center pointer-events-none w-full">
+             <ProfileAsciiArt />
           </div>
-          
+
         </div>
-      </section>
+      </div>
 
       <div className="flex w-full items-center justify-center p-6 md:p-10 mt-16 pb-24">
           <div className="bg-white text-black flex flex-col md:flex-row items-center gap-8 rounded-xl border border-black/10 px-8 py-8 shadow-sm max-w-4xl">
