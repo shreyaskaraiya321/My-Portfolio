@@ -7,6 +7,13 @@ import { cn } from "@/lib/utils";
 
 const projects = [
   {
+    id: "dreamscape",
+    title: "DreamScape Wallpapers",
+    subtitle: "Digital Wallpaper Gallery",
+    image: "/images/dreamscape.jpg",
+    url: "https://dev-dream-scape-wallpapers.pantheonsite.io/",
+  },
+  {
     id: "squadlink",
     title: "SquadLink",
     subtitle: "Esports & Gaming Identity Platform",

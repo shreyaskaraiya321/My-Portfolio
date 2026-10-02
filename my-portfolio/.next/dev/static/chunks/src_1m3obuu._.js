@@ -1,154 +1,4 @@
 (globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push([typeof document === "object" ? document.currentScript : undefined,
-"[project]/src/components/ui/aurora-bars.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "AuroraBars",
-    ()=>AuroraBars
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/utils/use-animation-frame.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-motion-value.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-transform.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
-;
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
-"use client";
-;
-;
-;
-/** two sine waves per bar for organic movement */ function barHeight(index, total, time, minH, maxH) {
-    // Arch envelope: tallest in the centre, shorter on edges
-    // arch envelope: tallest in centre, shorter on edges
-    const norm = index / (total - 1);
-    const arch = Math.sin(norm * Math.PI);
-    const phase1 = index / total * Math.PI * 2;
-    const phase2 = index / total * Math.PI * 5.3;
-    const wave = 0.5 + 0.25 * Math.sin(time * 1.1 + phase1) + 0.25 * Math.sin(time * 0.7 + phase2);
-    const blended = arch * 0.65 + wave * 0.35;
-    return minH + blended * (maxH - minH);
-}
-function AuroraBar({ index, total, time, minH, maxH, gradient, blur, gap }) {
-    _s();
-    const height = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(time, {
-        "AuroraBar.useTransform[height]": (t)=>{
-            return `${barHeight(index, total, t, minH, maxH) * 100}%`;
-        }
-    }["AuroraBar.useTransform[height]"]);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex-1",
-        style: {
-            height: "100%",
-            display: "flex",
-            alignItems: "flex-end",
-            padding: `0 ${gap / 2}px`
-        },
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].div, {
-            style: {
-                width: "100%",
-                height,
-                background: gradient,
-                borderRadius: "9999px 9999px 0 0",
-                filter: `blur(${blur}px)`,
-                opacity: 0.85
-            }
-        }, void 0, false, {
-            fileName: "[project]/src/components/ui/aurora-bars.tsx",
-            lineNumber: 87,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/src/components/ui/aurora-bars.tsx",
-        lineNumber: 78,
-        columnNumber: 5
-    }, this);
-}
-_s(AuroraBar, "4ssp1os+ASRQ0QSxKWPmURVcNH4=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
-    ];
-});
-_c = AuroraBar;
-function AuroraBars({ barCount = 24, colors = [
-    "#ffd6eb",
-    "#ff9acb",
-    "#ff5aa6",
-    "#ff2d78",
-    "#00000000"
-], maxHeightRatio = 0.92, minHeightRatio = 0.18, speed = 0.5, gap = 3, blur = 0, background = "#000000", className }) {
-    _s1();
-    const containerRef = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"](null);
-    const time = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"])(0);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAnimationFrame"])({
-        "AuroraBars.useAnimationFrame": (_, delta)=>{
-            time.set(time.get() + delta / 1000 * speed);
-        }
-    }["AuroraBars.useAnimationFrame"]);
-    const gradientStop = colors.map((c, i)=>`${c} ${Math.round(i / (colors.length - 1) * 100)}%`).join(", ");
-    const gradient = `linear-gradient(to top, ${gradientStop})`;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        ref: containerRef,
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("relative w-full h-full overflow-hidden", className),
-        style: {
-            background
-        },
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 flex items-end",
-                children: Array.from({
-                    length: barCount
-                }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AuroraBar, {
-                        index: i,
-                        total: barCount,
-                        time: time,
-                        minH: minHeightRatio,
-                        maxH: maxHeightRatio,
-                        gradient: gradient,
-                        blur: blur,
-                        gap: gap
-                    }, i, false, {
-                        fileName: "[project]/src/components/ui/aurora-bars.tsx",
-                        lineNumber: 132,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/aurora-bars.tsx",
-                lineNumber: 130,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 pointer-events-none",
-                style: {
-                    background: "radial-gradient(ellipse 90% 80% at 50% 100%, transparent 40%, #000000cc 100%)"
-                }
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/aurora-bars.tsx",
-                lineNumber: 146,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/ui/aurora-bars.tsx",
-        lineNumber: 125,
-        columnNumber: 5
-    }, this);
-}
-_s1(AuroraBars, "l5SPEt2i+1cTQIL5OC9O/J7g4Mo=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAnimationFrame"]
-    ];
-});
-_c1 = AuroraBars;
-var _c, _c1;
-__turbopack_context__.k.register(_c, "AuroraBar");
-__turbopack_context__.k.register(_c1, "AuroraBars");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
-}
-}),
 "[project]/src/components/ui/floating-nav.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -1176,6 +1026,545 @@ _c1 = GithubProjects;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "Github");
 __turbopack_context__.k.register(_c1, "GithubProjects");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/glyph-ring.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>GlyphRing
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.core.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.module.js [app-client] (ecmascript) <locals>");
+;
+var _s = __turbopack_context__.k.signature();
+// Glyph Ring — Originkit
+"use client";
+;
+;
+const CURSOR_FOLLOW = 8.5;
+const GLYPH_ART = [
+    [
+        "....",
+        "....",
+        ".##.",
+        "#..#",
+        ".##.",
+        "...."
+    ],
+    [
+        "....",
+        ".#..",
+        "###.",
+        ".#..",
+        "....",
+        "...."
+    ],
+    [
+        "....",
+        "#..#",
+        ".##.",
+        ".##.",
+        "#..#",
+        "...."
+    ],
+    [
+        "....",
+        "####",
+        "....",
+        "####",
+        "....",
+        "...."
+    ],
+    [
+        ".##.",
+        "#..#",
+        "#..#",
+        "#..#",
+        "#..#",
+        ".##."
+    ],
+    [
+        "....",
+        "#.#.",
+        ".##.",
+        ".##.",
+        "#.#.",
+        "...."
+    ],
+    [
+        "....",
+        "..##",
+        ".##.",
+        "##..",
+        "....",
+        "...."
+    ],
+    [
+        "....",
+        "##..",
+        ".##.",
+        "..##",
+        "....",
+        "...."
+    ],
+    [
+        ".#.#",
+        "####",
+        ".#.#",
+        "####",
+        ".#.#",
+        "...."
+    ],
+    [
+        "....",
+        ".##.",
+        "#..#",
+        "####",
+        "#..#",
+        "...."
+    ],
+    [
+        "###.",
+        "#..#",
+        "###.",
+        "#..#",
+        "###.",
+        "...."
+    ],
+    [
+        "..#.",
+        ".##.",
+        "###.",
+        ".##.",
+        "..#.",
+        "...."
+    ]
+];
+const GLYPHS = GLYPH_ART.map(_c = (rows)=>rows.reduce((bits, row, y)=>bits + Array.from(row).reduce((acc, ch, x)=>acc + (ch === "#" ? Math.pow(2, x + 4 * y) : 0), 0), 0));
+_c1 = GLYPHS;
+const DEFAULTS = {
+    ink: "#FFFFFF",
+    lit: "#FFB800",
+    rings: 18,
+    charSize: 3,
+    gap: 6,
+    spin: 8,
+    beam: 11,
+    band: 20,
+    churn: 20,
+    scale: 200
+};
+function clamp(v, lo, hi, fallback) {
+    const n = typeof v === "number" && isFinite(v) ? v : fallback;
+    return Math.max(lo, Math.min(hi, n));
+}
+function settingsFor(cfg) {
+    const scale = clamp(cfg.scale, 20, 200, DEFAULTS.scale) / 100;
+    return {
+        rings: clamp(cfg.rings, 1, 20, DEFAULTS.rings),
+        charH: scale * clamp(cfg.charSize, 1, 20, DEFAULTS.charSize) * 0.008,
+        gapH: scale * clamp(cfg.gap, 0, 20, DEFAULTS.gap) * 0.006,
+        spin: clamp(cfg.spin, 0, 20, DEFAULTS.spin) * 0.018,
+        beam: clamp(cfg.beam, 0, 20, DEFAULTS.beam) * 0.025,
+        band: clamp(cfg.band, 0, 20, DEFAULTS.band) * 0.16,
+        churn: clamp(cfg.churn, 0, 20, DEFAULTS.churn) * 0.55
+    };
+}
+const QUAD_VERTEX = `
+    varying vec2 vUv;
+    void main() {
+        vUv = uv;
+
+        gl_Position = vec4(position.xy, 0.0, 1.0);
+    }
+`;
+const RING_FRAGMENT = `
+    precision highp float;
+
+    #define GLYPH_COUNT ${GLYPHS.length}
+    #define TAU 6.28318530718
+
+    uniform vec2 uResolution;
+    uniform vec2 uPointer;
+    uniform float uHold;
+    uniform float uTime;
+    uniform float uChurnTime;
+    uniform vec3 uInk;
+    uniform vec3 uLit;
+    uniform float uRings;
+    uniform float uCharH;
+    uniform float uGapH;
+    uniform float uBeam;
+    uniform float uBand;
+    uniform float uGlyphs[GLYPH_COUNT];
+
+    varying vec2 vUv;
+
+    float hash1(float n) {
+        return fract(sin(n * 127.1 + 0.371) * 43758.5453123);
+    }
+
+    float hash2(vec2 v) {
+        return fract(sin(dot(v, vec2(127.1, 311.7))) * 43758.5453123);
+    }
+
+    float glyphAt(int idx, vec2 g) {
+        float bits = 0.0;
+
+        for (int i = 0; i < GLYPH_COUNT; i++) {
+            if (i == idx) bits = uGlyphs[i];
+        }
+        float x = min(floor(g.x * 4.0), 3.0);
+        float y = min(floor((1.0 - g.y) * 6.0), 5.0);
+        return mod(floor(bits / exp2(x + 4.0 * y)), 2.0);
+    }
+
+    void main() {
+        vec2 centre = uResolution * 0.5;
+        vec2 c = vUv * uResolution - centre;
+        float radius = length(c);
+
+        float unit = min(uResolution.x, uResolution.y) * 0.5;
+
+        float pitch = unit * (uCharH + uGapH);
+
+        float fill = uCharH / (uCharH + uGapH);
+
+        float ring = floor(radius / pitch);
+
+        if (ring < 1.0 || ring > uRings) discard;
+
+        float slots = max(6.0, floor(TAU * (ring + 0.5)));
+
+        float seed = hash1(ring);
+
+        float heading = mod(ring, 2.0) < 0.5 ? 1.0 : -1.0;
+        float turn = uTime * (0.5 + seed * 1.1) * heading + seed;
+
+        float around = fract(atan(c.y, c.x) / TAU + 0.5 + turn);
+        float slot = floor(around * slots);
+
+        float lo = (1.0 - fill) * 0.5;
+        vec2 g = (vec2(fract(around * slots), fract(radius / pitch)) - lo) / fill;
+        if (g.x < 0.0 || g.x > 1.0 || g.y < 0.0 || g.y > 1.0) discard;
+
+        float churn = floor(uChurnTime + seed * 17.0);
+        float pick = hash2(vec2(ring, slot) + churn * 5.13);
+        int idx = int(min(floor(pick * float(GLYPH_COUNT)), float(GLYPH_COUNT - 1)));
+        if (glyphAt(idx, g) < 0.5) discard;
+
+        vec2 pc = uPointer - centre;
+
+        float toBeam = abs(fract((atan(c.y, c.x) - atan(pc.y, pc.x)) / TAU + 0.5) - 0.5);
+
+        float beam = uBeam > 0.0 ? 1.0 - smoothstep(0.0, uBeam, toBeam) : 0.0;
+        float onRing = uBand > 0.0
+            ? 1.0 - smoothstep(0.0, uBand, abs(radius - length(pc)) / pitch)
+            : 0.0;
+        float near = clamp(max(beam, onRing), 0.0, 1.0) * uHold;
+
+        vec3 col = mix(uInk, uLit, near);
+        float a = 0.4 + 0.6 * near;
+
+        gl_FragColor = vec4(col * a, a);
+    }
+`;
+class RingScene {
+    container;
+    cfg;
+    renderer;
+    scene = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Scene"]();
+    camera = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Camera"]();
+    geometry = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PlaneGeometry"](2, 2);
+    material;
+    mesh;
+    target = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](-1e4, -1e4);
+    eased = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](-1e4, -1e4);
+    hold = 0;
+    wantHold = 0;
+    time = 0;
+    churnTime = 0;
+    width = 1;
+    height = 1;
+    frameId = 0;
+    lastT = 0;
+    disposed = false;
+    constructor(container, cfg){
+        this.container = container;
+        this.cfg = cfg;
+        const S = settingsFor(cfg);
+        this.renderer = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["WebGLRenderer"]({
+            antialias: false,
+            alpha: true
+        });
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        this.renderer.outputColorSpace = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SRGBColorSpace"];
+        this.renderer.setClearColor(0x000000, 0);
+        const el = this.renderer.domElement;
+        el.style.position = "absolute";
+        el.style.inset = "0";
+        el.style.width = "100%";
+        el.style.height = "100%";
+        el.style.touchAction = "none";
+        container.appendChild(el);
+        this.material = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ShaderMaterial"]({
+            vertexShader: QUAD_VERTEX,
+            fragmentShader: RING_FRAGMENT,
+            uniforms: {
+                uResolution: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](1, 1)
+                },
+                uPointer: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](-1e4, -1e4)
+                },
+                uHold: {
+                    value: 0
+                },
+                uTime: {
+                    value: 0
+                },
+                uChurnTime: {
+                    value: 0
+                },
+                uInk: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"](cfg.ink)
+                },
+                uLit: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"](cfg.lit)
+                },
+                uRings: {
+                    value: S.rings
+                },
+                uCharH: {
+                    value: S.charH
+                },
+                uGapH: {
+                    value: S.gapH
+                },
+                uBeam: {
+                    value: S.beam
+                },
+                uBand: {
+                    value: S.band
+                },
+                uGlyphs: {
+                    value: GLYPHS
+                }
+            },
+            transparent: true,
+            depthTest: false,
+            depthWrite: false
+        });
+        this.mesh = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Mesh"](this.geometry, this.material);
+        this.mesh.frustumCulled = false;
+        this.scene.add(this.mesh);
+        el.addEventListener("pointermove", this.onPointerMove);
+        el.addEventListener("pointerdown", this.onPointerMove);
+        el.addEventListener("pointerleave", this.onPointerLeave);
+        el.addEventListener("pointercancel", this.onPointerLeave);
+    }
+    onPointerMove = (e)=>{
+        const rect = this.renderer.domElement.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return;
+        const x = (e.clientX - rect.left) / rect.width * this.width;
+        const y = (1 - (e.clientY - rect.top) / rect.height) * this.height;
+        this.target.set(x, y);
+        if (this.wantHold === 0) this.eased.copy(this.target);
+        this.wantHold = 1;
+    };
+    onPointerLeave = ()=>{
+        this.wantHold = 0;
+    };
+    start() {
+        this.lastT = performance.now();
+        const loop = ()=>{
+            this.frameId = requestAnimationFrame(loop);
+            this.step();
+        };
+        loop();
+    }
+    setSize(width, height) {
+        if (this.disposed || width <= 0 || height <= 0) return;
+        this.renderer.setSize(width, height, false);
+        const dpr = this.renderer.getPixelRatio();
+        this.width = width * dpr;
+        this.height = height * dpr;
+        this.material.uniforms.uResolution.value.set(this.width, this.height);
+    }
+    updateConfig(cfg) {
+        if (this.disposed) return;
+        this.cfg = cfg;
+        const u = this.material.uniforms;
+        u.uInk.value.set(cfg.ink || DEFAULTS.ink);
+        u.uLit.value.set(cfg.lit || DEFAULTS.lit);
+    }
+    step() {
+        if (this.disposed) return;
+        const now = performance.now();
+        let dt = (now - this.lastT) / 1000;
+        this.lastT = now;
+        if (!isFinite(dt) || dt < 0) dt = 0;
+        if (dt > 0.05) dt = 0.05;
+        const S = settingsFor(this.cfg);
+        this.time += dt * S.spin;
+        this.churnTime += dt * S.churn;
+        this.eased.lerp(this.target, 1 - Math.exp(-dt * CURSOR_FOLLOW));
+        this.hold += (this.wantHold - this.hold) * (1 - Math.exp(-dt * 5));
+        const u = this.material.uniforms;
+        u.uTime.value = this.time;
+        u.uChurnTime.value = this.churnTime;
+        u.uPointer.value.copy(this.eased);
+        u.uHold.value = this.hold;
+        u.uRings.value = S.rings;
+        u.uCharH.value = S.charH;
+        u.uGapH.value = S.gapH;
+        u.uBeam.value = S.beam;
+        u.uBand.value = S.band;
+        this.renderer.render(this.scene, this.camera);
+    }
+    dispose() {
+        this.disposed = true;
+        cancelAnimationFrame(this.frameId);
+        const el = this.renderer.domElement;
+        el.removeEventListener("pointermove", this.onPointerMove);
+        el.removeEventListener("pointerdown", this.onPointerMove);
+        el.removeEventListener("pointerleave", this.onPointerLeave);
+        el.removeEventListener("pointercancel", this.onPointerLeave);
+        this.geometry.dispose();
+        this.material.dispose();
+        this.renderer.dispose();
+        if (el.parentNode === this.container) this.container.removeChild(el);
+    }
+}
+function OriginkitBase_GlyphRing(props) {
+    _s();
+    const { ink = DEFAULTS.ink, lit = DEFAULTS.lit, rings = DEFAULTS.rings, charSize = DEFAULTS.charSize, gap = DEFAULTS.gap, spin = DEFAULTS.spin, beam = DEFAULTS.beam, band = DEFAULTS.band, churn = DEFAULTS.churn, scale = DEFAULTS.scale, style } = props;
+    const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const sceneRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const cfgRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])({
+        ink,
+        lit,
+        rings,
+        charSize,
+        gap,
+        spin,
+        beam,
+        band,
+        churn,
+        scale
+    });
+    cfgRef.current = {
+        ink,
+        lit,
+        rings,
+        charSize,
+        gap,
+        spin,
+        beam,
+        band,
+        churn,
+        scale
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "OriginkitBase_GlyphRing.useEffect": ()=>{
+            const container = containerRef.current;
+            if (!container) return;
+            let scene;
+            try {
+                scene = new RingScene(container, cfgRef.current);
+            } catch  {
+                return;
+            }
+            sceneRef.current = scene;
+            scene.setSize(container.clientWidth, container.clientHeight);
+            scene.start();
+            const ro = new ResizeObserver({
+                "OriginkitBase_GlyphRing.useEffect": ()=>{
+                    scene.setSize(container.clientWidth, container.clientHeight);
+                }
+            }["OriginkitBase_GlyphRing.useEffect"]);
+            ro.observe(container);
+            return ({
+                "OriginkitBase_GlyphRing.useEffect": ()=>{
+                    ro.disconnect();
+                    scene.dispose();
+                    sceneRef.current = null;
+                }
+            })["OriginkitBase_GlyphRing.useEffect"];
+        }
+    }["OriginkitBase_GlyphRing.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "OriginkitBase_GlyphRing.useEffect": ()=>{
+            sceneRef.current?.updateConfig(cfgRef.current);
+        }
+    }["OriginkitBase_GlyphRing.useEffect"], [
+        ink,
+        lit,
+        rings,
+        charSize,
+        gap,
+        spin,
+        beam,
+        band,
+        churn,
+        scale
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        ref: containerRef,
+        role: "img",
+        "aria-label": "Concentric rings of characters turning under a pointer-led beam",
+        style: {
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            minWidth: 120,
+            minHeight: 120,
+            overflow: "hidden",
+            ...style
+        }
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/glyph-ring.tsx",
+        lineNumber: 443,
+        columnNumber: 9
+    }, this);
+}
+_s(OriginkitBase_GlyphRing, "vX2TvAKEoy7vqJ8NRKv1JnJrm98=");
+_c2 = OriginkitBase_GlyphRing;
+GlyphRing.displayName = "Glyph Ring";
+const __originkitPresetProps = {
+    "ink": "#FFFFFF",
+    "lit": "#FFB800",
+    "rings": 18,
+    "charSize": 3,
+    "gap": 6,
+    "spin": 8,
+    "beam": 11,
+    "band": 20,
+    "churn": 20,
+    "scale": 200
+};
+function GlyphRing(props) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(OriginkitBase_GlyphRing, {
+        ...__originkitPresetProps,
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/glyph-ring.tsx",
+        lineNumber: 476,
+        columnNumber: 10
+    }, this);
+}
+_c3 = GlyphRing;
+var _c, _c1, _c2, _c3;
+__turbopack_context__.k.register(_c, "GLYPHS$GLYPH_ART.map");
+__turbopack_context__.k.register(_c1, "GLYPHS");
+__turbopack_context__.k.register(_c2, "OriginkitBase_GlyphRing");
+__turbopack_context__.k.register(_c3, "GlyphRing");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -2436,329 +2825,6 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
 }),
-"[project]/src/components/ui/text-hover-effect.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "TextHoverEffect",
-    ()=>TextHoverEffect
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
-;
-var _s = __turbopack_context__.k.signature();
-"use client";
-;
-;
-const TextHoverEffect = ({ text, duration })=>{
-    _s();
-    const svgRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
-    const [cursor, setCursor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
-        x: 0,
-        y: 0
-    });
-    const [maskPosition, setMaskPosition] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])({
-        cx: "50%",
-        cy: "50%"
-    });
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "TextHoverEffect.useEffect": ()=>{
-            if (svgRef.current && cursor.x !== null && cursor.y !== null) {
-                const svgRect = svgRef.current.getBoundingClientRect();
-                const cxPercentage = (cursor.x - svgRect.left) / svgRect.width * 100;
-                const cyPercentage = (cursor.y - svgRect.top) / svgRect.height * 100;
-                setMaskPosition({
-                    cx: `${cxPercentage}%`,
-                    cy: `${cyPercentage}%`
-                });
-            }
-        }
-    }["TextHoverEffect.useEffect"], [
-        cursor
-    ]);
-    const lines = text.split('\n');
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("svg", {
-        ref: svgRef,
-        width: "100%",
-        height: "100%",
-        viewBox: "0 0 1400 300",
-        xmlns: "http://www.w3.org/2000/svg",
-        onMouseMove: (e)=>setCursor({
-                x: e.clientX,
-                y: e.clientY
-            }),
-        className: "select-none cursor-crosshair w-full h-full",
-        style: {
-            fontFamily: "var(--font-share-tech), monospace"
-        },
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("defs", {
-                children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("linearGradient", {
-                        id: "diaGradient",
-                        x1: "0%",
-                        y1: "0%",
-                        x2: "200%",
-                        y2: "0%",
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "0%",
-                                stopColor: "#22d3ee"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 45,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "12.5%",
-                                stopColor: "#8b5cf6"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 46,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "25%",
-                                stopColor: "#e879f9"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 47,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "37.5%",
-                                stopColor: "#3b82f6"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 48,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "50%",
-                                stopColor: "#22d3ee"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 49,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "62.5%",
-                                stopColor: "#8b5cf6"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 50,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "75%",
-                                stopColor: "#e879f9"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 51,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "87.5%",
-                                stopColor: "#3b82f6"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 52,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "100%",
-                                stopColor: "#22d3ee"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 53,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("animate", {
-                                attributeName: "x1",
-                                values: "0%;-100%",
-                                dur: "5s",
-                                repeatCount: "indefinite"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 54,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("animate", {
-                                attributeName: "x2",
-                                values: "200%;100%",
-                                dur: "5s",
-                                repeatCount: "indefinite"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 55,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                        lineNumber: 44,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].radialGradient, {
-                        id: "revealMask",
-                        gradientUnits: "userSpaceOnUse",
-                        r: "20%",
-                        initial: {
-                            cx: "50%",
-                            cy: "50%"
-                        },
-                        animate: maskPosition,
-                        transition: {
-                            duration: duration ?? 0,
-                            ease: "easeOut"
-                        },
-                        children: [
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "0%",
-                                stopColor: "white"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 67,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0)),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("stop", {
-                                offset: "100%",
-                                stopColor: "black"
-                            }, void 0, false, {
-                                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                                lineNumber: 68,
-                                columnNumber: 11
-                            }, ("TURBOPACK compile-time value", void 0))
-                        ]
-                    }, void 0, true, {
-                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                        lineNumber: 59,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0)),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("mask", {
-                        id: "textMask",
-                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("rect", {
-                            x: "0",
-                            y: "0",
-                            width: "100%",
-                            height: "100%",
-                            fill: "url(#revealMask)"
-                        }, void 0, false, {
-                            fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                            lineNumber: 71,
-                            columnNumber: 11
-                        }, ("TURBOPACK compile-time value", void 0))
-                    }, void 0, false, {
-                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                        lineNumber: 70,
-                        columnNumber: 9
-                    }, ("TURBOPACK compile-time value", void 0))
-                ]
-            }, void 0, true, {
-                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                lineNumber: 42,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
-                x: "50%",
-                y: "50%",
-                textAnchor: "middle",
-                dominantBaseline: "middle",
-                fontSize: "90",
-                fontWeight: "bold",
-                children: lines.map((line, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tspan", {
-                        x: "50%",
-                        dy: idx === 0 ? "-0.6em" : "1.2em",
-                        fill: idx === 1 ? "url(#diaGradient)" : "rgba(255,255,255,0.2)",
-                        style: idx === 1 ? {
-                            opacity: 0.4
-                        } : {},
-                        children: line
-                    }, idx, false, {
-                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                        lineNumber: 78,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)))
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                lineNumber: 76,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].text, {
-                x: "50%",
-                y: "50%",
-                textAnchor: "middle",
-                dominantBaseline: "middle",
-                fontSize: "90",
-                fontWeight: "bold",
-                fill: "transparent",
-                strokeWidth: "1.5",
-                initial: {
-                    strokeDashoffset: 1000,
-                    strokeDasharray: 1000
-                },
-                animate: {
-                    strokeDashoffset: 0,
-                    strokeDasharray: 1000
-                },
-                transition: {
-                    duration: 3,
-                    ease: "easeInOut"
-                },
-                children: lines.map((line, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tspan", {
-                        x: "50%",
-                        dy: idx === 0 ? "-0.6em" : "1.2em",
-                        stroke: idx === 1 ? "url(#diaGradient)" : "rgba(255,255,255,0.8)",
-                        children: line
-                    }, idx, false, {
-                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                        lineNumber: 99,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)))
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                lineNumber: 91,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0)),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("text", {
-                x: "50%",
-                y: "50%",
-                textAnchor: "middle",
-                dominantBaseline: "middle",
-                fontSize: "90",
-                fontWeight: "bold",
-                mask: "url(#textMask)",
-                children: lines.map((line, idx)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("tspan", {
-                        x: "50%",
-                        dy: idx === 0 ? "-0.6em" : "1.2em",
-                        fill: idx === 1 ? "url(#diaGradient)" : "#ffffff",
-                        children: line
-                    }, idx, false, {
-                        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                        lineNumber: 113,
-                        columnNumber: 11
-                    }, ("TURBOPACK compile-time value", void 0)))
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-                lineNumber: 111,
-                columnNumber: 7
-            }, ("TURBOPACK compile-time value", void 0))
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/ui/text-hover-effect.tsx",
-        lineNumber: 32,
-        columnNumber: 5
-    }, ("TURBOPACK compile-time value", void 0));
-};
-_s(TextHoverEffect, "bDWCXxbxQoLm8jC5ZLsfU1XU3bo=");
-_c = TextHoverEffect;
-var _c;
-__turbopack_context__.k.register(_c, "TextHoverEffect");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
-}
-}),
 "[project]/src/lib/utils.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -2779,4 +2845,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=src_0c5gcdw._.js.map
+//# sourceMappingURL=src_1m3obuu._.js.map

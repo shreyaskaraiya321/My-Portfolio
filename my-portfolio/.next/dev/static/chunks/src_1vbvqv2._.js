@@ -1,154 +1,4 @@
 (globalThis["TURBOPACK"] || (globalThis["TURBOPACK"] = [])).push([typeof document === "object" ? document.currentScript : undefined,
-"[project]/src/components/ui/aurora-bars.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
-"use strict";
-
-__turbopack_context__.s([
-    "AuroraBars",
-    ()=>AuroraBars
-]);
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/motion/dist/es/react.mjs [app-client] (ecmascript) <locals>");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/utils/use-animation-frame.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-motion-value.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/value/use-transform.mjs [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
-;
-var _s = __turbopack_context__.k.signature(), _s1 = __turbopack_context__.k.signature();
-"use client";
-;
-;
-;
-/** two sine waves per bar for organic movement */ function barHeight(index, total, time, minH, maxH) {
-    // Arch envelope: tallest in the centre, shorter on edges
-    // arch envelope: tallest in centre, shorter on edges
-    const norm = index / (total - 1);
-    const arch = Math.sin(norm * Math.PI);
-    const phase1 = index / total * Math.PI * 2;
-    const phase2 = index / total * Math.PI * 5.3;
-    const wave = 0.5 + 0.25 * Math.sin(time * 1.1 + phase1) + 0.25 * Math.sin(time * 0.7 + phase2);
-    const blended = arch * 0.65 + wave * 0.35;
-    return minH + blended * (maxH - minH);
-}
-function AuroraBar({ index, total, time, minH, maxH, gradient, blur, gap }) {
-    _s();
-    const height = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"])(time, {
-        "AuroraBar.useTransform[height]": (t)=>{
-            return `${barHeight(index, total, t, minH, maxH) * 100}%`;
-        }
-    }["AuroraBar.useTransform[height]"]);
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "flex-1",
-        style: {
-            height: "100%",
-            display: "flex",
-            alignItems: "flex-end",
-            padding: `0 ${gap / 2}px`
-        },
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$motion$2f$dist$2f$es$2f$react$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["motion"].div, {
-            style: {
-                width: "100%",
-                height,
-                background: gradient,
-                borderRadius: "9999px 9999px 0 0",
-                filter: `blur(${blur}px)`,
-                opacity: 0.85
-            }
-        }, void 0, false, {
-            fileName: "[project]/src/components/ui/aurora-bars.tsx",
-            lineNumber: 87,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "[project]/src/components/ui/aurora-bars.tsx",
-        lineNumber: 78,
-        columnNumber: 5
-    }, this);
-}
-_s(AuroraBar, "4ssp1os+ASRQ0QSxKWPmURVcNH4=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$transform$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useTransform"]
-    ];
-});
-_c = AuroraBar;
-function AuroraBars({ barCount = 24, colors = [
-    "#ffd6eb",
-    "#ff9acb",
-    "#ff5aa6",
-    "#ff2d78",
-    "#00000000"
-], maxHeightRatio = 0.92, minHeightRatio = 0.18, speed = 0.5, gap = 3, blur = 0, background = "#000000", className }) {
-    _s1();
-    const containerRef = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"](null);
-    const time = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"])(0);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAnimationFrame"])({
-        "AuroraBars.useAnimationFrame": (_, delta)=>{
-            time.set(time.get() + delta / 1000 * speed);
-        }
-    }["AuroraBars.useAnimationFrame"]);
-    const gradientStop = colors.map((c, i)=>`${c} ${Math.round(i / (colors.length - 1) * 100)}%`).join(", ");
-    const gradient = `linear-gradient(to top, ${gradientStop})`;
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        ref: containerRef,
-        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("relative w-full h-full overflow-hidden", className),
-        style: {
-            background
-        },
-        children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 flex items-end",
-                children: Array.from({
-                    length: barCount
-                }).map((_, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(AuroraBar, {
-                        index: i,
-                        total: barCount,
-                        time: time,
-                        minH: minHeightRatio,
-                        maxH: maxHeightRatio,
-                        gradient: gradient,
-                        blur: blur,
-                        gap: gap
-                    }, i, false, {
-                        fileName: "[project]/src/components/ui/aurora-bars.tsx",
-                        lineNumber: 132,
-                        columnNumber: 11
-                    }, this))
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/aurora-bars.tsx",
-                lineNumber: 130,
-                columnNumber: 7
-            }, this),
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "absolute inset-0 pointer-events-none",
-                style: {
-                    background: "radial-gradient(ellipse 90% 80% at 50% 100%, transparent 40%, #000000cc 100%)"
-                }
-            }, void 0, false, {
-                fileName: "[project]/src/components/ui/aurora-bars.tsx",
-                lineNumber: 146,
-                columnNumber: 7
-            }, this)
-        ]
-    }, void 0, true, {
-        fileName: "[project]/src/components/ui/aurora-bars.tsx",
-        lineNumber: 125,
-        columnNumber: 5
-    }, this);
-}
-_s1(AuroraBars, "l5SPEt2i+1cTQIL5OC9O/J7g4Mo=", false, function() {
-    return [
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$value$2f$use$2d$motion$2d$value$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMotionValue"],
-        __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$utils$2f$use$2d$animation$2d$frame$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useAnimationFrame"]
-    ];
-});
-_c1 = AuroraBars;
-var _c, _c1;
-__turbopack_context__.k.register(_c, "AuroraBar");
-__turbopack_context__.k.register(_c1, "AuroraBars");
-if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
-    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
-}
-}),
 "[project]/src/components/ui/floating-nav.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
@@ -1176,6 +1026,729 @@ _c1 = GithubProjects;
 var _c, _c1;
 __turbopack_context__.k.register(_c, "Github");
 __turbopack_context__.k.register(_c1, "GithubProjects");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/glass-toggle.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "GlassToggle",
+    ()=>GlassToggle
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/utils.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/moon.mjs [app-client] (ecmascript) <export default as Moon>");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__ = __turbopack_context__.i("[project]/node_modules/lucide-react/dist/esm/icons/sun.mjs [app-client] (ecmascript) <export default as Sun>");
+;
+var _s = __turbopack_context__.k.signature();
+"use client";
+;
+;
+;
+;
+function GlassToggle({ className }) {
+    _s();
+    // Theme state
+    const [isDark, setIsDark] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    // Apply dark mode class to HTML root
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "GlassToggle.useEffect": ()=>{
+            if (isDark) {
+                document.documentElement.classList.add("dark");
+            } else {
+                document.documentElement.classList.remove("dark");
+            }
+        }
+    }["GlassToggle.useEffect"], [
+        isDark
+    ]);
+    const handleToggle = ()=>setIsDark(!isDark);
+    // Scaled dimensions for UI
+    const width = 90;
+    const height = 36;
+    const orbSize = 36;
+    const padding = 4;
+    const travelDistance = width - orbSize - padding * 2;
+    const colors = {
+        trackOn: "linear-gradient(90deg, rgba(20, 20, 60, 0.7), rgba(80, 40, 200, 0.5))",
+        trackOff: "linear-gradient(90deg, rgba(255, 220, 100, 0.1), rgba(255, 200, 0, 0.3))",
+        orbOn: "radial-gradient(circle at 65% 35%, rgba(60,60,200,0.9) 0%, rgba(30,30,150,0.2) 50%, transparent 100%)",
+        orbOff: "radial-gradient(circle at 35% 35%, rgba(255,220,0,0.8) 0%, rgba(255,180,0,0.2) 50%, transparent 100%)"
+    };
+    const transitionConfig = {
+        type: "spring",
+        stiffness: 300,
+        damping: 20
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        onClick: handleToggle,
+        className: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$utils$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["cn"])("relative flex cursor-pointer items-center transition-transform duration-300 hover:scale-105", className),
+        style: {
+            width,
+            height
+        },
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-x-2 inset-y-1 rounded-full transition-all duration-700 ease-out border border-white/10",
+                style: {
+                    background: isDark ? colors.trackOn : colors.trackOff,
+                    backdropFilter: "blur(12px)",
+                    boxShadow: `
+            inset 1px 1px 2px rgba(255, 255, 255, 0.2),
+            inset -1px -1px 2px rgba(0, 0, 0, 0.3),
+            0 5px 15px -5px rgba(0,0,0,0.3)
+          `
+                }
+            }, void 0, false, {
+                fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                lineNumber: 49,
+                columnNumber: 7
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                className: "absolute rounded-full z-20 flex items-center justify-center",
+                initial: false,
+                animate: {
+                    x: isDark ? padding + travelDistance : padding
+                },
+                transition: transitionConfig,
+                style: {
+                    width: orbSize,
+                    height: orbSize,
+                    left: 0
+                },
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute inset-0 rounded-full",
+                        style: {
+                            background: "linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 40%, rgba(255,255,255,0.0) 100%)",
+                            backdropFilter: "blur(5px)",
+                            border: "1px solid rgba(255,255,255,0.3)",
+                            boxShadow: `
+              inset 2px 2px 5px rgba(255,255,255,0.3),
+              inset -2px -2px 5px rgba(0,0,0,0.1),
+              0 8px 15px rgba(0,0,0,0.2)
+            `
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                        lineNumber: 71,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "absolute inset-0 rounded-full opacity-80",
+                        animate: {
+                            background: isDark ? colors.orbOn : colors.orbOff
+                        }
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                        lineNumber: 86,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "absolute inset-0 rounded-full overflow-hidden",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute -left-1 -top-1 h-2/3 w-2/3 rounded-full bg-gradient-to-br from-white to-transparent opacity-40 blur-[2px]"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                                lineNumber: 93,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "absolute right-2 bottom-2 h-1/3 w-1/3 rounded-full bg-gradient-to-tl from-white/20 to-transparent opacity-30 blur-[4px]"
+                            }, void 0, false, {
+                                fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                                lineNumber: 94,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                        lineNumber: 92,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        className: "relative z-10 text-white drop-shadow-md",
+                        animate: {
+                            scale: [
+                                1,
+                                0.8,
+                                1
+                            ],
+                            rotate: isDark ? -10 : 0
+                        },
+                        transition: {
+                            duration: 0.4
+                        },
+                        children: isDark ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$moon$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Moon$3e$__["Moon"], {
+                            size: 16,
+                            fill: "white",
+                            className: "drop-shadow-lg"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                            lineNumber: 107,
+                            columnNumber: 13
+                        }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sun$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Sun$3e$__["Sun"], {
+                            size: 16,
+                            fill: "white",
+                            className: "drop-shadow-lg"
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                            lineNumber: 109,
+                            columnNumber: 13
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                        lineNumber: 98,
+                        columnNumber: 9
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/components/ui/glass-toggle.tsx",
+                lineNumber: 63,
+                columnNumber: 7
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/glass-toggle.tsx",
+        lineNumber: 43,
+        columnNumber: 5
+    }, this);
+}
+_s(GlassToggle, "q9ovQTvwIdpxeVii6kJLTuTYpwE=");
+_c = GlassToggle;
+var _c;
+__turbopack_context__.k.register(_c, "GlassToggle");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/glyph-ring.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>GlyphRing
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.core.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.module.js [app-client] (ecmascript) <locals>");
+;
+var _s = __turbopack_context__.k.signature();
+// Glyph Ring — Originkit
+"use client";
+;
+;
+const CURSOR_FOLLOW = 8.5;
+const GLYPH_ART = [
+    [
+        "....",
+        "....",
+        ".##.",
+        "#..#",
+        ".##.",
+        "...."
+    ],
+    [
+        "....",
+        ".#..",
+        "###.",
+        ".#..",
+        "....",
+        "...."
+    ],
+    [
+        "....",
+        "#..#",
+        ".##.",
+        ".##.",
+        "#..#",
+        "...."
+    ],
+    [
+        "....",
+        "####",
+        "....",
+        "####",
+        "....",
+        "...."
+    ],
+    [
+        ".##.",
+        "#..#",
+        "#..#",
+        "#..#",
+        "#..#",
+        ".##."
+    ],
+    [
+        "....",
+        "#.#.",
+        ".##.",
+        ".##.",
+        "#.#.",
+        "...."
+    ],
+    [
+        "....",
+        "..##",
+        ".##.",
+        "##..",
+        "....",
+        "...."
+    ],
+    [
+        "....",
+        "##..",
+        ".##.",
+        "..##",
+        "....",
+        "...."
+    ],
+    [
+        ".#.#",
+        "####",
+        ".#.#",
+        "####",
+        ".#.#",
+        "...."
+    ],
+    [
+        "....",
+        ".##.",
+        "#..#",
+        "####",
+        "#..#",
+        "...."
+    ],
+    [
+        "###.",
+        "#..#",
+        "###.",
+        "#..#",
+        "###.",
+        "...."
+    ],
+    [
+        "..#.",
+        ".##.",
+        "###.",
+        ".##.",
+        "..#.",
+        "...."
+    ]
+];
+const GLYPHS = GLYPH_ART.map(_c = (rows)=>rows.reduce((bits, row, y)=>bits + Array.from(row).reduce((acc, ch, x)=>acc + (ch === "#" ? Math.pow(2, x + 4 * y) : 0), 0), 0));
+_c1 = GLYPHS;
+const DEFAULTS = {
+    ink: "#FFFFFF",
+    lit: "#FFB800",
+    rings: 18,
+    charSize: 3,
+    gap: 6,
+    spin: 8,
+    beam: 11,
+    band: 20,
+    churn: 20,
+    scale: 200
+};
+function clamp(v, lo, hi, fallback) {
+    const n = typeof v === "number" && isFinite(v) ? v : fallback;
+    return Math.max(lo, Math.min(hi, n));
+}
+function settingsFor(cfg) {
+    const scale = clamp(cfg.scale, 20, 200, DEFAULTS.scale) / 100;
+    return {
+        rings: clamp(cfg.rings, 1, 20, DEFAULTS.rings),
+        charH: scale * clamp(cfg.charSize, 1, 20, DEFAULTS.charSize) * 0.008,
+        gapH: scale * clamp(cfg.gap, 0, 20, DEFAULTS.gap) * 0.006,
+        spin: clamp(cfg.spin, 0, 20, DEFAULTS.spin) * 0.018,
+        beam: clamp(cfg.beam, 0, 20, DEFAULTS.beam) * 0.025,
+        band: clamp(cfg.band, 0, 20, DEFAULTS.band) * 0.16,
+        churn: clamp(cfg.churn, 0, 20, DEFAULTS.churn) * 0.55
+    };
+}
+const QUAD_VERTEX = `
+    varying vec2 vUv;
+    void main() {
+        vUv = uv;
+
+        gl_Position = vec4(position.xy, 0.0, 1.0);
+    }
+`;
+const RING_FRAGMENT = `
+    precision highp float;
+
+    #define GLYPH_COUNT ${GLYPHS.length}
+    #define TAU 6.28318530718
+
+    uniform vec2 uResolution;
+    uniform vec2 uPointer;
+    uniform float uHold;
+    uniform float uTime;
+    uniform float uChurnTime;
+    uniform vec3 uInk;
+    uniform vec3 uLit;
+    uniform float uRings;
+    uniform float uCharH;
+    uniform float uGapH;
+    uniform float uBeam;
+    uniform float uBand;
+    uniform float uGlyphs[GLYPH_COUNT];
+
+    varying vec2 vUv;
+
+    float hash1(float n) {
+        return fract(sin(n * 127.1 + 0.371) * 43758.5453123);
+    }
+
+    float hash2(vec2 v) {
+        return fract(sin(dot(v, vec2(127.1, 311.7))) * 43758.5453123);
+    }
+
+    float glyphAt(int idx, vec2 g) {
+        float bits = 0.0;
+
+        for (int i = 0; i < GLYPH_COUNT; i++) {
+            if (i == idx) bits = uGlyphs[i];
+        }
+        float x = min(floor(g.x * 4.0), 3.0);
+        float y = min(floor((1.0 - g.y) * 6.0), 5.0);
+        return mod(floor(bits / exp2(x + 4.0 * y)), 2.0);
+    }
+
+    void main() {
+        vec2 centre = uResolution * 0.5;
+        vec2 c = vUv * uResolution - centre;
+        float radius = length(c);
+
+        float unit = min(uResolution.x, uResolution.y) * 0.5;
+
+        float pitch = unit * (uCharH + uGapH);
+
+        float fill = uCharH / (uCharH + uGapH);
+
+        float ring = floor(radius / pitch);
+
+        if (ring < 1.0 || ring > uRings) discard;
+
+        float slots = max(6.0, floor(TAU * (ring + 0.5)));
+
+        float seed = hash1(ring);
+
+        float heading = mod(ring, 2.0) < 0.5 ? 1.0 : -1.0;
+        float turn = uTime * (0.5 + seed * 1.1) * heading + seed;
+
+        float around = fract(atan(c.y, c.x) / TAU + 0.5 + turn);
+        float slot = floor(around * slots);
+
+        float lo = (1.0 - fill) * 0.5;
+        vec2 g = (vec2(fract(around * slots), fract(radius / pitch)) - lo) / fill;
+        if (g.x < 0.0 || g.x > 1.0 || g.y < 0.0 || g.y > 1.0) discard;
+
+        float churn = floor(uChurnTime + seed * 17.0);
+        float pick = hash2(vec2(ring, slot) + churn * 5.13);
+        int idx = int(min(floor(pick * float(GLYPH_COUNT)), float(GLYPH_COUNT - 1)));
+        if (glyphAt(idx, g) < 0.5) discard;
+
+        vec2 pc = uPointer - centre;
+
+        float toBeam = abs(fract((atan(c.y, c.x) - atan(pc.y, pc.x)) / TAU + 0.5) - 0.5);
+
+        float beam = uBeam > 0.0 ? 1.0 - smoothstep(0.0, uBeam, toBeam) : 0.0;
+        float onRing = uBand > 0.0
+            ? 1.0 - smoothstep(0.0, uBand, abs(radius - length(pc)) / pitch)
+            : 0.0;
+        float near = clamp(max(beam, onRing), 0.0, 1.0) * uHold;
+
+        vec3 col = mix(uInk, uLit, near);
+        float a = 0.4 + 0.6 * near;
+
+        gl_FragColor = vec4(col * a, a);
+    }
+`;
+class RingScene {
+    container;
+    cfg;
+    renderer;
+    scene = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Scene"]();
+    camera = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Camera"]();
+    geometry = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["PlaneGeometry"](2, 2);
+    material;
+    mesh;
+    target = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](-1e4, -1e4);
+    eased = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](-1e4, -1e4);
+    hold = 0;
+    wantHold = 0;
+    time = 0;
+    churnTime = 0;
+    width = 1;
+    height = 1;
+    frameId = 0;
+    lastT = 0;
+    disposed = false;
+    constructor(container, cfg){
+        this.container = container;
+        this.cfg = cfg;
+        const S = settingsFor(cfg);
+        this.renderer = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__["WebGLRenderer"]({
+            antialias: false,
+            alpha: true
+        });
+        this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        this.renderer.outputColorSpace = __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SRGBColorSpace"];
+        this.renderer.setClearColor(0x000000, 0);
+        const el = this.renderer.domElement;
+        el.style.position = "absolute";
+        el.style.inset = "0";
+        el.style.width = "100%";
+        el.style.height = "100%";
+        el.style.touchAction = "none";
+        container.appendChild(el);
+        this.material = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["ShaderMaterial"]({
+            vertexShader: QUAD_VERTEX,
+            fragmentShader: RING_FRAGMENT,
+            uniforms: {
+                uResolution: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](1, 1)
+                },
+                uPointer: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Vector2"](-1e4, -1e4)
+                },
+                uHold: {
+                    value: 0
+                },
+                uTime: {
+                    value: 0
+                },
+                uChurnTime: {
+                    value: 0
+                },
+                uInk: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"](cfg.ink)
+                },
+                uLit: {
+                    value: new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Color"](cfg.lit)
+                },
+                uRings: {
+                    value: S.rings
+                },
+                uCharH: {
+                    value: S.charH
+                },
+                uGapH: {
+                    value: S.gapH
+                },
+                uBeam: {
+                    value: S.beam
+                },
+                uBand: {
+                    value: S.band
+                },
+                uGlyphs: {
+                    value: GLYPHS
+                }
+            },
+            transparent: true,
+            depthTest: false,
+            depthWrite: false
+        });
+        this.mesh = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$core$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Mesh"](this.geometry, this.material);
+        this.mesh.frustumCulled = false;
+        this.scene.add(this.mesh);
+        el.addEventListener("pointermove", this.onPointerMove);
+        el.addEventListener("pointerdown", this.onPointerMove);
+        el.addEventListener("pointerleave", this.onPointerLeave);
+        el.addEventListener("pointercancel", this.onPointerLeave);
+    }
+    onPointerMove = (e)=>{
+        const rect = this.renderer.domElement.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return;
+        const x = (e.clientX - rect.left) / rect.width * this.width;
+        const y = (1 - (e.clientY - rect.top) / rect.height) * this.height;
+        this.target.set(x, y);
+        if (this.wantHold === 0) this.eased.copy(this.target);
+        this.wantHold = 1;
+    };
+    onPointerLeave = ()=>{
+        this.wantHold = 0;
+    };
+    start() {
+        this.lastT = performance.now();
+        const loop = ()=>{
+            this.frameId = requestAnimationFrame(loop);
+            this.step();
+        };
+        loop();
+    }
+    setSize(width, height) {
+        if (this.disposed || width <= 0 || height <= 0) return;
+        this.renderer.setSize(width, height, false);
+        const dpr = this.renderer.getPixelRatio();
+        this.width = width * dpr;
+        this.height = height * dpr;
+        this.material.uniforms.uResolution.value.set(this.width, this.height);
+    }
+    updateConfig(cfg) {
+        if (this.disposed) return;
+        this.cfg = cfg;
+        const u = this.material.uniforms;
+        u.uInk.value.set(cfg.ink || DEFAULTS.ink);
+        u.uLit.value.set(cfg.lit || DEFAULTS.lit);
+    }
+    step() {
+        if (this.disposed) return;
+        const now = performance.now();
+        let dt = (now - this.lastT) / 1000;
+        this.lastT = now;
+        if (!isFinite(dt) || dt < 0) dt = 0;
+        if (dt > 0.05) dt = 0.05;
+        const S = settingsFor(this.cfg);
+        this.time += dt * S.spin;
+        this.churnTime += dt * S.churn;
+        this.eased.lerp(this.target, 1 - Math.exp(-dt * CURSOR_FOLLOW));
+        this.hold += (this.wantHold - this.hold) * (1 - Math.exp(-dt * 5));
+        const u = this.material.uniforms;
+        u.uTime.value = this.time;
+        u.uChurnTime.value = this.churnTime;
+        u.uPointer.value.copy(this.eased);
+        u.uHold.value = this.hold;
+        u.uRings.value = S.rings;
+        u.uCharH.value = S.charH;
+        u.uGapH.value = S.gapH;
+        u.uBeam.value = S.beam;
+        u.uBand.value = S.band;
+        this.renderer.render(this.scene, this.camera);
+    }
+    dispose() {
+        this.disposed = true;
+        cancelAnimationFrame(this.frameId);
+        const el = this.renderer.domElement;
+        el.removeEventListener("pointermove", this.onPointerMove);
+        el.removeEventListener("pointerdown", this.onPointerMove);
+        el.removeEventListener("pointerleave", this.onPointerLeave);
+        el.removeEventListener("pointercancel", this.onPointerLeave);
+        this.geometry.dispose();
+        this.material.dispose();
+        this.renderer.dispose();
+        if (el.parentNode === this.container) this.container.removeChild(el);
+    }
+}
+function __OriginkitBase_GlyphRing(props) {
+    _s();
+    const { ink = DEFAULTS.ink, lit = DEFAULTS.lit, rings = DEFAULTS.rings, charSize = DEFAULTS.charSize, gap = DEFAULTS.gap, spin = DEFAULTS.spin, beam = DEFAULTS.beam, band = DEFAULTS.band, churn = DEFAULTS.churn, scale = DEFAULTS.scale, style } = props;
+    const containerRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const sceneRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    const cfgRef = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRef"])(null);
+    cfgRef.current = {
+        ink,
+        lit,
+        rings,
+        charSize,
+        gap,
+        spin,
+        beam,
+        band,
+        churn,
+        scale
+    };
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "__OriginkitBase_GlyphRing.useEffect": ()=>{
+            const container = containerRef.current;
+            if (!container) return;
+            let scene;
+            try {
+                scene = new RingScene(container, cfgRef.current);
+            } catch  {
+                return;
+            }
+            sceneRef.current = scene;
+            scene.setSize(container.clientWidth, container.clientHeight);
+            scene.start();
+            const ro = new ResizeObserver({
+                "__OriginkitBase_GlyphRing.useEffect": ()=>{
+                    scene.setSize(container.clientWidth, container.clientHeight);
+                }
+            }["__OriginkitBase_GlyphRing.useEffect"]);
+            ro.observe(container);
+            return ({
+                "__OriginkitBase_GlyphRing.useEffect": ()=>{
+                    ro.disconnect();
+                    scene.dispose();
+                    sceneRef.current = null;
+                }
+            })["__OriginkitBase_GlyphRing.useEffect"];
+        }
+    }["__OriginkitBase_GlyphRing.useEffect"], []);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "__OriginkitBase_GlyphRing.useEffect": ()=>{
+            sceneRef.current?.updateConfig(cfgRef.current);
+        }
+    }["__OriginkitBase_GlyphRing.useEffect"], [
+        ink,
+        lit,
+        rings,
+        charSize,
+        gap,
+        spin,
+        beam,
+        band,
+        churn,
+        scale
+    ]);
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        ref: containerRef,
+        role: "img",
+        "aria-label": "Concentric rings of characters turning under a pointer-led beam",
+        style: {
+            position: "relative",
+            width: "100%",
+            height: "100%",
+            minWidth: 120,
+            minHeight: 120,
+            overflow: "hidden",
+            ...style
+        }
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/glyph-ring.tsx",
+        lineNumber: 432,
+        columnNumber: 9
+    }, this);
+}
+_s(__OriginkitBase_GlyphRing, "vX2TvAKEoy7vqJ8NRKv1JnJrm98=");
+GlyphRing.displayName = "Glyph Ring";
+const __originkitPresetProps = {
+    "ink": "#FFFFFF",
+    "lit": "#FFB800",
+    "rings": 18,
+    "charSize": 3,
+    "gap": 6,
+    "spin": 8,
+    "beam": 11,
+    "band": 20,
+    "churn": 20,
+    "scale": 200
+};
+function GlyphRing(props) {
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__OriginkitBase_GlyphRing, {
+        ...__originkitPresetProps,
+        ...props
+    }, void 0, false, {
+        fileName: "[project]/src/components/ui/glyph-ring.tsx",
+        lineNumber: 465,
+        columnNumber: 10
+    }, this);
+}
+_c2 = GlyphRing;
+var _c, _c1, _c2;
+__turbopack_context__.k.register(_c, "GLYPHS$GLYPH_ART.map");
+__turbopack_context__.k.register(_c1, "GLYPHS");
+__turbopack_context__.k.register(_c2, "GlyphRing");
 if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
     __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
 }
@@ -2779,4 +3352,4 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 }),
 ]);
 
-//# sourceMappingURL=src_0c5gcdw._.js.map
+//# sourceMappingURL=src_1vbvqv2._.js.map

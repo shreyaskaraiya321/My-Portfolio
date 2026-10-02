@@ -1,5 +1,4 @@
 import { FloatingNav } from "@/components/ui/floating-nav";
-import { AuroraBars } from "@/components/ui/aurora-bars";
 import { PixelScrollTransition } from "@/components/ui/pixel-scroll-transition";
 import { ProjectShowcase } from "@/components/ui/project-showcase";
 import { GithubGraph } from "@/components/ui/github-graph";
@@ -7,7 +6,7 @@ import { GithubProjects } from "@/components/ui/github-projects";
 import { ProfileAsciiArt } from "@/components/ui/profile-ascii";
 import { TetrisLoader } from "@/components/ui/loader-tetris";
 import { Mail, Code2, Download, BadgeCheck, Star, Layout, BrainCircuit, Database, Wrench, Briefcase } from "lucide-react";
-import { TextHoverEffect } from "@/components/ui/text-hover-effect";
+import GlyphRing from "@/components/ui/glyph-ring";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -32,25 +31,65 @@ const Linkedin = (props: React.SVGProps<SVGSVGElement>) => (
 
 
 
-export default function Home() {
+async function getGithubContributions(account: string) {
+  try {
+    const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${account}?y=last`, {
+      next: { revalidate: 3600 }
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    return data.contributions;
+  } catch (error) {
+    console.error("Failed to fetch Github contributions:", error);
+    return null;
+  }
+}
+
+export default async function Home() {
+  const githubContributions = await getGithubContributions("shreyaskaraiya321");
   {/* ================= HERO SECTION ================= */}
   const heroSection = (
       <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
         {/* EXACT BACKGROUND WRAPPER */}
-        <div className="absolute inset-0 z-0">
-          <AuroraBars />
+        {/* Interactive WebGL Background */}
+        <div className="absolute inset-0 z-0 w-full h-full bg-[#0a0a0a]">
+          <GlyphRing 
+            ink="#27272a" 
+            lit="#31b497" 
+            beam={10} 
+            band={12} 
+            scale={150} 
+          /> 
         </div>
 
         {/* FOREGROUND CONTENT */}
-        <div className="relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto">
+        <div className="pointer-events-none relative z-10 flex flex-col items-center text-center px-4 max-w-4xl mx-auto">
           
-          {/* SVG Interactive Headline */}
-          <div className="w-full min-h-[180px] md:min-h-[220px] mb-4 flex items-center justify-center">
-            <TextHoverEffect text={"Building Ideas Into\nIntelligent Experiences"} />
+          {/* Standard Headline */}
+          <div className="w-full min-h-[180px] md:min-h-[220px] mb-4 flex items-center justify-center flex-col">
+            <style>{`
+              @keyframes textGradient {
+                0% { background-position: 0% 50%; }
+                100% { background-position: 200% 50%; }
+              }
+              .animate-text-gradient {
+                background-size: 200% auto;
+                animation: textGradient 5s linear infinite;
+              }
+            `}</style>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+              Building Ideas Into<br/>
+              <span 
+                className="text-transparent bg-clip-text animate-text-gradient" 
+                style={{ backgroundImage: "linear-gradient(to right, #31b497, #0ea5e9, #8b5cf6, #0ea5e9, #31b497)" }}
+              >
+                Intelligent Experiences
+              </span>
+            </h1>
           </div>
 
           {/* Subheadline */}
-          <p className="text-white/60 mb-8 max-w-2xl text-lg leading-relaxed">
+          <p className="text-white/70 mb-8 max-w-2xl text-lg leading-relaxed">
             Software engineer and creative builder crafting AI-powered applications, modern websites, and digital experiences — blending code, creativity, and AI to turn ideas into reality.
           </p>
 
@@ -108,32 +147,73 @@ export default function Home() {
             <h3 className="text-lg font-bold text-[#101010] mb-8 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-[#31b497]"/> Experience & Journey
             </h3>
-            
-            {/* Clean Left-Aligned Timeline */}
-            <div className="relative border-l-2 border-gray-100 ml-3 space-y-8 pb-2">
-              
-              {/* Freelance Item */}
-              <div className="relative pl-6">
-                <div className="absolute w-4 h-4 bg-[#31b497] rounded-full -left-[9px] top-1 border-4 border-white shadow-sm box-content"></div>
-                <h4 className="font-bold text-[#101010] text-sm mb-1">Freelance Web Developer</h4>
-                <p className="text-xs text-[#101010]/60 mb-2">U-Safe Solutions & Flash Media</p>
-                <p className="text-sm text-[#101010]/80 leading-relaxed">Engineered complete client websites, configured domain settings, and optimized SEO for live deployments.</p>
-              </div>
 
-              {/* Startup & Product Builder Item */}
-              <div className="relative pl-6">
-                <div className="absolute w-4 h-4 bg-violet-500 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm box-content"></div>
-                <h4 className="font-bold text-[#101010] text-sm mb-1">Startup & Product Builder</h4>
-                <p className="text-xs text-[#101010]/60 mb-2">Independent Ecosystems</p>
-                <p className="text-sm text-[#101010]/80 leading-relaxed">Designed, architected, and deployed scalable digital platforms including CampusHub and the SquadLink gaming identity portal.</p>
-              </div>
+            <div className="relative ml-2">
+              {/* Elegant Gradient Line */}
+              <div className="absolute top-0 bottom-0 left-[11px] w-[2px] bg-gradient-to-b from-transparent via-black/10 to-transparent"></div>
 
-              {/* Education Item */}
-              <div className="relative pl-6">
-                <div className="absolute w-4 h-4 bg-blue-500 rounded-full -left-[9px] top-1 border-4 border-white shadow-sm box-content"></div>
-                <h4 className="font-bold text-[#101010] text-sm mb-1">B.Tech Computer Science</h4>
-                <p className="text-xs text-[#101010]/60 mb-2">Nxtwave Institute of Advanced Tech.</p>
-                <p className="text-sm text-[#101010]/80 leading-relaxed">Focusing on modern UI Engineering, Applied Generative AI, and core system architecture.</p>
+              <div className="space-y-10">
+                
+                {/* Origin Item */}
+                <div className="relative pl-12 group cursor-default">
+                  {/* Animated Target Node */}
+                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-amber-50 border-2 border-amber-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-amber-500 transition-all duration-300 shadow-sm">
+                     <div className="w-2 h-2 rounded-full bg-amber-500 group-hover:bg-white transition-colors duration-300"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex flex-col mb-2">
+                    <h4 className="font-bold text-[#101010] text-base group-hover:text-amber-600 transition-colors duration-300">First Web Deployment</h4>
+                    <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">DreamScape Wallpapers</p>
+                  </div>
+                  <p className="text-sm text-[#101010]/70 leading-relaxed">Built and deployed my very first live website using WordPress, establishing a foundational understanding of CMS, web hosting, and site architecture.</p>
+                </div>
+
+                {/* Freelance Item */}
+                <div className="relative pl-12 group cursor-default">
+                  {/* Animated Target Node */}
+                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-emerald-50 border-2 border-emerald-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 transition-all duration-300 shadow-sm">
+                     <div className="w-2 h-2 rounded-full bg-emerald-500 group-hover:bg-white transition-colors duration-300"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex flex-col mb-2">
+                    <h4 className="font-bold text-[#101010] text-base group-hover:text-emerald-600 transition-colors duration-300">Freelance Web Developer</h4>
+                    <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">U-Safe Solutions & Flash Media</p>
+                  </div>
+                  <p className="text-sm text-[#101010]/70 leading-relaxed">Engineered complete client websites, configured domain settings, and optimized SEO for live deployments.</p>
+                </div>
+
+                {/* Startup Builder Item */}
+                <div className="relative pl-12 group cursor-default">
+                  {/* Animated Target Node */}
+                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-violet-50 border-2 border-violet-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-violet-500 transition-all duration-300 shadow-sm">
+                     <div className="w-2 h-2 rounded-full bg-violet-500 group-hover:bg-white transition-colors duration-300"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex flex-col mb-2">
+                    <h4 className="font-bold text-[#101010] text-base group-hover:text-violet-600 transition-colors duration-300">Startup & Product Builder</h4>
+                    <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">Independent Ecosystems</p>
+                  </div>
+                  <p className="text-sm text-[#101010]/70 leading-relaxed">Designed, architected, and deployed scalable digital platforms including CampusHub and the SquadLink gaming identity portal.</p>
+                </div>
+
+                {/* Education Item */}
+                <div className="relative pl-12 group cursor-default">
+                  {/* Animated Target Node */}
+                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-blue-50 border-2 border-blue-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-blue-500 transition-all duration-300 shadow-sm">
+                     <div className="w-2 h-2 rounded-full bg-blue-500 group-hover:bg-white transition-colors duration-300"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex flex-col mb-2">
+                    <h4 className="font-bold text-[#101010] text-base group-hover:text-blue-600 transition-colors duration-300">B.Tech Computer Science</h4>
+                    <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">Nxtwave Institute of Adv. Tech</p>
+                  </div>
+                  <p className="text-sm text-[#101010]/70 leading-relaxed">Focusing on modern UI Engineering, Applied Generative AI, and core system architecture.</p>
+                </div>
+                
               </div>
             </div>
           </div>
@@ -187,7 +267,7 @@ export default function Home() {
                   <Wrench className="w-3 h-3"/> DevOps & Tools
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Git', 'Vercel', 'Render', 'Railway', 'SEO'].map((tech) => (
+                  {['Git', 'Vercel', 'Render', 'Railway', 'SEO', 'WordPress'].map((tech) => (
                     <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
                   ))}
                 </div>
@@ -286,7 +366,7 @@ export default function Home() {
           </a>
         </div>
         <div className="w-full bg-white rounded-2xl p-6 border border-black/5 shadow-sm overflow-x-auto">
-          <GithubGraph account="shreyaskaraiya321" variant="violet" ambientEffect="twinkle" autoFit={true} />
+          <GithubGraph account="shreyaskaraiya321" variant="violet" ambientEffect="twinkle" autoFit={true} data={githubContributions || undefined} />
         </div>
       </div>
 

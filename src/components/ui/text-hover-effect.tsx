@@ -40,19 +40,19 @@ export const TextHoverEffect = ({
       style={{ fontFamily: "var(--font-share-tech), monospace" }}
     >
       <defs>
-        {/* The Animated Dia Text Gradient */}
+        {/* Brand Theme Animated Gradient */}
         <linearGradient id="diaGradient" x1="0%" y1="0%" x2="200%" y2="0%">
-          <stop offset="0%" stopColor="#22d3ee" />
-          <stop offset="12.5%" stopColor="#8b5cf6" />
-          <stop offset="25%" stopColor="#e879f9" />
-          <stop offset="37.5%" stopColor="#3b82f6" />
-          <stop offset="50%" stopColor="#22d3ee" />
-          <stop offset="62.5%" stopColor="#8b5cf6" />
-          <stop offset="75%" stopColor="#e879f9" />
-          <stop offset="87.5%" stopColor="#3b82f6" />
-          <stop offset="100%" stopColor="#22d3ee" />
-          <animate attributeName="x1" values="0%;-100%" dur="5s" repeatCount="indefinite" />
-          <animate attributeName="x2" values="200%;100%" dur="5s" repeatCount="indefinite" />
+          <stop offset="0%" stopColor="#31b497" />     {/* Theme Teal */}
+          <stop offset="12.5%" stopColor="#0ea5e9" />  {/* Sky Blue transition */}
+          <stop offset="25%" stopColor="#8b5cf6" />    {/* Theme Violet */}
+          <stop offset="37.5%" stopColor="#0ea5e9" />  {/* Sky Blue transition */}
+          <stop offset="50%" stopColor="#31b497" />    {/* Theme Teal (Loop Center) */}
+          <stop offset="62.5%" stopColor="#0ea5e9" />
+          <stop offset="75%" stopColor="#8b5cf6" />
+          <stop offset="87.5%" stopColor="#0ea5e9" />
+          <stop offset="100%" stopColor="#31b497" />
+          <animate attributeName="x1" values="0%;-100%" dur="6s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="200%;100%" dur="6s" repeatCount="indefinite" />
         </linearGradient>
 
         {/* The Hover Flashlight Mask */}
