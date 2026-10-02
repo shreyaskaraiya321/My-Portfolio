@@ -59,6 +59,8 @@ export default async function Home() {
             beam={10} 
             band={12} 
             scale={150} 
+            spin={2}
+            churn={5}
           /> 
         </div>
 
@@ -74,7 +76,7 @@ export default async function Home() {
               }
               .animate-text-gradient {
                 background-size: 200% auto;
-                animation: textGradient 5s linear infinite;
+                animation: textGradient 12s linear infinite;
               }
             `}</style>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
@@ -475,7 +477,7 @@ export default async function Home() {
          accentHold={0.12}
          jitter={0.55}
          direction="up"
-         scrollLength={1}
+         scrollLength={3.5}
       />
       <FloatingNav />
     </div>
