@@ -98,7 +98,7 @@ export default function EntrySequence({ onComplete }: { onComplete: () => void }
                 transition={{ duration: 0.8 }}
                 className="text-center px-4 flex flex-col items-center justify-center"
               >
-                <h1 className="text-4xl md:text-6xl font-display font-bold tracking-tight mb-4">
+                <h1 className="text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 break-words px-4">
                   Hi, <span className="text-[#31b497]">{name}</span>.
                 </h1>
                 <p className="text-xl md:text-2xl font-medium text-[#101010]/60 mb-16">

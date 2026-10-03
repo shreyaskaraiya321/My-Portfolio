@@ -8,6 +8,7 @@ import { TetrisLoader } from "@/components/ui/loader-tetris";
 import { Mail, Code2, Download, BadgeCheck, Star, Layout, BrainCircuit, Database, Wrench, Briefcase } from "lucide-react";
 import GlyphRing from "@/components/ui/glyph-ring";
 import EntryWrapper from "@/components/ui/entry-wrapper";
+import { GlassToggle } from "@/components/ui/glass-toggle";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -80,10 +81,10 @@ export default async function Home() {
                 animation: textGradient 12s linear infinite;
               }
             `}</style>
-            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
               Building Ideas Into<br/>
               <span 
-                className="text-transparent bg-clip-text animate-text-gradient" 
+                className="text-4xl md:text-6xl lg:text-7xl text-transparent bg-clip-text animate-text-gradient" 
                 style={{ backgroundImage: "linear-gradient(to right, #31b497, #0ea5e9, #8b5cf6, #0ea5e9, #31b497)" }}
               >
                 Intelligent Experiences
@@ -92,7 +93,7 @@ export default async function Home() {
           </div>
 
           {/* Subheadline */}
-          <p className="text-white/70 mb-8 max-w-2xl text-lg leading-relaxed">
+          <p className="text-white/70 mb-8 max-w-2xl text-sm md:text-base px-4 md:px-0 leading-relaxed">
             Software engineer and creative builder crafting AI-powered applications, modern websites, and digital experiences — blending code, creativity, and AI to turn ideas into reality.
           </p>
 
@@ -143,7 +144,7 @@ export default async function Home() {
       {/* ================= EXPERIENCE SECTION ================= */}
       <div className="w-full max-w-6xl mx-auto px-4 pb-16">
         {/* Experience & Modern Toolkit Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full">
           
           {/* Left Column: Experience Timeline */}
           <div className="lg:col-span-5 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
@@ -468,6 +469,9 @@ export default async function Home() {
   return (
     <EntryWrapper>
       <div className="flex flex-col min-h-screen bg-[#000000] selection:bg-[#f2b70d]/30 selection:text-black">
+        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50 scale-75 md:scale-100 origin-top-right">
+          <GlassToggle />
+        </div>
         <PixelScrollTransition 
            from={heroSection}
            to={contentSection}
