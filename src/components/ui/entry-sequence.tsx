@@ -28,14 +28,44 @@ export default function EntrySequence({ onComplete }: { onComplete: () => void }
         >
           <AnimatePresence mode="wait">
             
-            {/* Step 1: 3D Neo-Brutalist Input */}
+            {/* Step 1: 3D Neo-Brutalist Input & Environment */}
             {step === "input" && (
               <motion.div 
                 key="input" 
+                className="relative w-full h-full flex items-center justify-center overflow-hidden"
                 exit={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
                 transition={{ duration: 0.5 }}
               >
-                <form onSubmit={handleSubmit} className="entry-styled-wrapper">
+                {/* 1. Subtle Blueprint Dot Grid */}
+                <div 
+                  className="absolute inset-0 opacity-10 pointer-events-none" 
+                  style={{ 
+                    backgroundImage: "radial-gradient(#000 2px, transparent 2px)", 
+                    backgroundSize: "30px 30px" 
+                  }} 
+                />
+
+                {/* 2. Top Scrolling Marquee Tape */}
+                <div className="absolute top-0 left-0 w-full h-10 bg-[#000] border-b-4 border-[#000] overflow-hidden flex items-center z-10 shadow-[0_5px_0_0_rgba(0,0,0,0.2)]">
+                  <div className="whitespace-nowrap animate-marquee font-mono text-xs md:text-sm font-bold text-[#e9b50b] tracking-widest">
+                     UI ENGINEERING • AI AGENTS • FULL-STACK DEVELOPMENT • SYSTEM ARCHITECTURE • NEXT.JS • MONGODB • UI ENGINEERING • AI AGENTS • FULL-STACK DEVELOPMENT • SYSTEM ARCHITECTURE • NEXT.JS • MONGODB • UI ENGINEERING • AI AGENTS • FULL-STACK DEVELOPMENT • SYSTEM ARCHITECTURE • NEXT.JS • MONGODB • 
+                  </div>
+                </div>
+
+                {/* 3. Corner Terminal Specs */}
+                <div className="absolute bottom-6 left-6 font-mono text-[10px] md:text-xs font-bold text-black/30 leading-relaxed z-10 pointer-events-none hidden sm:block">
+                  <p>SYS.INIT // 2026.10.04</p>
+                  <p>LOC: 17.3850° N, 78.4867° E [HYD]</p>
+                  <p>STATUS: AWAITING_VISITOR_INPUT</p>
+                </div>
+
+                <div className="absolute top-16 right-6 font-mono text-[10px] md:text-xs font-bold text-black/30 text-right z-10 pointer-events-none hidden sm:block">
+                  <p>SHREYAS_KARAIYA_PORTFOLIO</p>
+                  <p>BUILD_V2.0</p>
+                </div>
+
+                {/* 4. The 3D Input Form */}
+                <form onSubmit={handleSubmit} className="entry-styled-wrapper relative z-20">
                   <div className="input__container">
                     <div className="shadow__input" />
                     <button type="submit" className="input__button__shadow">
@@ -148,6 +178,15 @@ export default function EntrySequence({ onComplete }: { onComplete: () => void }
             @keyframes div12 { 0%, 10%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { transform: translateX(0); } 20% { transform: translateX(-70px); } }
             @keyframes div13 { 0%, 20%, 30%, 50%, 60%, 80%, 90%, 100% { transform: translateX(0); } 10%, 40%, 70% { transform: translateX(70px); } }
             @keyframes div14 { 0%, 20%, 30%, 50%, 60%, 80%, 90%, 100% { transform: translateX(0); } 10%, 40%, 70% { transform: translateX(35px); } }
+            
+            @keyframes marquee {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .animate-marquee {
+              display: inline-block;
+              animation: marquee 20s linear infinite;
+            }
           `}</style>
         </motion.div>
       )}

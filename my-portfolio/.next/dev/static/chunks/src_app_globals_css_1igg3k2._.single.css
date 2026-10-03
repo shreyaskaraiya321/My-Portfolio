@@ -477,8 +477,16 @@
     top: calc(var(--spacing) * 4);
   }
 
+  .top-16 {
+    top: calc(var(--spacing) * 16);
+  }
+
   .right-2 {
     right: calc(var(--spacing) * 2);
+  }
+
+  .right-6 {
+    right: calc(var(--spacing) * 6);
   }
 
   .bottom-2 {
@@ -487,6 +495,10 @@
 
   .bottom-4 {
     bottom: calc(var(--spacing) * 4);
+  }
+
+  .bottom-6 {
+    bottom: calc(var(--spacing) * 6);
   }
 
   .bottom-8 {
@@ -503,6 +515,10 @@
 
   .left-1\/2 {
     left: 50%;
+  }
+
+  .left-6 {
+    left: calc(var(--spacing) * 6);
   }
 
   .left-\[11px\] {
@@ -1009,6 +1025,15 @@
     border-bottom-width: 1px;
   }
 
+  .border-b-4 {
+    border-bottom-style: var(--tw-border-style);
+    border-bottom-width: 4px;
+  }
+
+  .border-\[\#000\] {
+    border-color: #000;
+  }
+
   .border-amber-500 {
     border-color: var(--color-amber-500);
   }
@@ -1085,7 +1110,7 @@
     }
   }
 
-  .bg-\[\#000000\] {
+  .bg-\[\#000\], .bg-\[\#000000\] {
     background-color: #000;
   }
 
@@ -1449,6 +1474,10 @@
     text-align: left;
   }
 
+  .text-right {
+    text-align: right;
+  }
+
   .font-mono {
     font-family: var(--font-fira-code);
   }
@@ -1592,6 +1621,10 @@
     color: lab(4.68044% .0000149012 0 / .8);
   }
 
+  .text-\[\#e9b50b\] {
+    color: #e9b50b;
+  }
+
   .text-\[\#e0562d\] {
     color: #e0562d;
   }
@@ -1610,6 +1643,16 @@
 
   .text-black {
     color: var(--color-black);
+  }
+
+  .text-black\/30 {
+    color: #0000004d;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .text-black\/30 {
+      color: color-mix(in oklab, var(--color-black) 30%, transparent);
+    }
   }
 
   .text-black\/40 {
@@ -1745,6 +1788,10 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  .opacity-10 {
+    opacity: .1;
+  }
+
   .opacity-30 {
     opacity: .3;
   }
@@ -1775,6 +1822,11 @@
 
   .shadow-2xl {
     --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, #00000040);
+    box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+
+  .shadow-\[0_5px_0_0_rgba\(0\,0\,0\,0\.2\)\] {
+    --tw-shadow: 0 5px 0 0 var(--tw-shadow-color, #0003);
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
 
@@ -2120,6 +2172,10 @@
   }
 
   @media (min-width: 40rem) {
+    .sm\:block {
+      display: block;
+    }
+
     .sm\:grid-cols-2 {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
@@ -2239,9 +2295,19 @@
       line-height: var(--tw-leading, var(--text-base--line-height));
     }
 
+    .md\:text-sm {
+      font-size: var(--text-sm);
+      line-height: var(--tw-leading, var(--text-sm--line-height));
+    }
+
     .md\:text-xl {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+
+    .md\:text-xs {
+      font-size: var(--text-xs);
+      line-height: var(--tw-leading, var(--text-xs--line-height));
     }
 
     .md\:text-\[6px\] {
