@@ -234,7 +234,7 @@ function EntrySequence({ onComplete }) {
                             className: "text-center px-4 flex flex-col items-center justify-center",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                    className: "text-4xl md:text-6xl font-display font-bold tracking-tight mb-4",
+                                    className: "text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 break-words px-4",
                                     children: [
                                         "Hi, ",
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -546,14 +546,14 @@ function FloatingNav() {
         }
     };
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "fixed bottom-8 left-1/2 -translate-x-1/2 z-50",
+        className: "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto max-w-full overflow-x-auto mx-auto",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
             className: "flex items-center gap-4 px-6 py-3 bg-[#2d2d2d]/90 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl text-white/80 text-sm font-medium",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#work",
                     onClick: (e)=>scrollToSection(e, 'work'),
-                    className: "hover:text-cyan-400 transition-colors",
+                    className: "text-xs md:text-sm whitespace-nowrap hover:text-cyan-400 transition-colors",
                     children: "Work"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",
@@ -571,7 +571,7 @@ function FloatingNav() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#projects",
                     onClick: (e)=>scrollToSection(e, 'projects'),
-                    className: "hover:text-violet-400 transition-colors",
+                    className: "text-xs md:text-sm whitespace-nowrap hover:text-violet-400 transition-colors",
                     children: "Projects"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",
@@ -589,7 +589,7 @@ function FloatingNav() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#opensource",
                     onClick: (e)=>scrollToSection(e, 'opensource'),
-                    className: "hover:text-fuchsia-400 transition-colors",
+                    className: "text-xs md:text-sm whitespace-nowrap hover:text-fuchsia-400 transition-colors",
                     children: "Open Source"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",
@@ -607,7 +607,7 @@ function FloatingNav() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#contact",
                     onClick: (e)=>scrollToSection(e, 'contact'),
-                    className: "hover:text-amber-400 transition-colors",
+                    className: "text-xs md:text-sm whitespace-nowrap hover:text-amber-400 transition-colors",
                     children: "Contact"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",

@@ -8,7 +8,6 @@ import { TetrisLoader } from "@/components/ui/loader-tetris";
 import { Mail, Code2, Download, BadgeCheck, Star, Layout, BrainCircuit, Database, Wrench, Briefcase } from "lucide-react";
 import GlyphRing from "@/components/ui/glyph-ring";
 import EntryWrapper from "@/components/ui/entry-wrapper";
-import { GlassToggle } from "@/components/ui/glass-toggle";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -469,9 +468,6 @@ export default async function Home() {
   return (
     <EntryWrapper>
       <div className="flex flex-col min-h-screen bg-[#000000] selection:bg-[#f2b70d]/30 selection:text-black">
-        <div className="fixed top-4 right-4 md:top-6 md:right-6 z-50 scale-75 md:scale-100 origin-top-right">
-          <GlassToggle />
-        </div>
         <PixelScrollTransition 
            from={heroSection}
            to={contentSection}
