@@ -144,10 +144,10 @@ export default async function Home() {
       {/* ================= EXPERIENCE SECTION ================= */}
       <div className="w-full max-w-6xl mx-auto px-4 pb-16">
         {/* Experience & Modern Toolkit Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 w-full">
+        <div className="flex flex-col xl:flex-row gap-6 md:gap-8 w-full items-stretch">
           
           {/* Left Column: Experience Timeline */}
-          <div className="lg:col-span-5 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
+          <div className="w-full xl:w-1/2 flex-1 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
             <h3 className="text-lg font-bold text-[#101010] mb-8 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-[#31b497]"/> Experience & Journey
             </h3>
@@ -223,7 +223,7 @@ export default async function Home() {
           </div>
 
           {/* Right Column: Modern Tech Stack Grid */}
-          <div className="lg:col-span-7 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
+          <div className="w-full xl:w-1/2 flex-1 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
             <h3 className="text-lg font-bold text-[#101010] mb-6 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-500"/> Core Architecture
             </h3>

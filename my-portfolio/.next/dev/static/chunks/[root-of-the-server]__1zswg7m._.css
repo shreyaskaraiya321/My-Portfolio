@@ -1075,6 +1075,10 @@
     align-items: flex-start;
   }
 
+  .items-stretch {
+    align-items: stretch;
+  }
+
   .justify-between {
     justify-content: space-between;
   }
@@ -2528,6 +2532,16 @@
 
     .lg\:text-\[8px\] {
       font-size: 8px;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .xl\:w-1\/2 {
+      width: 50%;
+    }
+
+    .xl\:flex-row {
+      flex-direction: row;
     }
   }
 
