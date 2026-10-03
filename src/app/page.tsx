@@ -51,10 +51,10 @@ export default async function Home() {
   const heroSection = (
       <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
         {/* EXACT BACKGROUND WRAPPER */}
-        {/* Interactive WebGL Background */}
-        <div className="absolute inset-0 z-0 w-full h-full bg-[#0a0a0a]">
+        {/* Interactive WebGL Background (Deep Dark Theme) */}
+        <div className="absolute inset-0 z-0 w-full h-full bg-[#121212]">
           <GlyphRing 
-            ink="#27272a" 
+            ink="#262626" 
             lit="#31b497" 
             beam={10} 
             band={12} 
@@ -152,7 +152,7 @@ export default async function Home() {
 
             <div className="relative ml-2">
               {/* Elegant Gradient Line */}
-              <div className="absolute top-0 bottom-0 left-[11px] w-[2px] bg-gradient-to-b from-transparent via-black/10 to-transparent"></div>
+              <div className="absolute top-4 bottom-4 left-[11px] w-[2px] bg-black/10 rounded-full"></div>
 
               <div className="space-y-10">
                 
@@ -186,21 +186,6 @@ export default async function Home() {
                   <p className="text-sm text-[#101010]/70 leading-relaxed">Engineered complete client websites, configured domain settings, and optimized SEO for live deployments.</p>
                 </div>
 
-                {/* Startup Builder Item */}
-                <div className="relative pl-12 group cursor-default">
-                  {/* Animated Target Node */}
-                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-violet-50 border-2 border-violet-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-violet-500 transition-all duration-300 shadow-sm">
-                     <div className="w-2 h-2 rounded-full bg-violet-500 group-hover:bg-white transition-colors duration-300"></div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="flex flex-col mb-2">
-                    <h4 className="font-bold text-[#101010] text-base group-hover:text-violet-600 transition-colors duration-300">Startup & Product Builder</h4>
-                    <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">Independent Ecosystems</p>
-                  </div>
-                  <p className="text-sm text-[#101010]/70 leading-relaxed">Designed, architected, and deployed scalable digital platforms including CampusHub and the SquadLink gaming identity portal.</p>
-                </div>
-
                 {/* Education Item */}
                 <div className="relative pl-12 group cursor-default">
                   {/* Animated Target Node */}
@@ -214,6 +199,21 @@ export default async function Home() {
                     <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">Nxtwave Institute of Adv. Tech</p>
                   </div>
                   <p className="text-sm text-[#101010]/70 leading-relaxed">Focusing on modern UI Engineering, Applied Generative AI, and core system architecture.</p>
+                </div>
+
+                {/* Startup Builder Item */}
+                <div className="relative pl-12 group cursor-default">
+                  {/* Animated Target Node */}
+                  <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-violet-50 border-2 border-violet-500 flex items-center justify-center group-hover:scale-110 group-hover:bg-violet-500 transition-all duration-300 shadow-sm">
+                     <div className="w-2 h-2 rounded-full bg-violet-500 group-hover:bg-white transition-colors duration-300"></div>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="flex flex-col mb-2">
+                    <h4 className="font-bold text-[#101010] text-base group-hover:text-violet-600 transition-colors duration-300">Startup & Product Builder</h4>
+                    <p className="text-[10px] font-bold text-[#101010]/40 uppercase tracking-widest mt-1">Independent Ecosystems</p>
+                  </div>
+                  <p className="text-sm text-[#101010]/70 leading-relaxed">Designed, architected, and deployed scalable digital platforms including CampusHub and the SquadLink gaming identity portal.</p>
                 </div>
                 
               </div>
@@ -245,7 +245,7 @@ export default async function Home() {
                   <BrainCircuit className="w-3 h-3"/> Applied AI
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {['Gemini API', 'Google Cloud AI', 'LLM Integration'].map((tech) => (
+                  {['Gemini API', 'Google Cloud AI', 'LLM Integration', 'AI Agents'].map((tech) => (
                     <span key={tech} className="px-3 py-1.5 bg-[#f4f4f4] text-[#101010] text-sm font-mono rounded-md border border-black/5">{tech}</span>
                   ))}
                 </div>
