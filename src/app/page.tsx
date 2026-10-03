@@ -7,6 +7,7 @@ import { ProfileAsciiArt } from "@/components/ui/profile-ascii";
 import { TetrisLoader } from "@/components/ui/loader-tetris";
 import { Mail, Code2, Download, BadgeCheck, Star, Layout, BrainCircuit, Database, Wrench, Briefcase } from "lucide-react";
 import GlyphRing from "@/components/ui/glyph-ring";
+import EntryWrapper from "@/components/ui/entry-wrapper";
 
 const GithubIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg
@@ -465,21 +466,23 @@ export default async function Home() {
   );
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#000000] selection:bg-[#f2b70d]/30 selection:text-black">
-      <PixelScrollTransition 
-         from={heroSection}
-         to={contentSection}
-         pixelSize={28}
-         fromColor="#000000"
-         toColor="#e4e4e4"
-         accentColors={["#e0562d", "#31b497", "#f2b70d"]}
-         accentChance={0.18}
-         accentHold={0.12}
-         jitter={0.55}
-         direction="up"
-         scrollLength={3.5}
-      />
-      <FloatingNav />
-    </div>
+    <EntryWrapper>
+      <div className="flex flex-col min-h-screen bg-[#000000] selection:bg-[#f2b70d]/30 selection:text-black">
+        <PixelScrollTransition 
+           from={heroSection}
+           to={contentSection}
+           pixelSize={28}
+           fromColor="#000000"
+           toColor="#e4e4e4"
+           accentColors={["#e0562d", "#31b497", "#f2b70d"]}
+           accentChance={0.18}
+           accentHold={0.12}
+           jitter={0.55}
+           direction="up"
+           scrollLength={3.5}
+        />
+        <FloatingNav />
+      </div>
+    </EntryWrapper>
   );
 }
