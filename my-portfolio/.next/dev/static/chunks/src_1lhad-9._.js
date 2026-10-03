@@ -1567,7 +1567,6 @@ var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$bui
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$three$2f$build$2f$three$2e$module$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$locals$3e$__ = __turbopack_context__.i("[project]/node_modules/three/build/three.module.js [app-client] (ecmascript) <locals>");
 ;
 var _s = __turbopack_context__.k.signature();
-// Glyph Ring — Originkit
 "use client";
 ;
 ;
@@ -1983,18 +1982,6 @@ function OriginkitBase_GlyphRing(props) {
         churn,
         scale
     });
-    cfgRef.current = {
-        ink,
-        lit,
-        rings,
-        charSize,
-        gap,
-        spin,
-        beam,
-        band,
-        churn,
-        scale
-    };
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "OriginkitBase_GlyphRing.useEffect": ()=>{
             const container = containerRef.current;
@@ -2025,6 +2012,18 @@ function OriginkitBase_GlyphRing(props) {
     }["OriginkitBase_GlyphRing.useEffect"], []);
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "OriginkitBase_GlyphRing.useEffect": ()=>{
+            cfgRef.current = {
+                ink,
+                lit,
+                rings,
+                charSize,
+                gap,
+                spin,
+                beam,
+                band,
+                churn,
+                scale
+            };
             sceneRef.current?.updateConfig(cfgRef.current);
         }
     }["OriginkitBase_GlyphRing.useEffect"], [
@@ -2054,7 +2053,7 @@ function OriginkitBase_GlyphRing(props) {
         }
     }, void 0, false, {
         fileName: "[project]/src/components/ui/glyph-ring.tsx",
-        lineNumber: 443,
+        lineNumber: 442,
         columnNumber: 9
     }, this);
 }
@@ -2079,7 +2078,7 @@ function GlyphRing(props) {
         ...props
     }, void 0, false, {
         fileName: "[project]/src/components/ui/glyph-ring.tsx",
-        lineNumber: 476,
+        lineNumber: 475,
         columnNumber: 10
     }, this);
 }

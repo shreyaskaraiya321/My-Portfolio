@@ -1,6 +1,6 @@
+"use client";
 // Glyph Ring — Originkit
 
-"use client"
 
 import * as React from "react"
 import { useEffect, useRef } from "react"
@@ -398,19 +398,6 @@ function OriginkitBase_GlyphRing(props: GlyphRingProps) {
         churn,
         scale,
     })
-    cfgRef.current = {
-        ink,
-        lit,
-        rings,
-        charSize,
-        gap,
-        spin,
-        beam,
-        band,
-        churn,
-        scale,
-    }
-
     useEffect(() => {
         const container = containerRef.current
         if (!container) return
@@ -436,6 +423,18 @@ function OriginkitBase_GlyphRing(props: GlyphRingProps) {
     }, [])
 
     useEffect(() => {
+        cfgRef.current = {
+            ink,
+            lit,
+            rings,
+            charSize,
+            gap,
+            spin,
+            beam,
+            band,
+            churn,
+            scale,
+        }
         sceneRef.current?.updateConfig(cfgRef.current)
     }, [ink, lit, rings, charSize, gap, spin, beam, band, churn, scale])
 
