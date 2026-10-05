@@ -2427,6 +2427,10 @@
   }
 
   @media (min-width: 48rem) {
+    .md\:pointer-events-auto {
+      pointer-events: auto;
+    }
+
     .md\:mt-0 {
       margin-top: 0;
     }

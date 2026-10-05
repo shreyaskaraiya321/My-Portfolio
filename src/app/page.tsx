@@ -53,7 +53,7 @@ export default async function Home() {
       <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
         {/* EXACT BACKGROUND WRAPPER */}
         {/* Interactive WebGL Background (Deep Dark Theme) */}
-        <div className="absolute inset-0 z-0 w-full h-full bg-[#121212]">
+        <div className="absolute inset-0 z-0 w-full h-full bg-[#121212] pointer-events-none md:pointer-events-auto">
           <GlyphRing 
             ink="#262626" 
             lit="#31b497" 
