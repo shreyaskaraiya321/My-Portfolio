@@ -805,6 +805,10 @@
     width: 90%;
   }
 
+  .w-\[90vw\] {
+    width: 90vw;
+  }
+
   .w-fit {
     width: fit-content;
   }
@@ -1428,6 +1432,10 @@
 
   .p-2 {
     padding: calc(var(--spacing) * 2);
+  }
+
+  .p-3 {
+    padding: calc(var(--spacing) * 3);
   }
 
   .p-3\.5 {
@@ -2255,6 +2263,16 @@
       align-items: flex-end;
     }
 
+    .sm\:text-4xl {
+      font-size: var(--text-4xl);
+      line-height: var(--tw-leading, var(--text-4xl--line-height));
+    }
+
+    .sm\:text-xs {
+      font-size: var(--text-xs);
+      line-height: var(--tw-leading, var(--text-xs--line-height));
+    }
+
     .sm\:text-\[5px\] {
       font-size: 5px;
     }
@@ -2287,6 +2305,10 @@
 
     .md\:w-auto {
       width: auto;
+    }
+
+    .md\:max-w-lg {
+      max-width: var(--container-lg);
     }
 
     .md\:scale-90 {
@@ -2328,6 +2350,10 @@
       gap: calc(var(--spacing) * 12);
     }
 
+    .md\:p-5 {
+      padding: calc(var(--spacing) * 5);
+    }
+
     .md\:p-6 {
       padding: calc(var(--spacing) * 6);
     }
@@ -2342,6 +2368,14 @@
 
     .md\:px-0 {
       padding-inline: 0;
+    }
+
+    .md\:px-6 {
+      padding-inline: calc(var(--spacing) * 6);
+    }
+
+    .md\:py-3 {
+      padding-block: calc(var(--spacing) * 3);
     }
 
     .md\:py-24 {
@@ -2402,6 +2436,10 @@
   }
 
   @media (min-width: 64rem) {
+    .lg\:p-10 {
+      padding: calc(var(--spacing) * 10);
+    }
+
     .lg\:text-7xl {
       font-size: var(--text-7xl);
       line-height: var(--tw-leading, var(--text-7xl--line-height));

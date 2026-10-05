@@ -80,10 +80,10 @@ export default async function Home() {
                 animation: textGradient 12s linear infinite;
               }
             `}</style>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight">
               Building Ideas Into<br/>
               <span 
-                className="text-4xl md:text-6xl lg:text-7xl text-transparent bg-clip-text animate-text-gradient" 
+                className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-transparent bg-clip-text animate-text-gradient" 
                 style={{ backgroundImage: "linear-gradient(to right, #31b497, #0ea5e9, #8b5cf6, #0ea5e9, #31b497)" }}
               >
                 Intelligent Experiences
@@ -146,7 +146,7 @@ export default async function Home() {
         <div className="flex flex-col xl:flex-row gap-6 md:gap-8 w-full items-stretch">
           
           {/* Left Column: Experience Timeline */}
-          <div className="w-full xl:w-1/2 flex-1 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
+          <div className="w-full xl:w-1/2 flex-1 bg-white rounded-2xl p-5 md:p-8 lg:p-10 border border-black/5 shadow-sm">
             <h3 className="text-lg font-bold text-[#101010] mb-8 flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-[#31b497]"/> Experience & Journey
             </h3>
@@ -222,7 +222,7 @@ export default async function Home() {
           </div>
 
           {/* Right Column: Modern Tech Stack Grid */}
-          <div className="w-full xl:w-1/2 flex-1 bg-white rounded-2xl p-6 md:p-8 border border-black/5 shadow-sm">
+          <div className="w-full xl:w-1/2 flex-1 bg-white rounded-2xl p-5 md:p-8 lg:p-10 border border-black/5 shadow-sm">
             <h3 className="text-lg font-bold text-[#101010] mb-6 flex items-center gap-2">
               <Code2 className="w-5 h-5 text-cyan-500"/> Core Architecture
             </h3>

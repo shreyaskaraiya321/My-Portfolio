@@ -375,7 +375,7 @@ function EntrySequence({ onComplete }) {
                                     className: "flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full mt-4",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex-1 w-full max-w-lg bg-black border-4 border-black shadow-[8px_8px_0_0_#f97316] p-5 text-left font-mono text-[11px] md:text-xs text-[#31b497] h-[160px] flex flex-col justify-start relative overflow-hidden",
+                                            className: "flex-1 w-[90vw] md:max-w-lg bg-black border-4 border-black shadow-[8px_8px_0_0_#f97316] p-3 md:p-5 text-left font-mono text-[11px] md:text-xs text-[#31b497] h-[160px] flex flex-col justify-start relative overflow-hidden",
                                             children: [
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "absolute top-0 left-0 w-full h-1 bg-[#31b497]/20"
@@ -618,7 +618,7 @@ function EntrySequence({ onComplete }) {
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
                     children: `
-            .entry-styled-wrapper .input__container { position: relative; background: #f0f0f0; padding: 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border: 4px solid #000; max-width: 350px; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; transform: rotateX(10deg) rotateY(-10deg); perspective: 1000px; box-shadow: 15px 15px 0 -5px #f97316, 15px 15px 0 0 #000; }
+            .entry-styled-wrapper .input__container { position: relative; background: #f0f0f0; padding: 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border: 4px solid #000; max-width: 350px; width: 85vw; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; transform: rotateX(10deg) rotateY(-10deg); perspective: 1000px; box-shadow: 15px 15px 0 -5px #f97316, 15px 15px 0 0 #000; }
             .entry-styled-wrapper .input__container:hover { transform: rotateX(5deg) rotateY(1deg) scale(1.05); box-shadow: 25px 25px 0 -5px #f97316, 25px 25px 0 0 #000; }
             .entry-styled-wrapper .shadow__input { content: ""; position: absolute; width: 100%; height: 100%; left: 0; bottom: 0; z-index: -1; transform: translateZ(-50px); background: linear-gradient(45deg, rgba(249, 115, 22, 0.4) 0%, rgba(249, 115, 22, 0.1) 100%); filter: blur(20px); }
             .entry-styled-wrapper .input__button__shadow { cursor: pointer; border: 3px solid #000; background: #e9b50b; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); display: flex; justify-content: center; align-items: center; padding: 10px; transform: translateZ(20px); position: relative; z-index: 3; }
@@ -746,12 +746,12 @@ function FloatingNav() {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: "fixed bottom-8 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto max-w-full overflow-x-auto mx-auto",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-            className: "flex items-center gap-4 px-6 py-3 bg-[#2d2d2d]/90 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl text-white/80 text-sm font-medium",
+            className: "flex items-center gap-4 px-4 py-2 md:px-6 md:py-3 bg-[#2d2d2d]/90 backdrop-blur-xl rounded-full border border-white/10 shadow-2xl text-white/80 text-sm font-medium",
             children: [
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#work",
                     onClick: (e)=>scrollToSection(e, 'work'),
-                    className: "text-xs md:text-sm whitespace-nowrap hover:text-cyan-400 transition-colors",
+                    className: "text-[10px] sm:text-xs md:text-sm whitespace-nowrap hover:text-cyan-400 transition-colors",
                     children: "Work"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",
@@ -769,7 +769,7 @@ function FloatingNav() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#projects",
                     onClick: (e)=>scrollToSection(e, 'projects'),
-                    className: "text-xs md:text-sm whitespace-nowrap hover:text-violet-400 transition-colors",
+                    className: "text-[10px] sm:text-xs md:text-sm whitespace-nowrap hover:text-violet-400 transition-colors",
                     children: "Projects"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",
@@ -787,7 +787,7 @@ function FloatingNav() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#opensource",
                     onClick: (e)=>scrollToSection(e, 'opensource'),
-                    className: "text-xs md:text-sm whitespace-nowrap hover:text-fuchsia-400 transition-colors",
+                    className: "text-[10px] sm:text-xs md:text-sm whitespace-nowrap hover:text-fuchsia-400 transition-colors",
                     children: "Open Source"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",
@@ -805,7 +805,7 @@ function FloatingNav() {
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
                     href: "#contact",
                     onClick: (e)=>scrollToSection(e, 'contact'),
-                    className: "text-xs md:text-sm whitespace-nowrap hover:text-amber-400 transition-colors",
+                    className: "text-[10px] sm:text-xs md:text-sm whitespace-nowrap hover:text-amber-400 transition-colors",
                     children: "Contact"
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/floating-nav.tsx",

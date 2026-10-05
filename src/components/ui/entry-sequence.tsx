@@ -165,7 +165,7 @@ export default function EntrySequence({ onComplete }: { onComplete: () => void }
                 <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full mt-4">
                   
                   {/* AI Agent Terminal */}
-                  <div className="flex-1 w-full max-w-lg bg-black border-4 border-black shadow-[8px_8px_0_0_#f97316] p-5 text-left font-mono text-[11px] md:text-xs text-[#31b497] h-[160px] flex flex-col justify-start relative overflow-hidden">
+                  <div className="flex-1 w-[90vw] md:max-w-lg bg-black border-4 border-black shadow-[8px_8px_0_0_#f97316] p-3 md:p-5 text-left font-mono text-[11px] md:text-xs text-[#31b497] h-[160px] flex flex-col justify-start relative overflow-hidden">
                     <div className="absolute top-0 left-0 w-full h-1 bg-[#31b497]/20" />
                     <p className="mb-2">{'>'} Authenticating visitor profile: <span className="text-[#e9b50b] font-bold">{name}</span>...</p>
                     {terminalLines >= 1 && <p className="mb-2">{'>'} Establishing secure connection... <span className="text-white font-bold">SUCCESS</span></p>}
@@ -189,7 +189,7 @@ export default function EntrySequence({ onComplete }: { onComplete: () => void }
 
           {/* Injected CSS */}
           <style>{`
-            .entry-styled-wrapper .input__container { position: relative; background: #f0f0f0; padding: 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border: 4px solid #000; max-width: 350px; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; transform: rotateX(10deg) rotateY(-10deg); perspective: 1000px; box-shadow: 15px 15px 0 -5px #f97316, 15px 15px 0 0 #000; }
+            .entry-styled-wrapper .input__container { position: relative; background: #f0f0f0; padding: 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border: 4px solid #000; max-width: 350px; width: 85vw; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; transform: rotateX(10deg) rotateY(-10deg); perspective: 1000px; box-shadow: 15px 15px 0 -5px #f97316, 15px 15px 0 0 #000; }
             .entry-styled-wrapper .input__container:hover { transform: rotateX(5deg) rotateY(1deg) scale(1.05); box-shadow: 25px 25px 0 -5px #f97316, 25px 25px 0 0 #000; }
             .entry-styled-wrapper .shadow__input { content: ""; position: absolute; width: 100%; height: 100%; left: 0; bottom: 0; z-index: -1; transform: translateZ(-50px); background: linear-gradient(45deg, rgba(249, 115, 22, 0.4) 0%, rgba(249, 115, 22, 0.1) 100%); filter: blur(20px); }
             .entry-styled-wrapper .input__button__shadow { cursor: pointer; border: 3px solid #000; background: #e9b50b; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); display: flex; justify-content: center; align-items: center; padding: 10px; transform: translateZ(20px); position: relative; z-index: 3; }
