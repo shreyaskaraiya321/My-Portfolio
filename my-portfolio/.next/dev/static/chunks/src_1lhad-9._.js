@@ -19,19 +19,77 @@ function EntrySequence({ onComplete }) {
     _s();
     const [name, setName] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("");
     const [step, setStep] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])("input");
+    const [terminalLines, setTerminalLines] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    // Mathematically generate a unique 5x5 Identicon based on the user's name
+    const identicon = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "EntrySequence.useMemo[identicon]": ()=>{
+            if (!name) return null;
+            let hash = 0;
+            for(let i = 0; i < name.length; i++){
+                hash = name.charCodeAt(i) + ((hash << 5) - hash);
+            }
+            const colors = [
+                '#31b497',
+                '#e9b50b',
+                '#f97316',
+                '#101010'
+            ];
+            const color = colors[Math.abs(hash) % colors.length];
+            const grid = [];
+            for(let r = 0; r < 5; r++){
+                const row = [];
+                for(let c = 0; c < 3; c++){
+                    row.push(Math.abs(hash) >> r * 3 + c & 1);
+                }
+                grid.push([
+                    ...row,
+                    row[1],
+                    row[0]
+                ]); // Mirror the first two columns to make it symmetrical 5x5
+            }
+            return {
+                color,
+                grid
+            };
+        }
+    }["EntrySequence.useMemo[identicon]"], [
+        name
+    ]);
     const handleSubmit = (e)=>{
         e.preventDefault();
         if (name.trim().length > 0) {
             setStep("greeting");
+            // Wait 6.5 seconds for the counter to hit '6', then fade out
             setTimeout(()=>{
                 setStep("done");
-                setTimeout(()=>onComplete(), 1200); // Increased from 800 to 1200 to match the fade out
+                setTimeout(()=>onComplete(), 1200);
             }, 6500);
         }
     };
+    // Sync the Terminal text with the 6-second load time
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "EntrySequence.useEffect": ()=>{
+            if (step === "greeting") {
+                setTimeout({
+                    "EntrySequence.useEffect": ()=>setTerminalLines(1)
+                }["EntrySequence.useEffect"], 1000);
+                setTimeout({
+                    "EntrySequence.useEffect": ()=>setTerminalLines(2)
+                }["EntrySequence.useEffect"], 2500);
+                setTimeout({
+                    "EntrySequence.useEffect": ()=>setTerminalLines(3)
+                }["EntrySequence.useEffect"], 4000);
+                setTimeout({
+                    "EntrySequence.useEffect": ()=>setTerminalLines(4)
+                }["EntrySequence.useEffect"], 5200);
+            }
+        }
+    }["EntrySequence.useEffect"], [
+        step
+    ]);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$components$2f$AnimatePresence$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["AnimatePresence"], {
         children: step !== "done" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
-            className: "fixed inset-0 z-[999] flex items-center justify-center bg-[#e4e4e4] text-[#101010]",
+            className: "fixed inset-0 z-[999] flex items-center justify-center bg-[#EBEAE4] text-[#101010]",
             initial: {
                 opacity: 1
             },
@@ -65,7 +123,7 @@ function EntrySequence({ onComplete }) {
                                     }
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 40,
+                                    lineNumber: 74,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -75,65 +133,65 @@ function EntrySequence({ onComplete }) {
                                         children: "UI ENGINEERING • AI AGENTS • FULL-STACK DEVELOPMENT • SYSTEM ARCHITECTURE • NEXT.JS • MONGODB • UI ENGINEERING • AI AGENTS • FULL-STACK DEVELOPMENT • SYSTEM ARCHITECTURE • NEXT.JS • MONGODB • UI ENGINEERING • AI AGENTS • FULL-STACK DEVELOPMENT • SYSTEM ARCHITECTURE • NEXT.JS • MONGODB •"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                        lineNumber: 50,
+                                        lineNumber: 81,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 49,
+                                    lineNumber: 80,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute bottom-6 left-6 font-mono text-[10px] md:text-xs font-bold text-black/30 leading-relaxed z-10 pointer-events-none hidden sm:block",
+                                    className: "absolute bottom-6 left-6 font-mono text-[10px] md:text-xs font-bold text-black/40 leading-relaxed z-10 pointer-events-none hidden sm:block",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "SYS.INIT // 2026.10.04"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 57,
+                                            lineNumber: 88,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "LOC: 17.3850° N, 78.4867° E [HYD]"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 58,
+                                            lineNumber: 89,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "STATUS: AWAITING_VISITOR_INPUT"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 59,
+                                            lineNumber: 90,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 56,
+                                    lineNumber: 87,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "absolute top-16 right-6 font-mono text-[10px] md:text-xs font-bold text-black/30 text-right z-10 pointer-events-none hidden sm:block",
+                                    className: "absolute top-16 right-6 font-mono text-[10px] md:text-xs font-bold text-black/40 text-right z-10 pointer-events-none hidden sm:block",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "SHREYAS_KARAIYA_PORTFOLIO"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 63,
+                                            lineNumber: 93,
                                             columnNumber: 19
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                             children: "BUILD_V2.0"
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 64,
+                                            lineNumber: 94,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 62,
+                                    lineNumber: 92,
                                     columnNumber: 17
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
@@ -146,7 +204,7 @@ function EntrySequence({ onComplete }) {
                                                 className: "shadow__input"
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                                lineNumber: 70,
+                                                lineNumber: 99,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -164,25 +222,25 @@ function EntrySequence({ onComplete }) {
                                                             fill: "none"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                                            lineNumber: 73,
+                                                            lineNumber: 102,
                                                             columnNumber: 25
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("path", {
                                                             d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
                                                         }, void 0, false, {
                                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                                            lineNumber: 74,
+                                                            lineNumber: 103,
                                                             columnNumber: 25
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                                    lineNumber: 72,
+                                                    lineNumber: 101,
                                                     columnNumber: 23
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                                lineNumber: 71,
+                                                lineNumber: 100,
                                                 columnNumber: 21
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -195,24 +253,24 @@ function EntrySequence({ onComplete }) {
                                                 required: true
                                             }, void 0, false, {
                                                 fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                                lineNumber: 77,
+                                                lineNumber: 106,
                                                 columnNumber: 21
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                        lineNumber: 69,
+                                        lineNumber: 98,
                                         columnNumber: 19
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 68,
+                                    lineNumber: 97,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, "input", true, {
                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                            lineNumber: 33,
+                            lineNumber: 67,
                             columnNumber: 15
                         }, this),
                         step === "greeting" && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
@@ -231,200 +289,349 @@ function EntrySequence({ onComplete }) {
                             transition: {
                                 duration: 0.8
                             },
-                            className: "text-center px-4 flex flex-col items-center justify-center",
+                            className: "flex flex-col items-center justify-center w-full max-w-3xl px-4",
                             children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                                    className: "text-3xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight mb-4 break-words px-4",
-                                    children: [
-                                        "Hi, ",
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-[#31b497]",
-                                            children: name
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 102,
-                                            columnNumber: 23
-                                        }, this),
-                                        "."
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 101,
-                                    columnNumber: 17
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                    className: "text-xl md:text-2xl font-medium text-[#101010]/60 mb-16",
-                                    children: "Welcome to the portfolio of Shreyas."
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 104,
-                                    columnNumber: 17
-                                }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    id: "timer",
-                                    className: "scale-75 md:scale-100",
+                                    className: "flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 mb-12",
                                     children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div1"
+                                        identicon && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex flex-col gap-[2px] p-2 bg-white border-4 border-black shadow-[6px_6px_0_0_#000] shrink-0",
+                                            children: identicon.grid.map((row, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex gap-[2px]",
+                                                    children: row.map((active, j)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                                            initial: {
+                                                                scale: 0
+                                                            },
+                                                            animate: {
+                                                                scale: active ? 1 : 0
+                                                            },
+                                                            transition: {
+                                                                delay: (i * 5 + j) * 0.03,
+                                                                type: "spring",
+                                                                stiffness: 300
+                                                            },
+                                                            className: "w-5 h-5 md:w-6 md:h-6",
+                                                            style: {
+                                                                backgroundColor: active ? identicon.color : 'transparent'
+                                                            }
+                                                        }, j, false, {
+                                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                            lineNumber: 139,
+                                                            columnNumber: 29
+                                                        }, this))
+                                                }, i, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 137,
+                                                    columnNumber: 25
+                                                }, this))
                                         }, void 0, false, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 110,
-                                            columnNumber: 19
+                                            lineNumber: 135,
+                                            columnNumber: 21
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div2"
-                                        }, void 0, false, {
+                                            className: "text-center md:text-left",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                                    className: "text-4xl md:text-6xl font-display font-bold tracking-tight mb-2 break-words",
+                                                    children: [
+                                                        "Hi, ",
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-[#31b497]",
+                                                            children: name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                            lineNumber: 156,
+                                                            columnNumber: 27
+                                                        }, this),
+                                                        "."
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 155,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xl md:text-2xl font-medium text-[#101010]/60",
+                                                    children: "Welcome to the portfolio of Shreyas."
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 158,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
                                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 111,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div3"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 112,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div4"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 113,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div5"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 114,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div6"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 115,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div7"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 116,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div8"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 117,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div9"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 118,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div10"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 119,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div11"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 120,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div12"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 121,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div13"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 122,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div14"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 123,
-                                            columnNumber: 19
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            id: "div15"
-                                        }, void 0, false, {
-                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                            lineNumber: 124,
+                                            lineNumber: 154,
                                             columnNumber: 19
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                                    lineNumber: 109,
+                                    lineNumber: 132,
+                                    columnNumber: 17
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 w-full mt-4",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 w-full max-w-lg bg-black border-4 border-black shadow-[8px_8px_0_0_#f97316] p-5 text-left font-mono text-[11px] md:text-xs text-[#31b497] h-[160px] flex flex-col justify-start relative overflow-hidden",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "absolute top-0 left-0 w-full h-1 bg-[#31b497]/20"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 169,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mb-2",
+                                                    children: [
+                                                        '>',
+                                                        " Authenticating visitor profile: ",
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-[#e9b50b] font-bold",
+                                                            children: name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                            lineNumber: 170,
+                                                            columnNumber: 79
+                                                        }, this),
+                                                        "..."
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 170,
+                                                    columnNumber: 21
+                                                }, this),
+                                                terminalLines >= 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mb-2",
+                                                    children: [
+                                                        '>',
+                                                        " Establishing secure connection... ",
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-white font-bold",
+                                                            children: "SUCCESS"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                            lineNumber: 171,
+                                                            columnNumber: 104
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 171,
+                                                    columnNumber: 44
+                                                }, this),
+                                                terminalLines >= 2 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mb-2",
+                                                    children: [
+                                                        '>',
+                                                        " Waking UI Agent... ",
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                            className: "text-white font-bold",
+                                                            children: "LOADED"
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                            lineNumber: 172,
+                                                            columnNumber: 89
+                                                        }, this)
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 172,
+                                                    columnNumber: 44
+                                                }, this),
+                                                terminalLines >= 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "mb-2",
+                                                    children: [
+                                                        '>',
+                                                        " Syncing neural pathways..."
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 173,
+                                                    columnNumber: 44
+                                                }, this),
+                                                terminalLines >= 4 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].p, {
+                                                    initial: {
+                                                        opacity: 0
+                                                    },
+                                                    animate: {
+                                                        opacity: 1
+                                                    },
+                                                    className: "mt-2 text-[#e9b50b] font-bold",
+                                                    children: [
+                                                        '>',
+                                                        " Workspace ready. Enter."
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 174,
+                                                    columnNumber: 44
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: "animate-pulse inline-block w-2 h-4 bg-[#31b497] mt-1"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 175,
+                                                    columnNumber: 21
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                            lineNumber: 168,
+                                            columnNumber: 19
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            id: "timer",
+                                            className: "scale-75 md:scale-90 flex-shrink-0",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div1"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div2"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 38
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div3"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 55
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div4"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 72
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div5"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 89
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div6"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 181,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div7"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 181,
+                                                    columnNumber: 38
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div8"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 181,
+                                                    columnNumber: 55
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div9"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 181,
+                                                    columnNumber: 72
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div10"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 181,
+                                                    columnNumber: 89
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div11"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 182,
+                                                    columnNumber: 21
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div12"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 182,
+                                                    columnNumber: 39
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div13"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 182,
+                                                    columnNumber: 57
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div14"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 182,
+                                                    columnNumber: 75
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    id: "div15"
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                                    lineNumber: 182,
+                                                    columnNumber: 93
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                            lineNumber: 179,
+                                            columnNumber: 19
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/src/components/ui/entry-sequence.tsx",
+                                    lineNumber: 165,
                                     columnNumber: 17
                                 }, this)
                             ]
                         }, "greeting", true, {
                             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                            lineNumber: 93,
+                            lineNumber: 122,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                    lineNumber: 29,
+                    lineNumber: 63,
                     columnNumber: 11
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("style", {
                     children: `
-            /* 1. Orange Background Strip & Box Shadow */
-            .entry-styled-wrapper .input__container { 
-              position: relative; background: #f0f0f0; padding: 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border: 4px solid #000; max-width: 350px; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; transform: rotateX(10deg) rotateY(-10deg); perspective: 1000px; 
-              box-shadow: 15px 15px 0 -5px #f97316, 15px 15px 0 0 #000; 
-            }
-            .entry-styled-wrapper .input__container:hover { 
-              transform: rotateX(5deg) rotateY(1deg) scale(1.05); 
-              box-shadow: 25px 25px 0 -5px #f97316, 25px 25px 0 0 #000; 
-            }
-            .entry-styled-wrapper .shadow__input { 
-              content: ""; position: absolute; width: 100%; height: 100%; left: 0; bottom: 0; z-index: -1; transform: translateZ(-50px); 
-              background: linear-gradient(45deg, rgba(249, 115, 22, 0.4) 0%, rgba(249, 115, 22, 0.1) 100%); filter: blur(20px); 
-            }
-
-            /* 2. Yellow Profile Icon Button */
-            .entry-styled-wrapper .input__button__shadow { 
-              cursor: pointer; border: 3px solid #000; 
-              background: #e9b50b; 
-              transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); display: flex; justify-content: center; align-items: center; padding: 10px; transform: translateZ(20px); position: relative; z-index: 3; 
-            }
-            .entry-styled-wrapper .input__button__shadow:hover { 
-              background: #e9b50b; transform: translateZ(10px) translateX(-5px) translateY(-5px); box-shadow: 5px 5px 0 0 #000; 
-            }
+            .entry-styled-wrapper .input__container { position: relative; background: #f0f0f0; padding: 20px; display: flex; justify-content: flex-start; align-items: center; gap: 15px; border: 4px solid #000; max-width: 350px; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); transform-style: preserve-3d; transform: rotateX(10deg) rotateY(-10deg); perspective: 1000px; box-shadow: 15px 15px 0 -5px #f97316, 15px 15px 0 0 #000; }
+            .entry-styled-wrapper .input__container:hover { transform: rotateX(5deg) rotateY(1deg) scale(1.05); box-shadow: 25px 25px 0 -5px #f97316, 25px 25px 0 0 #000; }
+            .entry-styled-wrapper .shadow__input { content: ""; position: absolute; width: 100%; height: 100%; left: 0; bottom: 0; z-index: -1; transform: translateZ(-50px); background: linear-gradient(45deg, rgba(249, 115, 22, 0.4) 0%, rgba(249, 115, 22, 0.1) 100%); filter: blur(20px); }
+            .entry-styled-wrapper .input__button__shadow { cursor: pointer; border: 3px solid #000; background: #e9b50b; transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); display: flex; justify-content: center; align-items: center; padding: 10px; transform: translateZ(20px); position: relative; z-index: 3; }
+            .entry-styled-wrapper .input__button__shadow:hover { background: #e9b50b; transform: translateZ(10px) translateX(-5px) translateY(-5px); box-shadow: 5px 5px 0 0 #000; }
             .entry-styled-wrapper .input__button__shadow svg { fill: #000; width: 25px; height: 25px; }
-
             .entry-styled-wrapper .input__search { width: 100%; outline: none; border: 3px solid #000; padding: 15px; font-size: 18px; background: #fff; color: #000; transform: translateZ(10px); transition: all 400ms cubic-bezier(0.23, 1, 0.32, 1); position: relative; z-index: 3; font-family: inherit; letter-spacing: -0.5px; }
             .entry-styled-wrapper .input__search::placeholder { color: #666; font-weight: bold; text-transform: uppercase; }
             .entry-styled-wrapper .input__search:hover, .entry-styled-wrapper .input__search:focus { background: #f0f0f0; transform: translateZ(20px) translateX(-5px) translateY(-5px); box-shadow: 5px 5px 0 0 #000; }
-
-            /* 3. Green VISITOR Tag */
-            .entry-styled-wrapper .input__container::before { 
-              content: "VISITOR"; position: absolute; top: -15px; left: 20px; 
-              background: #31b497; 
-              color: #000; font-weight: bold; padding: 5px 10px; font-size: 14px; transform: translateZ(50px); z-index: 4; border: 2px solid #000; 
-            }
+            .entry-styled-wrapper .input__container::before { content: "VISITOR"; position: absolute; top: -15px; left: 20px; background: #31b497; color: #000; font-weight: bold; padding: 5px 10px; font-size: 14px; transform: translateZ(50px); z-index: 4; border: 2px solid #000; }
             
+            @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+            .animate-marquee { display: inline-block; animation: marquee 20s linear infinite; }
+
             #timer { display: grid; grid-template-columns: repeat(3, 25px); grid-template-rows: repeat(5, 25px); gap: 10px; grid-template-areas: "div1 div2 div3" "div4 div5 div6" "div7 div8 div9" "div10 div11 div12" "div13 div14 div15"; }
             #timer > div { background-color: #31b497; border-radius: 5px; }
             #div1 { grid-area: div1; animation: div1 10s both infinite; } #div2 { grid-area: div2; animation: div2 10s both infinite; } #div3 { grid-area: div3; } #div4 { grid-area: div4; animation: div4 10s both infinite; } #div5 { grid-area: div5; display: none; } #div6 { grid-area: div6; animation: div6 10s both infinite; } #div7 { grid-area: div7; animation: div7 10s both infinite; } #div8 { grid-area: div8; animation: div8 10s both infinite; } #div9 { grid-area: div9; } #div10 { grid-area: div10; animation: div10 10s both infinite; } #div11 { grid-area: div11; display: none; } #div12 { grid-area: div12; animation: div12 10s both infinite; } #div13 { grid-area: div13; animation: div13 10s both infinite; } #div14 { grid-area: div14; animation: div14 10s both infinite; } #div15 { grid-area: div15; }
@@ -438,34 +645,25 @@ function EntrySequence({ onComplete }) {
             @keyframes div12 { 0%, 10%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { transform: translateX(0); } 20% { transform: translateX(-70px); } }
             @keyframes div13 { 0%, 20%, 30%, 50%, 60%, 80%, 90%, 100% { transform: translateX(0); } 10%, 40%, 70% { transform: translateX(70px); } }
             @keyframes div14 { 0%, 20%, 30%, 50%, 60%, 80%, 90%, 100% { transform: translateX(0); } 10%, 40%, 70% { transform: translateX(35px); } }
-            
-            @keyframes marquee {
-              0% { transform: translateX(0); }
-              100% { transform: translateX(-50%); }
-            }
-            .animate-marquee {
-              display: inline-block;
-              animation: marquee 20s linear infinite;
-            }
           `
                 }, void 0, false, {
                     fileName: "[project]/src/components/ui/entry-sequence.tsx",
-                    lineNumber: 131,
+                    lineNumber: 191,
                     columnNumber: 11
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/ui/entry-sequence.tsx",
-            lineNumber: 23,
+            lineNumber: 57,
             columnNumber: 9
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/ui/entry-sequence.tsx",
-        lineNumber: 21,
+        lineNumber: 55,
         columnNumber: 5
     }, this);
 }
-_s(EntrySequence, "nwaRDv9LkIEL+2Nsk9jEQfn4geA=");
+_s(EntrySequence, "n7PWqCv8s1UIllACR1AHweL1v8A=");
 _c = EntrySequence;
 var _c;
 __turbopack_context__.k.register(_c, "EntrySequence");
