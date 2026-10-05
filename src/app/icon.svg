@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Deep Dark Grey Rounded Background -->
+  <rect width="256" height="256" rx="60" fill="#121212" />
+  
+  <!-- Neo-Brutalist Orange Drop Shadow -->
+  <path d="M 76 60 H 204 V 92 H 76 Z M 76 92 H 108 V 124 H 76 Z M 76 124 H 204 V 156 H 76 Z M 172 156 H 204 V 188 H 172 Z M 76 188 H 204 V 220 H 76 Z" fill="#f97316" />
+  
+  <!-- Main Teal Pixel-Art 'S' -->
+  <path d="M 64 48 H 192 V 80 H 64 Z M 64 80 H 96 V 112 H 64 Z M 64 112 H 192 V 144 H 64 Z M 160 144 H 192 V 176 H 160 Z M 64 176 H 192 V 208 H 64 Z" fill="#31b497" />
+</svg>
